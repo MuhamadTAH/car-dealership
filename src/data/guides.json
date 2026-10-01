@@ -1,0 +1,177 @@
+{
+  "videos": [
+    {
+      "id": "range-rover-sport",
+      "title": "Land Rover Range Rover Sport - In-Depth Review Iraq",
+      "thumbnail": "https://customer-gwfahdyt8tqfncta.cloudflarestream.com/e5d756a000c6ed00613ff1be9898371b/thumbnails/thumbnail.jpg",
+      "duration": "14:20",
+      "author": "iQ Cars Media"
+    },
+    {
+      "id": "exeed-exlantix",
+      "title": "EXEED Exlantix ET - Electric Flagship Test Drive",
+      "thumbnail": "https://customer-gwfahdyt8tqfncta.cloudflarestream.com/e38ba848cfabaaee4fe40005f36e17fc/thumbnails/thumbnail.jpg",
+      "duration": "11:45",
+      "author": "iQ Cars Media"
+    },
+    {
+      "id": "land-rover-defender",
+      "title": "Land Rover Defender 110 - Off-Road in Kurdistan Mountains",
+      "thumbnail": "https://customer-gwfahdyt8tqfncta.cloudflarestream.com/2fb732daa22ebcfbcde035da4cdab9e9/thumbnails/thumbnail.jpg",
+      "duration": "18:02",
+      "author": "iQ Cars Media"
+    },
+    {
+      "id": "bmw-5-series",
+      "title": "BMW 5-Series G60 530i - Luxury & Technology Walkthrough",
+      "thumbnail": "https://customer-gwfahdyt8tqfncta.cloudflarestream.com/4f906b12848d1ec902cdb5bdce58b796/thumbnails/thumbnail.jpg",
+      "duration": "16:30",
+      "author": "iQ Cars Media"
+    },
+    {
+      "id": "toyota-prado",
+      "title": "Toyota Land Cruiser Prado 250 - All New Platform Tested",
+      "thumbnail": "https://customer-gwfahdyt8tqfncta.cloudflarestream.com/597224b23a19f6afaef40f7c5930a777/thumbnails/thumbnail.jpg",
+      "duration": "19:15",
+      "author": "iQ Cars Media"
+    },
+    {
+      "id": "gac-empow",
+      "title": "GAC Empow - Sport Sedan Under $20,000",
+      "thumbnail": "https://customer-gwfahdyt8tqfncta.cloudflarestream.com/7706450dbaa29414cd17ca1973f872a6/thumbnails/thumbnail.jpg",
+      "duration": "10:12",
+      "author": "iQ Cars Media"
+    }
+  ],
+  "latestModels": [
+    {
+      "id": 419,
+      "brand": "BYD",
+      "model": "Shark 6",
+      "year": 2026,
+      "image": "https://cdn.iqcars.io/img/BrandNewCarThumb/1765874720460.602368c1168233c4cBYD_Shark_front_uae-removebg-preview.png",
+      "priceEst": "$38,000",
+      "specs": "1.5T Plug-in Hybrid | 430 HP | 4WD | 840 km range"
+    },
+    {
+      "id": 500,
+      "brand": "Mercedes-Benz",
+      "model": "E-Class",
+      "year": 2026,
+      "image": "https://cdn.iqcars.io/img/BrandNewCarThumb/1772302838290.0337IMG_7580-removebg-preview.png",
+      "priceEst": "$72,000",
+      "specs": "2.0L Turbo Mild-Hybrid | 255 HP | MBUX Superscreen"
+    },
+    {
+      "id": 660,
+      "brand": "Toyota",
+      "model": "Land Cruiser FJ",
+      "year": 2027,
+      "image": "https://cdn.iqcars.io/img/BrandNewCarThumb/1790022027664.8892IMG_5358-removebg-preview.png",
+      "priceEst": "$41,000",
+      "specs": "2.8L Turbo Diesel | 204 HP | Full-time 4WD"
+    },
+    {
+      "id": 478,
+      "brand": "BYD",
+      "model": "SONG PLUS",
+      "year": 2026,
+      "image": "https://cdn.iqcars.io/img/BrandNewCarThumb/1771243039542.3406IMG_6615.PNG",
+      "priceEst": "$23,500",
+      "specs": "DM-i Super Hybrid | Blade Battery | 1,000+ km range"
+    },
+    {
+      "id": 377,
+      "brand": "Mercedes-Benz",
+      "model": "S-Class",
+      "year": 2026,
+      "image": "https://cdn.iqcars.io/img/BrandNewCarThumb/1772392495475.4568IMG_7631-removebg-preview.png",
+      "priceEst": "$145,000",
+      "specs": "3.0L Inline-6 Turbo | 429 HP | Executive Rear Seating"
+    },
+    {
+      "id": 345,
+      "brand": "Kia",
+      "model": "Tasman",
+      "year": 2026,
+      "image": "https://cdn.iqcars.io/img/BrandNewCarThumb/1759669083052.3865image_processing20250712-10-5rkf3f-removebg-preview.png",
+      "priceEst": "$32,000",
+      "specs": "2.5L Turbo Gasoline | 281 HP | Heavy Duty Bed"
+    },
+    {
+      "id": 571,
+      "brand": "TANK",
+      "model": "300",
+      "year": 2026,
+      "image": "https://cdn.iqcars.io/img/BrandAttachments/1747315387629.3057_GWM%20TANK.png",
+      "priceEst": "$34,500",
+      "specs": "2.0T Turbo | Front & Rear Diff Locks | Tank Turn"
+    }
+  ],
+  "categories": [
+    {
+      "id": "family-cars",
+      "title": "Family Cars",
+      "titleAr": "سيارات عائلية",
+      "titleKu": "ئۆتۆمبێلی خێزانی",
+      "img": "https://cdn.iqcars.io/img/DefinedCategoryFilterAttachments/family-cars.jpeg",
+      "count": "14,200"
+    },
+    {
+      "id": "muscle-cars",
+      "title": "Muscle Cars",
+      "titleAr": "سيارات رياضية",
+      "titleKu": "ئۆتۆمبێلی وەرزشی",
+      "img": "https://cdn.iqcars.io/img/DefinedCategoryFilterAttachments/muscle-cars.jpg",
+      "count": "3,840"
+    },
+    {
+      "id": "pickup-cars",
+      "title": "Pickup",
+      "titleAr": "بيك آب ونصف نقل",
+      "titleKu": "پیکاب",
+      "img": "https://cdn.iqcars.io/img/DefinedCategoryFilterAttachments/pickup.jpg?v=2",
+      "count": "8,950"
+    },
+    {
+      "id": "personal-cars",
+      "title": "Personal Cars",
+      "titleAr": "سيارات شخصية سيدان",
+      "titleKu": "ئۆتۆمبێلی کەسی",
+      "img": "https://cdn.iqcars.io/img/DefinedCategoryFilterAttachments/pc-2.jpg",
+      "count": "22,400"
+    },
+    {
+      "id": "van-cars",
+      "title": "VAN",
+      "titleAr": "فان وحافلات",
+      "titleKu": "ڤان",
+      "img": "https://cdn.iqcars.io/img/DefinedCategoryFilterAttachments/van.jpg",
+      "count": "1,620"
+    },
+    {
+      "id": "us-cars",
+      "title": "US Cars",
+      "titleAr": "وارد أمريكي",
+      "titleKu": "واردی ئەمریکی",
+      "img": "https://cdn.iqcars.io/img/DefinedCategoryFilterAttachments/us-cars.jpg",
+      "count": "28,700"
+    },
+    {
+      "id": "gcc-cars",
+      "title": "GCC Cars",
+      "titleAr": "وارد خليجي",
+      "titleKu": "واردی خەلیجی",
+      "img": "https://cdn.iqcars.io/img/DefinedCategoryFilterAttachments/gcc-cars.png",
+      "count": "19,850"
+    },
+    {
+      "id": "ev-cars",
+      "title": "EV Cars",
+      "titleAr": "سيارات كهربائية",
+      "titleKu": "ئۆتۆمبێلی کارەبایی",
+      "img": "https://cdn.iqcars.io/img/DefinedCategoryFilterAttachments/ev-cars.png",
+      "count": "1,230"
+    }
+  ]
+}
