@@ -48,7 +48,6 @@ export default function Header() {
       badge: compareList.length > 0 ? compareList.length : null,
     },
     { href: "/ev-map", label: t("evMap"), isNew: true },
-    { href: "/news", label: t("news") },
   ];
 
   return (

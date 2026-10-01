@@ -41,9 +41,6 @@ export default function Footer() {
               <Link href="/ev-map" className="hover:text-emerald-400 transition">
                 {t("evMap")}
               </Link>
-              <Link href="/news" className="hover:text-emerald-400 transition">
-                {t("news")}
-              </Link>
               <Link href="/about" className="hover:text-emerald-400 transition">
                 {t("aboutUs")}
               </Link>

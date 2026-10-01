@@ -110,20 +110,6 @@ export interface Showroom {
   [key: string]: any;
 }
 
-export interface NewsArticle {
-  id: string;
-  slug: string;
-  title: string;
-  titleAr: string;
-  titleKu: string;
-  date: string;
-  category: string;
-  image: string;
-  summary: string;
-  content: string;
-  [key: string]: any;
-}
-
 export interface EVStation {
   id: string;
   name: string;
