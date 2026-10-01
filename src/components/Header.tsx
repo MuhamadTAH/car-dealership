@@ -7,7 +7,6 @@ import { useApp } from "@/context/AppContext";
 import {
   Car,
   Globe,
-  PlusCircle,
   User,
   Heart,
   Menu,
@@ -100,15 +99,6 @@ export default function Header() {
 
           {/* Right Action Buttons */}
           <div className="hidden md:flex items-center gap-2 sm:gap-3">
-            {/* Sell Car Button */}
-            <Link
-              href="/sell-car"
-              className="flex items-center gap-1.5 px-3 py-1.5 bg-emerald-600 hover:bg-emerald-500 text-white text-sm font-semibold rounded-lg shadow-sm transition-all transform hover:-translate-y-0.5"
-            >
-              <PlusCircle className="w-4 h-4" />
-              <span>{t("sell")}</span>
-            </Link>
-
             {/* Currency Switcher */}
             <div className="relative">
               <button
@@ -284,15 +274,7 @@ export default function Header() {
       {/* Mobile Drawer */}
       {mobileMenuOpen && (
         <div className="md:hidden bg-[#1a2536] border-t border-gray-700 px-4 pt-3 pb-6 space-y-3">
-          <div className="grid grid-cols-2 gap-2 pb-2 border-b border-gray-700">
-            <Link
-              href="/sell-car"
-              onClick={() => setMobileMenuOpen(false)}
-              className="flex items-center justify-center gap-1.5 py-2.5 bg-emerald-600 text-white font-semibold rounded-lg text-sm"
-            >
-              <PlusCircle className="w-4 h-4" />
-              <span>{t("sell")}</span>
-            </Link>
+          <div className="pb-2 border-b border-gray-700">
             {user?.isLoggedIn ? (
               <button
                 onClick={() => {

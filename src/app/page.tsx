@@ -47,16 +47,11 @@ export default function HomePage() {
 
             <div className="flex-shrink-0 flex items-center gap-3">
               <Link
-                href="/sell-car"
-                className="px-6 py-3 bg-emerald-500 hover:bg-emerald-400 text-white font-bold text-sm rounded-xl shadow-lg shadow-emerald-500/25 transition transform hover:-translate-y-0.5"
-              >
-                {t("listCarNow")}
-              </Link>
-              <Link
                 href="/search"
-                className="px-6 py-3 bg-white/10 hover:bg-white/20 text-white font-bold text-sm rounded-xl transition"
+                className="px-6 py-3 bg-emerald-500 hover:bg-emerald-400 text-white font-bold text-sm rounded-xl shadow-lg shadow-emerald-500/25 transition transform hover:-translate-y-0.5 inline-flex items-center gap-2"
               >
-                Browse All Cars
+                <span>Browse All Cars</span>
+                <ArrowRight className="w-4 h-4 rtl:rotate-180" />
               </Link>
             </div>
           </div>

@@ -3,7 +3,7 @@
 import React from "react";
 import Link from "next/link";
 import { useApp } from "@/context/AppContext";
-import { Car, Tag, PlusCircle, Zap, Scale, ChevronRight } from "lucide-react";
+import { Car, Tag, Zap, Scale, ChevronRight } from "lucide-react";
 
 export default function QuickCategoryBanners() {
   const { t } = useApp();
@@ -24,13 +24,6 @@ export default function QuickCategoryBanners() {
       color: "from-emerald-600 to-teal-700",
     },
     {
-      href: "/sell-car",
-      title: t("sell"),
-      desc: t("listInMinutes"),
-      icon: PlusCircle,
-      color: "from-amber-600 to-orange-700",
-    },
-    {
       href: "/search?fuel=EV",
       title: "Electric Cars",
       desc: t("ecoFriendly"),
@@ -47,7 +40,7 @@ export default function QuickCategoryBanners() {
   ];
 
   return (
-    <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-3.5 my-8">
+    <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-3.5 my-8">
       {banners.map((b) => {
         const Icon = b.icon;
         return (
