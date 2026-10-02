@@ -59,7 +59,6 @@ const translations: Record<Language, Record<string, string>> = {
     popularModelsSub: "Browse the most popular car models in Iraq",
     availableCars: "Available cars",
     officialDealership: "Official Dealership",
-    privateSeller: "Private Seller",
     brandNew: "Brand New",
 
     // Detail Page
@@ -165,7 +164,6 @@ const translations: Record<Language, Record<string, string>> = {
     popularModelsSub: "تصفح موديلات السيارات الأكثر رواجاً في العراق",
     availableCars: "سيارة متوفرة",
     officialDealership: "وكيل رسمي",
-    privateSeller: "بائع خاص",
     brandNew: "جديدة تماماً",
 
     // Detail Page
@@ -271,7 +269,6 @@ const translations: Record<Language, Record<string, string>> = {
     popularModelsSub: "باوترین مۆدێلەکانی ئۆتۆمبێل لە عێراق ببینە",
     availableCars: "ئۆتۆمبێلی بەردەست",
     officialDealership: "بریکاری فەرمی",
-    privateSeller: "فرۆشیاری تایبەت",
     brandNew: "نوێی سفر",
 
     // Detail Page

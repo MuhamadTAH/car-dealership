@@ -85,8 +85,7 @@ function SearchContent() {
       }
       if (sellerType) {
         const label = car.CarLabel?.LabelTitleen || "";
-        if (sellerType === "Private" && !label.includes("Private")) return false;
-        if (sellerType === "Showroom" && label.includes("Private")) return false;
+        if (sellerType === "Dealership" && !label.includes("Dealership")) return false;
       }
       return true;
     });
@@ -425,16 +424,15 @@ function SearchContent() {
             {/* Seller Type */}
             <div>
               <label className="block text-xs font-bold text-gray-700 dark:text-gray-300 mb-1.5">
-                Seller Type
+                {t("officialDealership")}
               </label>
               <select
                 value={sellerType}
                 onChange={(e) => setSellerType(e.target.value)}
                 className="w-full px-3 py-2 text-xs rounded-xl border border-gray-300 dark:border-gray-700 bg-white dark:bg-gray-800 outline-none"
               >
-                <option value="">All Sellers</option>
-                <option value="Private">Private Sellers</option>
-                <option value="Showroom">Official Showrooms</option>
+                <option value="">All Dealerships</option>
+                <option value="Dealership">Official Dealership</option>
               </select>
             </div>
           </div>

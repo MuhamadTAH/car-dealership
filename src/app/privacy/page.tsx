@@ -42,7 +42,7 @@ export default function PrivacyPage() {
         <section className="space-y-2">
           <h2 className="text-base font-bold text-gray-900 dark:text-white">3. Phone Number Privacy</h2>
           <p>
-            Private seller phone numbers are protected and only shown to authenticated verified users who click &quot;Show Phone Number&quot;. We do not sell or rent user phone numbers to third-party telemarketers.
+            Official dealership phone numbers are directly accessible to prospective car buyers. We do not sell or rent contact phone numbers to third-party telemarketers.
           </p>
         </section>
 

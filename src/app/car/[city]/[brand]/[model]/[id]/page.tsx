@@ -23,6 +23,7 @@ import {
   CheckCircle2,
   Calculator,
   User,
+  Building2,
   ArrowLeft,
   Scale,
 } from "lucide-react";
@@ -211,7 +212,11 @@ export default function CarDetailPage({
               {/* Badge & Photo Counter */}
               <div className="absolute top-4 left-4 rtl:right-4 rtl:left-auto flex items-center gap-2">
                 <span className="px-3 py-1 rounded-full text-xs font-bold text-white bg-emerald-600 shadow-md">
-                  {car.CarLabel?.LabelTitleen || "Private Seller"}
+                  {lang === "ar"
+                    ? car.CarLabel?.LabelTitlear || t("officialDealership")
+                    : lang === "ku"
+                    ? car.CarLabel?.LabelTitleku || t("officialDealership")
+                    : car.CarLabel?.LabelTitleen || t("officialDealership")}
                 </span>
               </div>
 
@@ -372,11 +377,15 @@ export default function CarDetailPage({
           <div className="bg-white dark:bg-[#1a2536] rounded-2xl border border-gray-200 dark:border-gray-800 p-6 shadow-sm space-y-5 sticky top-24">
             <div className="flex items-center gap-3">
               <div className="w-12 h-12 rounded-full bg-emerald-100 dark:bg-emerald-950/60 text-emerald-600 dark:text-emerald-400 flex items-center justify-center font-bold text-lg">
-                <User className="w-6 h-6" />
+                <Building2 className="w-6 h-6" />
               </div>
               <div>
                 <h3 className="font-bold text-base text-gray-900 dark:text-white">
-                  {car.CarLabel?.LabelTitleen || "Private Seller"}
+                  {lang === "ar"
+                    ? car.CarLabel?.LabelTitlear || t("officialDealership")
+                    : lang === "ku"
+                    ? car.CarLabel?.LabelTitleku || t("officialDealership")
+                    : car.CarLabel?.LabelTitleen || t("officialDealership")}
                 </h3>
                 <a
                   href={`https://www.google.com/maps/search/?api=1&query=${encodeURIComponent((cityName || "Iraq") + " Iraq")}`}

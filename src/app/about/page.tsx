@@ -29,7 +29,7 @@ export default function AboutPage() {
           The Largest Online Car Marketplace in Iraq
         </h1>
         <p className="text-base text-gray-500 dark:text-gray-400 leading-relaxed">
-          Owned and operated by Al Kindi Company for Digital Marketing PJSC. Connecting millions of automotive enthusiasts, private sellers, and official certified showrooms across all Iraqi governorates.
+          Owned and operated by Al Kindi Company for Digital Marketing PJSC. Connecting millions of automotive enthusiasts, buyers, and official certified dealerships across all Iraqi governorates.
         </p>
       </div>
 
