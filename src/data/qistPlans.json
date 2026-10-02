@@ -1,0 +1,1242 @@
+{
+  "1084945": {
+    "available": false,
+    "minDownPaymentPercent": 0,
+    "allowedMonths": [],
+    "providerEn": null,
+    "providerAr": null,
+    "providerKu": null
+  },
+  "1169037": {
+    "available": false,
+    "minDownPaymentPercent": 0,
+    "allowedMonths": [],
+    "providerEn": null,
+    "providerAr": null,
+    "providerKu": null
+  },
+  "1274557": {
+    "available": true,
+    "minDownPaymentPercent": 30,
+    "allowedMonths": [
+      12,
+      24,
+      36
+    ],
+    "providerEn": "Official Dealership Direct Qist",
+    "providerAr": "تمويل الوكالة المباشر",
+    "providerKu": "قیستی ڕاستەوخۆی بریکاری فەرمی"
+  },
+  "1299178": {
+    "available": true,
+    "minDownPaymentPercent": 20,
+    "allowedMonths": [
+      12,
+      24
+    ],
+    "providerEn": "Official Dealership Direct Qist",
+    "providerAr": "تمويل الوكالة المباشر",
+    "providerKu": "قیستی ڕاستەوخۆی بریکاری فەرمی"
+  },
+  "1322699": {
+    "available": false,
+    "minDownPaymentPercent": 0,
+    "allowedMonths": [],
+    "providerEn": null,
+    "providerAr": null,
+    "providerKu": null
+  },
+  "1322998": {
+    "available": false,
+    "minDownPaymentPercent": 0,
+    "allowedMonths": [],
+    "providerEn": null,
+    "providerAr": null,
+    "providerKu": null
+  },
+  "1339670": {
+    "available": false,
+    "minDownPaymentPercent": 0,
+    "allowedMonths": [],
+    "providerEn": null,
+    "providerAr": null,
+    "providerKu": null
+  },
+  "1343162": {
+    "available": true,
+    "minDownPaymentPercent": 25,
+    "allowedMonths": [
+      6,
+      12
+    ],
+    "providerEn": "Official Dealership Direct Qist",
+    "providerAr": "تمويل الوكالة المباشر",
+    "providerKu": "قیستی ڕاستەوخۆی بریکاری فەرمی"
+  },
+  "1360327": {
+    "available": false,
+    "minDownPaymentPercent": 0,
+    "allowedMonths": [],
+    "providerEn": null,
+    "providerAr": null,
+    "providerKu": null
+  },
+  "1416128": {
+    "available": true,
+    "minDownPaymentPercent": 25,
+    "allowedMonths": [
+      6,
+      12
+    ],
+    "providerEn": "Official Dealership Direct Qist",
+    "providerAr": "تمويل الوكالة المباشر",
+    "providerKu": "قیستی ڕاستەوخۆی بریکاری فەرمی"
+  },
+  "1417448": {
+    "available": false,
+    "minDownPaymentPercent": 0,
+    "allowedMonths": [],
+    "providerEn": null,
+    "providerAr": null,
+    "providerKu": null
+  },
+  "1420801": {
+    "available": false,
+    "minDownPaymentPercent": 0,
+    "allowedMonths": [],
+    "providerEn": null,
+    "providerAr": null,
+    "providerKu": null
+  },
+  "1421266": {
+    "available": false,
+    "minDownPaymentPercent": 0,
+    "allowedMonths": [],
+    "providerEn": null,
+    "providerAr": null,
+    "providerKu": null
+  },
+  "1424174": {
+    "available": true,
+    "minDownPaymentPercent": 20,
+    "allowedMonths": [
+      12,
+      24
+    ],
+    "providerEn": "Official Dealership Direct Qist",
+    "providerAr": "تمويل الوكالة المباشر",
+    "providerKu": "قیستی ڕاستەوخۆی بریکاری فەرمی"
+  },
+  "1424986": {
+    "available": false,
+    "minDownPaymentPercent": 0,
+    "allowedMonths": [],
+    "providerEn": null,
+    "providerAr": null,
+    "providerKu": null
+  },
+  "1431175": {
+    "available": true,
+    "minDownPaymentPercent": 25,
+    "allowedMonths": [
+      6,
+      12
+    ],
+    "providerEn": "Official Dealership Direct Qist",
+    "providerAr": "تمويل الوكالة المباشر",
+    "providerKu": "قیستی ڕاستەوخۆی بریکاری فەرمی"
+  },
+  "1432152": {
+    "available": false,
+    "minDownPaymentPercent": 0,
+    "allowedMonths": [],
+    "providerEn": null,
+    "providerAr": null,
+    "providerKu": null
+  },
+  "1433356": {
+    "available": false,
+    "minDownPaymentPercent": 0,
+    "allowedMonths": [],
+    "providerEn": null,
+    "providerAr": null,
+    "providerKu": null
+  },
+  "1433618": {
+    "available": false,
+    "minDownPaymentPercent": 0,
+    "allowedMonths": [],
+    "providerEn": null,
+    "providerAr": null,
+    "providerKu": null
+  },
+  "1433734": {
+    "available": true,
+    "minDownPaymentPercent": 20,
+    "allowedMonths": [
+      12,
+      24
+    ],
+    "providerEn": "Official Dealership Direct Qist",
+    "providerAr": "تمويل الوكالة المباشر",
+    "providerKu": "قیستی ڕاستەوخۆی بریکاری فەرمی"
+  },
+  "1433848": {
+    "available": false,
+    "minDownPaymentPercent": 0,
+    "allowedMonths": [],
+    "providerEn": null,
+    "providerAr": null,
+    "providerKu": null
+  },
+  "1434462": {
+    "available": true,
+    "minDownPaymentPercent": 20,
+    "allowedMonths": [
+      12,
+      24
+    ],
+    "providerEn": "Official Dealership Direct Qist",
+    "providerAr": "تمويل الوكالة المباشر",
+    "providerKu": "قیستی ڕاستەوخۆی بریکاری فەرمی"
+  },
+  "1434814": {
+    "available": true,
+    "minDownPaymentPercent": 30,
+    "allowedMonths": [
+      12,
+      24,
+      36
+    ],
+    "providerEn": "Official Dealership Direct Qist",
+    "providerAr": "تمويل الوكالة المباشر",
+    "providerKu": "قیستی ڕاستەوخۆی بریکاری فەرمی"
+  },
+  "1435158": {
+    "available": false,
+    "minDownPaymentPercent": 0,
+    "allowedMonths": [],
+    "providerEn": null,
+    "providerAr": null,
+    "providerKu": null
+  },
+  "1435517": {
+    "available": false,
+    "minDownPaymentPercent": 0,
+    "allowedMonths": [],
+    "providerEn": null,
+    "providerAr": null,
+    "providerKu": null
+  },
+  "1436661": {
+    "available": true,
+    "minDownPaymentPercent": 30,
+    "allowedMonths": [
+      12,
+      24,
+      36
+    ],
+    "providerEn": "Official Dealership Direct Qist",
+    "providerAr": "تمويل الوكالة المباشر",
+    "providerKu": "قیستی ڕاستەوخۆی بریکاری فەرمی"
+  },
+  "1436801": {
+    "available": false,
+    "minDownPaymentPercent": 0,
+    "allowedMonths": [],
+    "providerEn": null,
+    "providerAr": null,
+    "providerKu": null
+  },
+  "1437142": {
+    "available": true,
+    "minDownPaymentPercent": 20,
+    "allowedMonths": [
+      12,
+      24
+    ],
+    "providerEn": "Official Dealership Direct Qist",
+    "providerAr": "تمويل الوكالة المباشر",
+    "providerKu": "قیستی ڕاستەوخۆی بریکاری فەرمی"
+  },
+  "1437152": {
+    "available": false,
+    "minDownPaymentPercent": 0,
+    "allowedMonths": [],
+    "providerEn": null,
+    "providerAr": null,
+    "providerKu": null
+  },
+  "1437535": {
+    "available": true,
+    "minDownPaymentPercent": 20,
+    "allowedMonths": [
+      12,
+      24
+    ],
+    "providerEn": "Official Dealership Direct Qist",
+    "providerAr": "تمويل الوكالة المباشر",
+    "providerKu": "قیستی ڕاستەوخۆی بریکاری فەرمی"
+  },
+  "1437540": {
+    "available": true,
+    "minDownPaymentPercent": 30,
+    "allowedMonths": [
+      12,
+      24,
+      36
+    ],
+    "providerEn": "Official Dealership Direct Qist",
+    "providerAr": "تمويل الوكالة المباشر",
+    "providerKu": "قیستی ڕاستەوخۆی بریکاری فەرمی"
+  },
+  "1437750": {
+    "available": true,
+    "minDownPaymentPercent": 30,
+    "allowedMonths": [
+      12,
+      24,
+      36
+    ],
+    "providerEn": "Official Dealership Direct Qist",
+    "providerAr": "تمويل الوكالة المباشر",
+    "providerKu": "قیستی ڕاستەوخۆی بریکاری فەرمی"
+  },
+  "1438337": {
+    "available": false,
+    "minDownPaymentPercent": 0,
+    "allowedMonths": [],
+    "providerEn": null,
+    "providerAr": null,
+    "providerKu": null
+  },
+  "1438744": {
+    "available": true,
+    "minDownPaymentPercent": 25,
+    "allowedMonths": [
+      6,
+      12
+    ],
+    "providerEn": "Official Dealership Direct Qist",
+    "providerAr": "تمويل الوكالة المباشر",
+    "providerKu": "قیستی ڕاستەوخۆی بریکاری فەرمی"
+  },
+  "1439082": {
+    "available": true,
+    "minDownPaymentPercent": 20,
+    "allowedMonths": [
+      12,
+      24
+    ],
+    "providerEn": "Official Dealership Direct Qist",
+    "providerAr": "تمويل الوكالة المباشر",
+    "providerKu": "قیستی ڕاستەوخۆی بریکاری فەرمی"
+  },
+  "1440681": {
+    "available": true,
+    "minDownPaymentPercent": 25,
+    "allowedMonths": [
+      6,
+      12
+    ],
+    "providerEn": "Official Dealership Direct Qist",
+    "providerAr": "تمويل الوكالة المباشر",
+    "providerKu": "قیستی ڕاستەوخۆی بریکاری فەرمی"
+  },
+  "1440835": {
+    "available": true,
+    "minDownPaymentPercent": 30,
+    "allowedMonths": [
+      12,
+      24,
+      36
+    ],
+    "providerEn": "Official Dealership Direct Qist",
+    "providerAr": "تمويل الوكالة المباشر",
+    "providerKu": "قیستی ڕاستەوخۆی بریکاری فەرمی"
+  },
+  "1441118": {
+    "available": false,
+    "minDownPaymentPercent": 0,
+    "allowedMonths": [],
+    "providerEn": null,
+    "providerAr": null,
+    "providerKu": null
+  },
+  "1441424": {
+    "available": false,
+    "minDownPaymentPercent": 0,
+    "allowedMonths": [],
+    "providerEn": null,
+    "providerAr": null,
+    "providerKu": null
+  },
+  "1441467": {
+    "available": true,
+    "minDownPaymentPercent": 30,
+    "allowedMonths": [
+      12,
+      24,
+      36
+    ],
+    "providerEn": "Official Dealership Direct Qist",
+    "providerAr": "تمويل الوكالة المباشر",
+    "providerKu": "قیستی ڕاستەوخۆی بریکاری فەرمی"
+  },
+  "1441473": {
+    "available": false,
+    "minDownPaymentPercent": 0,
+    "allowedMonths": [],
+    "providerEn": null,
+    "providerAr": null,
+    "providerKu": null
+  },
+  "1441475": {
+    "available": false,
+    "minDownPaymentPercent": 0,
+    "allowedMonths": [],
+    "providerEn": null,
+    "providerAr": null,
+    "providerKu": null
+  },
+  "1441479": {
+    "available": true,
+    "minDownPaymentPercent": 30,
+    "allowedMonths": [
+      12,
+      24,
+      36
+    ],
+    "providerEn": "Official Dealership Direct Qist",
+    "providerAr": "تمويل الوكالة المباشر",
+    "providerKu": "قیستی ڕاستەوخۆی بریکاری فەرمی"
+  },
+  "1441501": {
+    "available": false,
+    "minDownPaymentPercent": 0,
+    "allowedMonths": [],
+    "providerEn": null,
+    "providerAr": null,
+    "providerKu": null
+  },
+  "1441502": {
+    "available": false,
+    "minDownPaymentPercent": 0,
+    "allowedMonths": [],
+    "providerEn": null,
+    "providerAr": null,
+    "providerKu": null
+  },
+  "1441536": {
+    "available": false,
+    "minDownPaymentPercent": 0,
+    "allowedMonths": [],
+    "providerEn": null,
+    "providerAr": null,
+    "providerKu": null
+  },
+  "1441544": {
+    "available": true,
+    "minDownPaymentPercent": 20,
+    "allowedMonths": [
+      12,
+      24
+    ],
+    "providerEn": "Official Dealership Direct Qist",
+    "providerAr": "تمويل الوكالة المباشر",
+    "providerKu": "قیستی ڕاستەوخۆی بریکاری فەرمی"
+  },
+  "1441557": {
+    "available": false,
+    "minDownPaymentPercent": 0,
+    "allowedMonths": [],
+    "providerEn": null,
+    "providerAr": null,
+    "providerKu": null
+  },
+  "1441575": {
+    "available": false,
+    "minDownPaymentPercent": 0,
+    "allowedMonths": [],
+    "providerEn": null,
+    "providerAr": null,
+    "providerKu": null
+  },
+  "1441579": {
+    "available": false,
+    "minDownPaymentPercent": 0,
+    "allowedMonths": [],
+    "providerEn": null,
+    "providerAr": null,
+    "providerKu": null
+  },
+  "1441614": {
+    "available": false,
+    "minDownPaymentPercent": 0,
+    "allowedMonths": [],
+    "providerEn": null,
+    "providerAr": null,
+    "providerKu": null
+  },
+  "1441629": {
+    "available": false,
+    "minDownPaymentPercent": 0,
+    "allowedMonths": [],
+    "providerEn": null,
+    "providerAr": null,
+    "providerKu": null
+  },
+  "1441671": {
+    "available": false,
+    "minDownPaymentPercent": 0,
+    "allowedMonths": [],
+    "providerEn": null,
+    "providerAr": null,
+    "providerKu": null
+  },
+  "1441694": {
+    "available": false,
+    "minDownPaymentPercent": 0,
+    "allowedMonths": [],
+    "providerEn": null,
+    "providerAr": null,
+    "providerKu": null
+  },
+  "1441701": {
+    "available": true,
+    "minDownPaymentPercent": 30,
+    "allowedMonths": [
+      12,
+      24,
+      36
+    ],
+    "providerEn": "Official Dealership Direct Qist",
+    "providerAr": "تمويل الوكالة المباشر",
+    "providerKu": "قیستی ڕاستەوخۆی بریکاری فەرمی"
+  },
+  "1441716": {
+    "available": false,
+    "minDownPaymentPercent": 0,
+    "allowedMonths": [],
+    "providerEn": null,
+    "providerAr": null,
+    "providerKu": null
+  },
+  "1441816": {
+    "available": false,
+    "minDownPaymentPercent": 0,
+    "allowedMonths": [],
+    "providerEn": null,
+    "providerAr": null,
+    "providerKu": null
+  },
+  "1441819": {
+    "available": false,
+    "minDownPaymentPercent": 0,
+    "allowedMonths": [],
+    "providerEn": null,
+    "providerAr": null,
+    "providerKu": null
+  },
+  "1441825": {
+    "available": true,
+    "minDownPaymentPercent": 30,
+    "allowedMonths": [
+      12,
+      24,
+      36
+    ],
+    "providerEn": "Official Dealership Direct Qist",
+    "providerAr": "تمويل الوكالة المباشر",
+    "providerKu": "قیستی ڕاستەوخۆی بریکاری فەرمی"
+  },
+  "1441826": {
+    "available": true,
+    "minDownPaymentPercent": 30,
+    "allowedMonths": [
+      12,
+      24,
+      36
+    ],
+    "providerEn": "Official Dealership Direct Qist",
+    "providerAr": "تمويل الوكالة المباشر",
+    "providerKu": "قیستی ڕاستەوخۆی بریکاری فەرمی"
+  },
+  "1441888": {
+    "available": false,
+    "minDownPaymentPercent": 0,
+    "allowedMonths": [],
+    "providerEn": null,
+    "providerAr": null,
+    "providerKu": null
+  },
+  "1441889": {
+    "available": false,
+    "minDownPaymentPercent": 0,
+    "allowedMonths": [],
+    "providerEn": null,
+    "providerAr": null,
+    "providerKu": null
+  },
+  "1441908": {
+    "available": false,
+    "minDownPaymentPercent": 0,
+    "allowedMonths": [],
+    "providerEn": null,
+    "providerAr": null,
+    "providerKu": null
+  },
+  "1441933": {
+    "available": true,
+    "minDownPaymentPercent": 25,
+    "allowedMonths": [
+      6,
+      12
+    ],
+    "providerEn": "Official Dealership Direct Qist",
+    "providerAr": "تمويل الوكالة المباشر",
+    "providerKu": "قیستی ڕاستەوخۆی بریکاری فەرمی"
+  },
+  "1441955": {
+    "available": true,
+    "minDownPaymentPercent": 25,
+    "allowedMonths": [
+      6,
+      12
+    ],
+    "providerEn": "Official Dealership Direct Qist",
+    "providerAr": "تمويل الوكالة المباشر",
+    "providerKu": "قیستی ڕاستەوخۆی بریکاری فەرمی"
+  },
+  "1441979": {
+    "available": false,
+    "minDownPaymentPercent": 0,
+    "allowedMonths": [],
+    "providerEn": null,
+    "providerAr": null,
+    "providerKu": null
+  },
+  "1441983": {
+    "available": false,
+    "minDownPaymentPercent": 0,
+    "allowedMonths": [],
+    "providerEn": null,
+    "providerAr": null,
+    "providerKu": null
+  },
+  "1442000": {
+    "available": false,
+    "minDownPaymentPercent": 0,
+    "allowedMonths": [],
+    "providerEn": null,
+    "providerAr": null,
+    "providerKu": null
+  },
+  "1442004": {
+    "available": false,
+    "minDownPaymentPercent": 0,
+    "allowedMonths": [],
+    "providerEn": null,
+    "providerAr": null,
+    "providerKu": null
+  },
+  "1442026": {
+    "available": true,
+    "minDownPaymentPercent": 25,
+    "allowedMonths": [
+      6,
+      12
+    ],
+    "providerEn": "Official Dealership Direct Qist",
+    "providerAr": "تمويل الوكالة المباشر",
+    "providerKu": "قیستی ڕاستەوخۆی بریکاری فەرمی"
+  },
+  "1442027": {
+    "available": false,
+    "minDownPaymentPercent": 0,
+    "allowedMonths": [],
+    "providerEn": null,
+    "providerAr": null,
+    "providerKu": null
+  },
+  "1442028": {
+    "available": false,
+    "minDownPaymentPercent": 0,
+    "allowedMonths": [],
+    "providerEn": null,
+    "providerAr": null,
+    "providerKu": null
+  },
+  "1442029": {
+    "available": false,
+    "minDownPaymentPercent": 0,
+    "allowedMonths": [],
+    "providerEn": null,
+    "providerAr": null,
+    "providerKu": null
+  },
+  "1442031": {
+    "available": false,
+    "minDownPaymentPercent": 0,
+    "allowedMonths": [],
+    "providerEn": null,
+    "providerAr": null,
+    "providerKu": null
+  },
+  "1442032": {
+    "available": false,
+    "minDownPaymentPercent": 0,
+    "allowedMonths": [],
+    "providerEn": null,
+    "providerAr": null,
+    "providerKu": null
+  },
+  "1442034": {
+    "available": false,
+    "minDownPaymentPercent": 0,
+    "allowedMonths": [],
+    "providerEn": null,
+    "providerAr": null,
+    "providerKu": null
+  },
+  "1442039": {
+    "available": true,
+    "minDownPaymentPercent": 30,
+    "allowedMonths": [
+      12,
+      24,
+      36
+    ],
+    "providerEn": "Official Dealership Direct Qist",
+    "providerAr": "تمويل الوكالة المباشر",
+    "providerKu": "قیستی ڕاستەوخۆی بریکاری فەرمی"
+  },
+  "1442044": {
+    "available": true,
+    "minDownPaymentPercent": 30,
+    "allowedMonths": [
+      12,
+      24,
+      36
+    ],
+    "providerEn": "Official Dealership Direct Qist",
+    "providerAr": "تمويل الوكالة المباشر",
+    "providerKu": "قیستی ڕاستەوخۆی بریکاری فەرمی"
+  },
+  "1442046": {
+    "available": true,
+    "minDownPaymentPercent": 30,
+    "allowedMonths": [
+      12,
+      24,
+      36
+    ],
+    "providerEn": "Official Dealership Direct Qist",
+    "providerAr": "تمويل الوكالة المباشر",
+    "providerKu": "قیستی ڕاستەوخۆی بریکاری فەرمی"
+  },
+  "1442047": {
+    "available": false,
+    "minDownPaymentPercent": 0,
+    "allowedMonths": [],
+    "providerEn": null,
+    "providerAr": null,
+    "providerKu": null
+  },
+  "1442048": {
+    "available": false,
+    "minDownPaymentPercent": 0,
+    "allowedMonths": [],
+    "providerEn": null,
+    "providerAr": null,
+    "providerKu": null
+  },
+  "1442049": {
+    "available": true,
+    "minDownPaymentPercent": 20,
+    "allowedMonths": [
+      12,
+      24
+    ],
+    "providerEn": "Official Dealership Direct Qist",
+    "providerAr": "تمويل الوكالة المباشر",
+    "providerKu": "قیستی ڕاستەوخۆی بریکاری فەرمی"
+  },
+  "1442051": {
+    "available": false,
+    "minDownPaymentPercent": 0,
+    "allowedMonths": [],
+    "providerEn": null,
+    "providerAr": null,
+    "providerKu": null
+  },
+  "1442052": {
+    "available": true,
+    "minDownPaymentPercent": 20,
+    "allowedMonths": [
+      12,
+      24
+    ],
+    "providerEn": "Official Dealership Direct Qist",
+    "providerAr": "تمويل الوكالة المباشر",
+    "providerKu": "قیستی ڕاستەوخۆی بریکاری فەرمی"
+  },
+  "1442053": {
+    "available": true,
+    "minDownPaymentPercent": 25,
+    "allowedMonths": [
+      6,
+      12
+    ],
+    "providerEn": "Official Dealership Direct Qist",
+    "providerAr": "تمويل الوكالة المباشر",
+    "providerKu": "قیستی ڕاستەوخۆی بریکاری فەرمی"
+  },
+  "1442054": {
+    "available": true,
+    "minDownPaymentPercent": 20,
+    "allowedMonths": [
+      12,
+      24
+    ],
+    "providerEn": "Official Dealership Direct Qist",
+    "providerAr": "تمويل الوكالة المباشر",
+    "providerKu": "قیستی ڕاستەوخۆی بریکاری فەرمی"
+  },
+  "1442055": {
+    "available": true,
+    "minDownPaymentPercent": 30,
+    "allowedMonths": [
+      12,
+      24,
+      36
+    ],
+    "providerEn": "Official Dealership Direct Qist",
+    "providerAr": "تمويل الوكالة المباشر",
+    "providerKu": "قیستی ڕاستەوخۆی بریکاری فەرمی"
+  },
+  "1442056": {
+    "available": false,
+    "minDownPaymentPercent": 0,
+    "allowedMonths": [],
+    "providerEn": null,
+    "providerAr": null,
+    "providerKu": null
+  },
+  "1442057": {
+    "available": true,
+    "minDownPaymentPercent": 30,
+    "allowedMonths": [
+      12,
+      24,
+      36
+    ],
+    "providerEn": "Official Dealership Direct Qist",
+    "providerAr": "تمويل الوكالة المباشر",
+    "providerKu": "قیستی ڕاستەوخۆی بریکاری فەرمی"
+  },
+  "1442058": {
+    "available": true,
+    "minDownPaymentPercent": 30,
+    "allowedMonths": [
+      12,
+      24,
+      36
+    ],
+    "providerEn": "Official Dealership Direct Qist",
+    "providerAr": "تمويل الوكالة المباشر",
+    "providerKu": "قیستی ڕاستەوخۆی بریکاری فەرمی"
+  },
+  "1442060": {
+    "available": false,
+    "minDownPaymentPercent": 0,
+    "allowedMonths": [],
+    "providerEn": null,
+    "providerAr": null,
+    "providerKu": null
+  },
+  "1442061": {
+    "available": true,
+    "minDownPaymentPercent": 30,
+    "allowedMonths": [
+      12,
+      24,
+      36
+    ],
+    "providerEn": "Official Dealership Direct Qist",
+    "providerAr": "تمويل الوكالة المباشر",
+    "providerKu": "قیستی ڕاستەوخۆی بریکاری فەرمی"
+  },
+  "1442067": {
+    "available": true,
+    "minDownPaymentPercent": 20,
+    "allowedMonths": [
+      12,
+      24
+    ],
+    "providerEn": "Official Dealership Direct Qist",
+    "providerAr": "تمويل الوكالة المباشر",
+    "providerKu": "قیستی ڕاستەوخۆی بریکاری فەرمی"
+  },
+  "1442073": {
+    "available": true,
+    "minDownPaymentPercent": 20,
+    "allowedMonths": [
+      12,
+      24
+    ],
+    "providerEn": "Official Dealership Direct Qist",
+    "providerAr": "تمويل الوكالة المباشر",
+    "providerKu": "قیستی ڕاستەوخۆی بریکاری فەرمی"
+  },
+  "1442076": {
+    "available": true,
+    "minDownPaymentPercent": 20,
+    "allowedMonths": [
+      12,
+      24
+    ],
+    "providerEn": "Official Dealership Direct Qist",
+    "providerAr": "تمويل الوكالة المباشر",
+    "providerKu": "قیستی ڕاستەوخۆی بریکاری فەرمی"
+  },
+  "1442080": {
+    "available": false,
+    "minDownPaymentPercent": 0,
+    "allowedMonths": [],
+    "providerEn": null,
+    "providerAr": null,
+    "providerKu": null
+  },
+  "1442082": {
+    "available": true,
+    "minDownPaymentPercent": 25,
+    "allowedMonths": [
+      6,
+      12
+    ],
+    "providerEn": "Official Dealership Direct Qist",
+    "providerAr": "تمويل الوكالة المباشر",
+    "providerKu": "قیستی ڕاستەوخۆی بریکاری فەرمی"
+  },
+  "1442084": {
+    "available": false,
+    "minDownPaymentPercent": 0,
+    "allowedMonths": [],
+    "providerEn": null,
+    "providerAr": null,
+    "providerKu": null
+  },
+  "1442085": {
+    "available": false,
+    "minDownPaymentPercent": 0,
+    "allowedMonths": [],
+    "providerEn": null,
+    "providerAr": null,
+    "providerKu": null
+  },
+  "1442090": {
+    "available": false,
+    "minDownPaymentPercent": 0,
+    "allowedMonths": [],
+    "providerEn": null,
+    "providerAr": null,
+    "providerKu": null
+  },
+  "1442091": {
+    "available": false,
+    "minDownPaymentPercent": 0,
+    "allowedMonths": [],
+    "providerEn": null,
+    "providerAr": null,
+    "providerKu": null
+  },
+  "1442094": {
+    "available": false,
+    "minDownPaymentPercent": 0,
+    "allowedMonths": [],
+    "providerEn": null,
+    "providerAr": null,
+    "providerKu": null
+  },
+  "1442101": {
+    "available": false,
+    "minDownPaymentPercent": 0,
+    "allowedMonths": [],
+    "providerEn": null,
+    "providerAr": null,
+    "providerKu": null
+  },
+  "1442103": {
+    "available": true,
+    "minDownPaymentPercent": 30,
+    "allowedMonths": [
+      12,
+      24,
+      36
+    ],
+    "providerEn": "Official Dealership Direct Qist",
+    "providerAr": "تمويل الوكالة المباشر",
+    "providerKu": "قیستی ڕاستەوخۆی بریکاری فەرمی"
+  },
+  "1442104": {
+    "available": true,
+    "minDownPaymentPercent": 25,
+    "allowedMonths": [
+      6,
+      12
+    ],
+    "providerEn": "Official Dealership Direct Qist",
+    "providerAr": "تمويل الوكالة المباشر",
+    "providerKu": "قیستی ڕاستەوخۆی بریکاری فەرمی"
+  },
+  "1442105": {
+    "available": false,
+    "minDownPaymentPercent": 0,
+    "allowedMonths": [],
+    "providerEn": null,
+    "providerAr": null,
+    "providerKu": null
+  },
+  "1442106": {
+    "available": false,
+    "minDownPaymentPercent": 0,
+    "allowedMonths": [],
+    "providerEn": null,
+    "providerAr": null,
+    "providerKu": null
+  },
+  "1442107": {
+    "available": false,
+    "minDownPaymentPercent": 0,
+    "allowedMonths": [],
+    "providerEn": null,
+    "providerAr": null,
+    "providerKu": null
+  },
+  "1442114": {
+    "available": false,
+    "minDownPaymentPercent": 0,
+    "allowedMonths": [],
+    "providerEn": null,
+    "providerAr": null,
+    "providerKu": null
+  },
+  "1442116": {
+    "available": true,
+    "minDownPaymentPercent": 30,
+    "allowedMonths": [
+      12,
+      24,
+      36
+    ],
+    "providerEn": "Official Dealership Direct Qist",
+    "providerAr": "تمويل الوكالة المباشر",
+    "providerKu": "قیستی ڕاستەوخۆی بریکاری فەرمی"
+  },
+  "1442117": {
+    "available": true,
+    "minDownPaymentPercent": 30,
+    "allowedMonths": [
+      12,
+      24,
+      36
+    ],
+    "providerEn": "Official Dealership Direct Qist",
+    "providerAr": "تمويل الوكالة المباشر",
+    "providerKu": "قیستی ڕاستەوخۆی بریکاری فەرمی"
+  },
+  "1442120": {
+    "available": false,
+    "minDownPaymentPercent": 0,
+    "allowedMonths": [],
+    "providerEn": null,
+    "providerAr": null,
+    "providerKu": null
+  },
+  "1442121": {
+    "available": false,
+    "minDownPaymentPercent": 0,
+    "allowedMonths": [],
+    "providerEn": null,
+    "providerAr": null,
+    "providerKu": null
+  },
+  "1442122": {
+    "available": true,
+    "minDownPaymentPercent": 20,
+    "allowedMonths": [
+      12,
+      24
+    ],
+    "providerEn": "Official Dealership Direct Qist",
+    "providerAr": "تمويل الوكالة المباشر",
+    "providerKu": "قیستی ڕاستەوخۆی بریکاری فەرمی"
+  },
+  "1442127": {
+    "available": true,
+    "minDownPaymentPercent": 25,
+    "allowedMonths": [
+      6,
+      12
+    ],
+    "providerEn": "Official Dealership Direct Qist",
+    "providerAr": "تمويل الوكالة المباشر",
+    "providerKu": "قیستی ڕاستەوخۆی بریکاری فەرمی"
+  },
+  "1442130": {
+    "available": false,
+    "minDownPaymentPercent": 0,
+    "allowedMonths": [],
+    "providerEn": null,
+    "providerAr": null,
+    "providerKu": null
+  },
+  "1442131": {
+    "available": false,
+    "minDownPaymentPercent": 0,
+    "allowedMonths": [],
+    "providerEn": null,
+    "providerAr": null,
+    "providerKu": null
+  },
+  "1442132": {
+    "available": false,
+    "minDownPaymentPercent": 0,
+    "allowedMonths": [],
+    "providerEn": null,
+    "providerAr": null,
+    "providerKu": null
+  },
+  "1442133": {
+    "available": true,
+    "minDownPaymentPercent": 25,
+    "allowedMonths": [
+      6,
+      12
+    ],
+    "providerEn": "Official Dealership Direct Qist",
+    "providerAr": "تمويل الوكالة المباشر",
+    "providerKu": "قیستی ڕاستەوخۆی بریکاری فەرمی"
+  },
+  "1442134": {
+    "available": true,
+    "minDownPaymentPercent": 25,
+    "allowedMonths": [
+      6,
+      12
+    ],
+    "providerEn": "Official Dealership Direct Qist",
+    "providerAr": "تمويل الوكالة المباشر",
+    "providerKu": "قیستی ڕاستەوخۆی بریکاری فەرمی"
+  },
+  "1442135": {
+    "available": false,
+    "minDownPaymentPercent": 0,
+    "allowedMonths": [],
+    "providerEn": null,
+    "providerAr": null,
+    "providerKu": null
+  },
+  "1442136": {
+    "available": true,
+    "minDownPaymentPercent": 25,
+    "allowedMonths": [
+      6,
+      12
+    ],
+    "providerEn": "Official Dealership Direct Qist",
+    "providerAr": "تمويل الوكالة المباشر",
+    "providerKu": "قیستی ڕاستەوخۆی بریکاری فەرمی"
+  },
+  "1442137": {
+    "available": true,
+    "minDownPaymentPercent": 30,
+    "allowedMonths": [
+      12,
+      24,
+      36
+    ],
+    "providerEn": "Official Dealership Direct Qist",
+    "providerAr": "تمويل الوكالة المباشر",
+    "providerKu": "قیستی ڕاستەوخۆی بریکاری فەرمی"
+  },
+  "1442138": {
+    "available": false,
+    "minDownPaymentPercent": 0,
+    "allowedMonths": [],
+    "providerEn": null,
+    "providerAr": null,
+    "providerKu": null
+  },
+  "1442139": {
+    "available": false,
+    "minDownPaymentPercent": 0,
+    "allowedMonths": [],
+    "providerEn": null,
+    "providerAr": null,
+    "providerKu": null
+  },
+  "1442140": {
+    "available": false,
+    "minDownPaymentPercent": 0,
+    "allowedMonths": [],
+    "providerEn": null,
+    "providerAr": null,
+    "providerKu": null
+  },
+  "1442141": {
+    "available": false,
+    "minDownPaymentPercent": 0,
+    "allowedMonths": [],
+    "providerEn": null,
+    "providerAr": null,
+    "providerKu": null
+  },
+  "1442142": {
+    "available": true,
+    "minDownPaymentPercent": 25,
+    "allowedMonths": [
+      6,
+      12
+    ],
+    "providerEn": "Official Dealership Direct Qist",
+    "providerAr": "تمويل الوكالة المباشر",
+    "providerKu": "قیستی ڕاستەوخۆی بریکاری فەرمی"
+  },
+  "1442143": {
+    "available": false,
+    "minDownPaymentPercent": 0,
+    "allowedMonths": [],
+    "providerEn": null,
+    "providerAr": null,
+    "providerKu": null
+  },
+  "1442144": {
+    "available": false,
+    "minDownPaymentPercent": 0,
+    "allowedMonths": [],
+    "providerEn": null,
+    "providerAr": null,
+    "providerKu": null
+  },
+  "1442145": {
+    "available": true,
+    "minDownPaymentPercent": 20,
+    "allowedMonths": [
+      12,
+      24
+    ],
+    "providerEn": "Official Dealership Direct Qist",
+    "providerAr": "تمويل الوكالة المباشر",
+    "providerKu": "قیستی ڕاستەوخۆی بریکاری فەرمی"
+  },
+  "1442147": {
+    "available": false,
+    "minDownPaymentPercent": 0,
+    "allowedMonths": [],
+    "providerEn": null,
+    "providerAr": null,
+    "providerKu": null
+  }
+}

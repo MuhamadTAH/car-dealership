@@ -12,6 +12,7 @@ interface AppContextType {
   addToCompare: (car: Car) => void;
   removeFromCompare: (carId: number) => void;
   clearCompare: () => void;
+  exchangeRate: number;
   t: (key: string) => string;
 }
 
@@ -110,16 +111,40 @@ const translations: Record<Language, Record<string, string>> = {
     termsCondition: "Terms and Condition",
     aboutUs: "About us",
 
-    // Auth
-    verifyPhone: "Verify your phone",
-    authSubtitle: "Enter your phone number to continue and unlock all features.",
-    phoneNumber: "Phone Number",
-    requestCode: "Request code",
-    enterOtp: "Enter Verification Code",
-    otpSubtitle: "Enter the 4-digit code sent to",
-    verify: "Verify and Continue",
-    signedInAs: "Signed in as",
-    logout: "Log out"
+    // Dealership Landing Page & Qist Additions
+    hotline: "Hotline: 6896",
+    callNow: "Call",
+    quickView: "Quick View",
+    close: "Close",
+    viewDetails: "View Full Details",
+    qistTitle: "Qist Installments",
+    qistBadge: "Qist Available",
+    qistAvailablePill: "Qist Available",
+    qistNotAvailable: "Cash payment only (Qist not available for this car)",
+    qistAvailableDesc: "Available for installment plan with official dealership financing",
+    downPayment: "Down Payment",
+    monthsDuration: "Duration",
+    months: "months",
+    monthlyPayment: "Estimated Monthly",
+    applyQistWhatsApp: "Apply for Qist via WhatsApp",
+    dailyExchangeRate: "Daily Market Exchange Rate",
+    rateDisclaimer: "Live daily market rate: $1 = {rate} IQD",
+    cashOnly: "Cash Only",
+    whyBuyFromUs: "Why Buy From Our Dealership?",
+    whySubtitle: "Supreme certified vehicles, 100% technical inspection, verified legal ownership, and flexible Qist installment plans.",
+    trustInspection: "100% Comprehensive Inspection",
+    trustInspectionDesc: "Chassis, engine, transmission, and body paint thoroughly checked with certified technical reports.",
+    trustTransfer: "Instant Plate & Title Transfer",
+    trustTransferDesc: "Guaranteed paperwork and legal plate transfer across Baghdad, Erbil, Sulaymaniyah, Basra, and all 19 governorates.",
+    trustWarranty: "Official Warranty & Service",
+    trustWarrantyDesc: "Comprehensive manufacturer and dealership warranty backed by authorized certified service centers.",
+    trustQist: "Flexible Qist (Installments)",
+    trustQistDesc: "Fast and transparent installment solutions with minimal documentation and customizable terms.",
+    allCarsPill: "All Vehicles",
+    searchPlaceholder: "Search make, model, year, or trim...",
+    showingCars: "Showing {count} vehicles",
+    faqTitle: "Frequently Asked Questions",
+    faqSubtitle: "Everything you need to know about buying, financing, and delivery with our dealership.",
   },
   ar: {
     // Navigation
@@ -215,16 +240,40 @@ const translations: Record<Language, Record<string, string>> = {
     termsCondition: "الشروط والأحكام",
     aboutUs: "من نحن",
 
-    // Auth
-    verifyPhone: "تأكيد رقم الهاتف",
-    authSubtitle: "أدخل رقم هاتفك للمتابعة والوصول إلى كافة الميزات.",
-    phoneNumber: "رقم الهاتف",
-    requestCode: "طلب الرمز",
-    enterOtp: "أدخل رمز التحقق",
-    otpSubtitle: "أدخل الرمز المكون من 4 أرقام المرسل إلى",
-    verify: "تأكيد ومتابعة",
-    signedInAs: "تم تسجيل الدخول كـ",
-    logout: "تسجيل الخروج"
+    // Dealership Landing Page & Qist Additions
+    hotline: "الخط الساخن: 6896",
+    callNow: "اتصال",
+    quickView: "معاينة سريعة",
+    close: "إغلاق",
+    viewDetails: "التفاصيل الكاملة",
+    qistTitle: "نظام الأقساط (قسط)",
+    qistBadge: "متوفر بالأقساط",
+    qistAvailablePill: "متوفر بالأقساط",
+    qistNotAvailable: "دفع نقدي فقط (نظام الأقساط غير متوفر لهذه السيارة)",
+    qistAvailableDesc: "متاح بنظام الأقساط الميسرة عبر تمويل الوكالة المعتمد",
+    downPayment: "الدفعة الأولى (المقدمة)",
+    monthsDuration: "مدة الأقساط",
+    months: "شهراً",
+    monthlyPayment: "القسط الشهري التقديري",
+    applyQistWhatsApp: "تقديم طلب أقساط عبر واتساب",
+    dailyExchangeRate: "سعر صرف السوق اليومي",
+    rateDisclaimer: "وفق سعر الصرف المباشر: 1 دولار = {rate} دينار عراقي",
+    cashOnly: "كاش فقط",
+    whyBuyFromUs: "لماذا تشتري من وكالتنا الرسمية؟",
+    whySubtitle: "سيارات معتمدة ومفحوصة بالكامل، أسعار شفافة، تحويل ملكية فوري، وخيارات أقساط ميسرة.",
+    trustInspection: "فحص فني شامل 100%",
+    trustInspectionDesc: "فحص دقيق للشاصي، المحرك، الجير، والبدي مع تقرير فني رسمي معتمد.",
+    trustTransfer: "تسجيل وتحويل لوحات فوري",
+    trustTransferDesc: "إنجاز المعاملات القانونية وتحويل اللوحات رسمياً في بغداد، أربيل، السليمانية، البصرة وكافة المحافظات.",
+    trustWarranty: "ضمان الوكالة المعتمد",
+    trustWarrantyDesc: "ضمان رسمي شامل مع خدمات ما بعد البيع في مراكز الصيانة المعتمدة.",
+    trustQist: "تسهيلات أقساط مرنة (قسط)",
+    trustQistDesc: "خطط أقساط ميسرة تناسب ميزانيتك بشروط واضحة ومستمسكات ميسرة وبدون تعقيدات.",
+    allCarsPill: "جميع السيارات",
+    searchPlaceholder: "ابحث بالماركة، الموديل، السنة، أو الفئة...",
+    showingCars: "عرض {count} سيارة",
+    faqTitle: "الأسئلة الأكثر شيوعاً",
+    faqSubtitle: "كل ما تحتاج معرفته عن شراء السيارات، أنظمة الأقساط، والتحويل القانوني.",
   },
   ku: {
     // Navigation
@@ -320,16 +369,40 @@ const translations: Record<Language, Record<string, string>> = {
     termsCondition: "مەرج و یاساکان",
     aboutUs: "دەربارەی ئێمە",
 
-    // Auth
-    verifyPhone: "تەئکیدکردنەوەی ژمارەی مۆبایل",
-    authSubtitle: "ژمارەی مۆبایلەکەت بنووسە بۆ بەردەوامبوون و بینینی هەموو تایبەتمەندییەکان.",
-    phoneNumber: "ژمارەی مۆبایل",
-    requestCode: "داواکردنی کۆد",
-    enterOtp: "کۆدی پشتڕاستکردنەوە بنووسە",
-    otpSubtitle: "کۆدی 4 ژمارەیی بنووسە کە نێردراوە بۆ",
-    verify: "پشتڕاستکردنەوە",
-    signedInAs: "چوونەژوورەوە وەک",
-    logout: "دەرچوون"
+    // Dealership Landing Page & Qist Additions
+    hotline: "هێڵی گەرم: 6896",
+    callNow: "پەیوەندی",
+    quickView: "بینینی خێرا",
+    close: "داخستن",
+    viewDetails: "زانیاری تەواو",
+    qistTitle: "سیستەمی قیست",
+    qistBadge: "قیست بەردەستە",
+    qistAvailablePill: "قیست بەردەستە",
+    qistNotAvailable: "تەنها پارەی نەقد (قیست بۆ ئەم ئۆتۆمبێلە بەردەست نییە)",
+    qistAvailableDesc: "بەردەستە بە قیستی ئاسان لە ڕێگەی بریکاری فەرمی",
+    downPayment: "پێشەکی",
+    monthsDuration: "ماوەی قیست",
+    months: "مانگ",
+    monthlyPayment: "قیستی مانگانەی مەزەندەکراو",
+    applyQistWhatsApp: "داواکاری قیست لە ڕێگەی واتسئەپ",
+    dailyExchangeRate: "نرخی رۆژانەی بازاڕی دراو",
+    rateDisclaimer: "بەپێی نرخی ڕۆژانەی بازاڕ: 1 دۆلار = {rate} دیناری عێراقی",
+    cashOnly: "تەنها نەقد",
+    whyBuyFromUs: "بۆچی لە بریکاری فەرمی ئێمە دەکڕیت؟",
+    whySubtitle: "ئۆتۆمبێلی پشکنراو و باوەڕپێکراو، نرخی دادپەروەرانە، گواستنەوەی تابلۆ دەستبەجێ، و سیستەمی قیستی ئاسان.",
+    trustInspection: "پشکنینی 100% گشتگیر",
+    trustInspectionDesc: "پشکنینی تەواوی شاسی، مەکینە، گێڕ، و بۆیاغ لەگەڵ ڕاپۆرتی فەرمی پەسەندکراو.",
+    trustTransfer: "گواستنەوەی تابلۆ و مەلەفی فەرمی",
+    trustTransferDesc: "ڕایی کردنی دەستبەجێی کارەکانی هاتووچۆ و تابلۆ لە هەولێر، سلێمانی، دهۆک، بەغداد و هەموو پارێزگاکان.",
+    trustWarranty: "گەرەنتی فەرمی بریکار",
+    trustWarrantyDesc: "گەرەنتی فەرمی کارگە و بریکار لەگەڵ خزمەتگوزاری چاککردنەوە لە سەنتەرە متمانەپێکراوەکان.",
+    trustQist: "ئاسانکاری قیست",
+    trustQistDesc: "سیستەمی قیستی مانگانەی گونجاو بەبێ مەرجی قورس و بە شەفافی تەواو.",
+    allCarsPill: "هەموو ئۆتۆمبێلەکان",
+    searchPlaceholder: "بگەڕێ بەپێی براند، مۆدێل، ساڵ، یان جۆر...",
+    showingCars: "پیشاندانی {count} ئۆتۆمبێل",
+    faqTitle: "پرسیارە باوەکان",
+    faqSubtitle: "هەموو ئەو زانیارییانەی پێویستت پێیە دەربارەی کڕین، قیست، و ڕێکارەکانی گواستنەوە.",
   }
 };
 
@@ -396,6 +469,7 @@ export function AppProvider({ children }: { children: React.ReactNode }) {
         addToCompare,
         removeFromCompare,
         clearCompare,
+        exchangeRate: 1530,
         t,
       }}
     >

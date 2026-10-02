@@ -6,7 +6,13 @@ import CarCard from "./CarCard";
 import { useApp } from "@/context/AppContext";
 import { ChevronLeft, ChevronRight, Flame } from "lucide-react";
 
-export default function PopularCarsCarousel({ cars }: { cars: Car[] }) {
+export default function PopularCarsCarousel({
+  cars,
+  onQuickView,
+}: {
+  cars: Car[];
+  onQuickView?: (car: Car) => void;
+}) {
   const { t } = useApp();
   const scrollRef = useRef<HTMLDivElement>(null);
 
@@ -55,7 +61,7 @@ export default function PopularCarsCarousel({ cars }: { cars: Car[] }) {
       >
         {cars.slice(0, 12).map((car) => (
           <div key={car.ID} className="w-[280px] sm:w-[320px] flex-shrink-0 snap-start">
-            <CarCard car={car} />
+            <CarCard car={car} onQuickView={onQuickView} />
           </div>
         ))}
       </div>

@@ -26,7 +26,10 @@ import {
   Building2,
   ArrowLeft,
   Scale,
+  Coins,
 } from "lucide-react";
+import QistCalculator from "@/components/QistCalculator";
+import { getCarQist } from "@/lib/qist";
 
 export default function CarDetailPage({
   params,
@@ -421,11 +424,15 @@ export default function CarDetailPage({
               )}
             </div>
 
-            {/* WhatsApp Chat Button */}
+            {/* WhatsApp Chat Button (SECOND with pre-filled message) */}
             <a
-              href={`https://wa.me/${sellerPhone.replace(/\D/g, "")}?text=Hello,%20I%20am%20interested%20in%20your%20${encodeURIComponent(
-                `${brandName} ${modelName} ${year}`
-              )}%20listed%20on%20iQ%20Cars.`}
+              href={`https://wa.me/${sellerPhone.replace(/\D/g, "")}?text=${encodeURIComponent(
+                lang === "ar"
+                  ? `مرحباً، أود الاستفسار عن سيارة ${brandName} ${modelName} ${year} (رقم الإعلان: #${car.ID}) المعروضة بسعر ${formatPrice(car.Price, "USD")}. هل ما زالت متوفرة؟`
+                  : lang === "ku"
+                  ? `سڵاو، پرسیارم هەبوو دەربارەی ئۆتۆمبێلی ${brandName} ${modelName} ${year} (ژمارە: #${car.ID}) بە نرخی ${formatPrice(car.Price, "USD")}. ئایا بەردەستە لە پێشانگا؟`
+                  : `Hello, I am interested in the ${brandName} ${modelName} ${year} (ID: #${car.ID}) listed for ${formatPrice(car.Price, "USD")}. Is it still available at the dealership?`
+              )}`}
               target="_blank"
               rel="noreferrer"
               className="w-full py-3.5 px-4 bg-[#25D366] hover:bg-[#20ba59] text-white font-bold text-sm rounded-xl shadow transition flex items-center justify-center gap-2"
@@ -453,60 +460,58 @@ export default function CarDetailPage({
               </button>
             </div>
 
-            {/* Auto Finance / Monthly Loan Calculator */}
+            {/* Qist (Installments) Summary in Sidebar */}
             <div className="pt-4 border-t border-gray-100 dark:border-gray-800 space-y-3">
-              <div className="flex items-center gap-1.5 font-bold text-xs text-gray-900 dark:text-white">
-                <Calculator className="w-4 h-4 text-emerald-500" />
-                <span>Estimated Monthly Finance</span>
+              <div className="flex items-center justify-between">
+                <div className="flex items-center gap-1.5 font-bold text-xs text-gray-900 dark:text-white">
+                  <Coins className="w-4 h-4 text-amber-500" />
+                  <span>{t("qistTitle")} (قیست / قسط)</span>
+                </div>
+                {getCarQist(car.ID) ? (
+                  <span className="text-[10px] font-bold px-2 py-0.5 rounded-full bg-amber-500 text-white">
+                    {t("qistBadge")}
+                  </span>
+                ) : (
+                  <span className="text-[10px] font-bold text-gray-400">
+                    {t("cashOnly")}
+                  </span>
+                )}
               </div>
 
-              <div className="p-3 bg-gray-50 dark:bg-gray-800/80 rounded-xl space-y-2">
-                <div className="flex items-center justify-between text-xs text-gray-500">
-                  <span>Down Payment:</span>
-                  <span className="font-bold text-gray-900 dark:text-white">
-                    ${downPayment.toLocaleString()}
-                  </span>
+              {getCarQist(car.ID) ? (
+                <div className="p-3 bg-amber-50/50 dark:bg-amber-950/20 rounded-xl border border-amber-200/60 dark:border-amber-900/40 text-xs space-y-1.5">
+                  <div className="flex items-center justify-between text-gray-600 dark:text-gray-300">
+                    <span>{t("downPayment")}:</span>
+                    <span className="font-bold text-gray-900 dark:text-white">
+                      From {getCarQist(car.ID)?.minDownPaymentPercent}%
+                    </span>
+                  </div>
+                  <div className="flex items-center justify-between text-gray-600 dark:text-gray-300">
+                    <span>{t("monthsDuration")}:</span>
+                    <span className="font-bold text-gray-900 dark:text-white">
+                      Up to {getCarQist(car.ID)?.allowedMonths.slice(-1)[0]} {t("months")}
+                    </span>
+                  </div>
+                  <a
+                    href="#qist-calculator"
+                    className="block text-center pt-2 text-[11px] font-bold text-amber-600 dark:text-amber-400 hover:underline"
+                  >
+                    Calculate exact monthly installment ↓
+                  </a>
                 </div>
-                <input
-                  type="range"
-                  min="0"
-                  max={car.Price}
-                  step="500"
-                  value={downPayment}
-                  onChange={(e) => setDownPayment(parseInt(e.target.value))}
-                  className="w-full accent-emerald-500 cursor-pointer"
-                />
-
-                <div className="flex items-center justify-between text-xs text-gray-500 pt-1">
-                  <span>Duration:</span>
-                  <span className="font-bold text-gray-900 dark:text-white">{loanMonths} Months</span>
-                </div>
-                <div className="grid grid-cols-3 gap-1">
-                  {[24, 36, 48].map((m) => (
-                    <button
-                      key={m}
-                      onClick={() => setLoanMonths(m)}
-                      className={`py-1 text-[11px] font-semibold rounded-md ${
-                        loanMonths === m
-                          ? "bg-emerald-600 text-white"
-                          : "bg-white dark:bg-gray-700 text-gray-600 dark:text-gray-300"
-                      }`}
-                    >
-                      {m} mo
-                    </button>
-                  ))}
-                </div>
-
-                <div className="pt-2 border-t border-gray-200 dark:border-gray-700 flex items-center justify-between">
-                  <span className="text-xs font-semibold text-gray-500">Monthly:</span>
-                  <span className="text-base font-black text-emerald-600 dark:text-emerald-400">
-                    ${monthlyPayment.toLocaleString()} / mo
-                  </span>
-                </div>
-              </div>
+              ) : (
+                <p className="text-[11px] text-gray-500 p-2.5 bg-gray-50 dark:bg-gray-800/60 rounded-xl">
+                  {t("qistNotAvailable")}
+                </p>
+              )}
             </div>
           </div>
         </div>
+      </div>
+
+      {/* Dedicated Qist Calculator Section */}
+      <div id="qist-calculator" className="mt-8">
+        <QistCalculator car={car} />
       </div>
 
       {/* Similar Cars Section */}

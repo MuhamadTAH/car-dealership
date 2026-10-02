@@ -8,6 +8,7 @@ import locationsData from "@/data/locations.json";
 import filterDataRaw from "@/data/filterData.json";
 import { Car } from "@/lib/types";
 import CarCard from "@/components/CarCard";
+import QuickViewModal from "@/components/QuickViewModal";
 import {
   Filter,
   SlidersHorizontal,
@@ -42,6 +43,7 @@ function SearchContent() {
   const [viewMode, setViewMode] = useState<"grid" | "list">("grid");
   const [mobileFilterOpen, setMobileFilterOpen] = useState(false);
   const [currentPage, setCurrentPage] = useState(1);
+  const [quickViewCar, setQuickViewCar] = useState<Car | null>(null);
   const pageSize = 16;
 
   const allCars = carsDataRaw as Car[];
@@ -469,7 +471,7 @@ function SearchContent() {
                 }
               >
                 {paginatedCars.map((car) => (
-                  <CarCard key={car.ID} car={car} />
+                  <CarCard key={car.ID} car={car} onQuickView={setQuickViewCar} />
                 ))}
               </div>
 
@@ -633,6 +635,12 @@ function SearchContent() {
           </div>
         </div>
       )}
+
+      {/* Quick View Modal */}
+      <QuickViewModal
+        car={quickViewCar}
+        onClose={() => setQuickViewCar(null)}
+      />
     </div>
   );
 }

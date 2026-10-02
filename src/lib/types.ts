@@ -63,7 +63,17 @@ export interface Car {
   Note?: string | null;
   PhoneNumber?: string | null;
   IsFeatured?: boolean | null;
+  qist?: QistPlan | null;
   [key: string]: any;
+}
+
+export interface QistPlan {
+  available: boolean;
+  minDownPaymentPercent: number;
+  allowedMonths: number[];
+  providerEn?: string | null;
+  providerAr?: string | null;
+  providerKu?: string | null;
 }
 
 export interface LocationCity {

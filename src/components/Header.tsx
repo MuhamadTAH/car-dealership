@@ -12,6 +12,8 @@ import {
   ChevronDown,
   Sparkles,
   SlidersHorizontal,
+  Phone,
+  MessageCircle,
 } from "lucide-react";
 
 export default function Header() {
@@ -175,6 +177,37 @@ export default function Header() {
                 </div>
               )}
             </div>
+
+            {/* Direct Contact CTAs: Phone FIRST, WhatsApp SECOND */}
+            <div className="flex items-center gap-2 pl-2 rtl:pr-2 rtl:pl-0 border-l rtl:border-r rtl:border-l-0 border-gray-700">
+              {/* 1. Phone Button (FIRST) */}
+              <a
+                href="tel:6896"
+                className="flex items-center gap-1.5 px-3 py-1.5 rounded-xl bg-white/10 hover:bg-white/20 text-white text-xs font-bold transition border border-white/10"
+                title={t("hotline")}
+              >
+                <Phone className="w-3.5 h-3.5 text-emerald-400" />
+                <span>6896</span>
+              </a>
+
+              {/* 2. WhatsApp Button (SECOND) */}
+              <a
+                href={`https://wa.me/9647501002030?text=${encodeURIComponent(
+                  lang === "ar"
+                    ? "مرحباً، أود الاستفسار عن سيارات المعرض المتوفرة لديكم."
+                    : lang === "ku"
+                    ? "سڵاو، دەمەوێت پرسیار بکەم دەربارەی ئۆتۆمبێلە بەردەستەکانی پێشانگا."
+                    : "Hello, I would like to inquire about available vehicles at your dealership."
+                )}`}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="flex items-center gap-1.5 px-3 py-1.5 rounded-xl bg-emerald-600 hover:bg-emerald-500 text-white text-xs font-bold transition shadow-sm"
+                title={t("whatsapp")}
+              >
+                <MessageCircle className="w-3.5 h-3.5 fill-current" />
+                <span className="hidden xl:inline">{t("whatsapp")}</span>
+              </a>
+            </div>
           </div>
 
           {/* Mobile Menu Button */}
@@ -198,6 +231,31 @@ export default function Header() {
       {/* Mobile Drawer */}
       {mobileMenuOpen && (
         <div className="md:hidden bg-[#1a2536] border-t border-gray-700 px-4 pt-3 pb-6 space-y-3">
+          {/* Quick Contact Bar: Phone FIRST, WhatsApp SECOND */}
+          <div className="grid grid-cols-2 gap-2 pb-2 border-b border-gray-700">
+            <a
+              href="tel:6896"
+              className="flex items-center justify-center gap-1.5 py-2 px-3 rounded-xl bg-white/10 text-white text-xs font-bold"
+            >
+              <Phone className="w-3.5 h-3.5 text-emerald-400" />
+              <span>6896</span>
+            </a>
+            <a
+              href={`https://wa.me/9647501002030?text=${encodeURIComponent(
+                lang === "ar"
+                  ? "مرحباً، أود الاستفسار عن سيارات المعرض المتوفرة لديكم."
+                  : lang === "ku"
+                  ? "سڵاو، دەمەوێت پرسیار بکەم دەربارەی ئۆتۆمبێلە بەردەستەکانی پێشانگا."
+                  : "Hello, I would like to inquire about available vehicles at your dealership."
+              )}`}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="flex items-center justify-center gap-1.5 py-2 px-3 rounded-xl bg-emerald-600 text-white text-xs font-bold"
+            >
+              <MessageCircle className="w-3.5 h-3.5 fill-current" />
+              <span>{t("whatsapp")}</span>
+            </a>
+          </div>
 
           <div className="space-y-1">
             {navLinks.map((link) => (
