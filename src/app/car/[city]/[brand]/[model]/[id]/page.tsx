@@ -17,7 +17,6 @@ import {
   Phone,
   MessageCircle,
   Share2,
-  Heart,
   ChevronLeft,
   ChevronRight,
   ShieldCheck,
@@ -35,8 +34,7 @@ export default function CarDetailPage({
 }) {
   const resolvedParams = use(params);
   const carId = parseInt(resolvedParams.id);
-  const { lang, currency, user, openAuthModal, isFavorite, toggleFavorite, addToCompare, t } =
-    useApp();
+  const { lang, currency, addToCompare, t } = useApp();
 
   const allCars = carsDataRaw as Car[];
   const car = allCars.find((c) => c.ID === carId) || allCars[0];
@@ -91,7 +89,6 @@ export default function CarDetailPage({
 
   const year = car.Year?.YearName || "2025";
   const trim = car.ModelSFX?.SFXName || "Standard";
-  const favorited = isFavorite(car.ID);
 
   // Similar cars (same brand or same governorate)
   const similarCars = allCars
@@ -147,11 +144,7 @@ export default function CarDetailPage({
   ];
 
   const handlePhoneClick = () => {
-    if (!user?.isLoggedIn) {
-      openAuthModal();
-    } else {
-      setPhoneRevealed(true);
-    }
+    setPhoneRevealed(true);
   };
 
   const handleShare = () => {
@@ -259,10 +252,16 @@ export default function CarDetailPage({
                   {brandName} {modelName} {year}
                 </h1>
                 <div className="flex flex-wrap items-center gap-3 text-xs sm:text-sm text-gray-500 dark:text-gray-400 mt-2">
-                  <div className="flex items-center gap-1">
+                  <a
+                    href={`https://www.google.com/maps/search/?api=1&query=${encodeURIComponent((cityName || "Iraq") + " Iraq")}`}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="flex items-center gap-1 hover:text-emerald-500 hover:underline transition"
+                    title={`View ${cityName || "Iraq"} on Google Maps`}
+                  >
                     <MapPin className="w-4 h-4 text-emerald-500" />
                     <span>{cityName || "Iraq"}</span>
-                  </div>
+                  </a>
                   <span>•</span>
                   <div className="flex items-center gap-1">
                     <Calendar className="w-4 h-4 text-gray-400" />
@@ -379,10 +378,16 @@ export default function CarDetailPage({
                 <h3 className="font-bold text-base text-gray-900 dark:text-white">
                   {car.CarLabel?.LabelTitleen || "Private Seller"}
                 </h3>
-                <div className="flex items-center gap-1 text-xs text-gray-500 dark:text-gray-400">
-                  <MapPin className="w-3.5 h-3.5 text-emerald-500" />
+                <a
+                  href={`https://www.google.com/maps/search/?api=1&query=${encodeURIComponent((cityName || "Iraq") + " Iraq")}`}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="flex items-center gap-1 text-xs text-gray-500 dark:text-gray-400 hover:text-emerald-500 hover:underline transition group/loc"
+                  title={`View ${cityName || "Iraq"} on Google Maps`}
+                >
+                  <MapPin className="w-3.5 h-3.5 text-emerald-500 flex-shrink-0 group-hover/loc:scale-110 transition-transform" />
                   <span>{cityName || "Iraq"}</span>
-                </div>
+                </a>
               </div>
             </div>
 
@@ -420,24 +425,14 @@ export default function CarDetailPage({
               <span>{t("whatsapp")}</span>
             </a>
 
-            {/* Auxiliary actions: Share, Favorite, Compare */}
-            <div className="grid grid-cols-3 gap-2 pt-2 border-t border-gray-100 dark:border-gray-800">
+            {/* Auxiliary actions: Share, Compare */}
+            <div className="grid grid-cols-2 gap-2 pt-2 border-t border-gray-100 dark:border-gray-800">
               <button
                 onClick={handleShare}
                 className="py-2 px-3 rounded-xl border border-gray-200 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-800 text-xs font-semibold text-gray-700 dark:text-gray-300 flex items-center justify-center gap-1.5 transition"
               >
                 <Share2 className="w-3.5 h-3.5" />
                 <span>{copied ? "Copied!" : t("share")}</span>
-              </button>
-
-              <button
-                onClick={() => toggleFavorite(car.ID)}
-                className={`py-2 px-3 rounded-xl border border-gray-200 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-800 text-xs font-semibold flex items-center justify-center gap-1.5 transition ${
-                  favorited ? "text-rose-500 font-bold" : "text-gray-700 dark:text-gray-300"
-                }`}
-              >
-                <Heart className={`w-3.5 h-3.5 ${favorited ? "fill-rose-500" : ""}`} />
-                <span>{favorited ? "Saved" : t("save")}</span>
               </button>
 
               <button

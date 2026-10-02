@@ -7,13 +7,10 @@ import { useApp } from "@/context/AppContext";
 import {
   Car,
   Globe,
-  User,
-  Heart,
   Menu,
   X,
   ChevronDown,
   Sparkles,
-  LogOut,
   SlidersHorizontal,
 } from "lucide-react";
 
@@ -24,10 +21,6 @@ export default function Header() {
     setLang,
     currency,
     setCurrency,
-    favorites,
-    user,
-    openAuthModal,
-    logout,
     compareList,
     t,
   } = useApp();
@@ -35,12 +28,10 @@ export default function Header() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [langMenuOpen, setLangMenuOpen] = useState(false);
   const [currencyMenuOpen, setCurrencyMenuOpen] = useState(false);
-  const [userMenuOpen, setUserMenuOpen] = useState(false);
 
   const navLinks = [
     { href: "/search?condition=New", label: t("newCars") },
     { href: "/search?condition=Used", label: t("usedCars") },
-    { href: "/guide", label: t("guide") },
     {
       href: "/compare-cars",
       label: t("compare"),
@@ -178,68 +169,6 @@ export default function Header() {
                 </div>
               )}
             </div>
-
-            {/* Saved Favorites Icon */}
-            <Link
-              href="/favorites"
-              className="relative p-2 text-gray-300 hover:text-white hover:bg-white/10 rounded-full transition"
-              title={t("myFavorites")}
-            >
-              <Heart className="w-5 h-5" />
-              {favorites.length > 0 && (
-                <span className="absolute -top-1 -right-1 w-4 h-4 bg-rose-500 text-white rounded-full text-[10px] font-bold flex items-center justify-center">
-                  {favorites.length}
-                </span>
-              )}
-            </Link>
-
-            {/* Auth Button or User Badge */}
-            {user?.isLoggedIn ? (
-              <div className="relative">
-                <button
-                  onClick={() => setUserMenuOpen(!userMenuOpen)}
-                  className="flex items-center gap-2 px-3 py-1.5 bg-white/10 hover:bg-white/15 rounded-lg text-xs font-medium text-white transition"
-                >
-                  <div className="w-6 h-6 rounded-full bg-emerald-500 flex items-center justify-center text-white text-xs font-bold">
-                    ✓
-                  </div>
-                  <span className="font-mono text-gray-200">{user.phone}</span>
-                  <ChevronDown className="w-3 h-3 opacity-60" />
-                </button>
-                {userMenuOpen && (
-                  <div
-                    className="absolute right-0 mt-2 w-48 bg-[#1e2a3b] border border-gray-700 rounded-lg shadow-xl py-1 z-50"
-                    onClick={() => setUserMenuOpen(false)}
-                  >
-                    <div className="px-3 py-2 border-b border-gray-700 text-xs text-gray-400">
-                      {t("signedInAs")}
-                      <div className="font-semibold text-white mt-0.5">{user.phone}</div>
-                    </div>
-                    <Link
-                      href="/favorites"
-                      className="block px-3 py-2 text-xs text-gray-200 hover:bg-white/10"
-                    >
-                      {t("myFavorites")} ({favorites.length})
-                    </Link>
-                    <button
-                      onClick={logout}
-                      className="w-full text-left rtl:text-right px-3 py-2 text-xs text-rose-400 hover:bg-white/10 flex items-center gap-1.5"
-                    >
-                      <LogOut className="w-3.5 h-3.5" />
-                      <span>{t("logout")}</span>
-                    </button>
-                  </div>
-                )}
-              </div>
-            ) : (
-              <button
-                onClick={openAuthModal}
-                className="flex items-center gap-1.5 px-3 py-1.5 border border-emerald-500/80 hover:border-emerald-400 text-emerald-400 hover:text-emerald-300 hover:bg-emerald-500/10 text-xs font-semibold rounded-lg transition"
-              >
-                <User className="w-3.5 h-3.5" />
-                <span>{t("signInUp")}</span>
-              </button>
-            )}
           </div>
 
           {/* Mobile Menu Button */}
@@ -250,17 +179,6 @@ export default function Header() {
             >
               {lang === "en" ? "عربي" : lang === "ar" ? "کوردی" : "EN"}
             </button>
-            <Link
-              href="/favorites"
-              className="relative p-1.5 text-gray-300 hover:text-white"
-            >
-              <Heart className="w-5 h-5" />
-              {favorites.length > 0 && (
-                <span className="absolute -top-1 -right-1 w-4 h-4 bg-rose-500 text-white rounded-full text-[10px] font-bold flex items-center justify-center">
-                  {favorites.length}
-                </span>
-              )}
-            </Link>
             <button
               onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
               className="p-2 text-gray-300 hover:text-white"
@@ -274,31 +192,6 @@ export default function Header() {
       {/* Mobile Drawer */}
       {mobileMenuOpen && (
         <div className="md:hidden bg-[#1a2536] border-t border-gray-700 px-4 pt-3 pb-6 space-y-3">
-          <div className="pb-2 border-b border-gray-700">
-            {user?.isLoggedIn ? (
-              <button
-                onClick={() => {
-                  logout();
-                  setMobileMenuOpen(false);
-                }}
-                className="flex items-center justify-center gap-1.5 py-2.5 bg-gray-700 text-rose-300 font-semibold rounded-lg text-sm"
-              >
-                <LogOut className="w-4 h-4" />
-                <span>{t("logout")}</span>
-              </button>
-            ) : (
-              <button
-                onClick={() => {
-                  openAuthModal();
-                  setMobileMenuOpen(false);
-                }}
-                className="flex items-center justify-center gap-1.5 py-2.5 border border-emerald-500 text-emerald-400 font-semibold rounded-lg text-sm"
-              >
-                <User className="w-4 h-4" />
-                <span>{t("signInUp")}</span>
-              </button>
-            )}
-          </div>
 
           <div className="space-y-1">
             {navLinks.map((link) => (

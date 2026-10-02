@@ -3,26 +3,11 @@
 import React, { createContext, useContext, useState, useEffect } from "react";
 import { Currency, Language, Car } from "@/lib/types";
 
-interface User {
-  phone: string;
-  name?: string;
-  isLoggedIn: boolean;
-}
-
 interface AppContextType {
   lang: Language;
   setLang: (lang: Language) => void;
   currency: Currency;
   setCurrency: (c: Currency) => void;
-  favorites: number[];
-  toggleFavorite: (id: number) => void;
-  isFavorite: (id: number) => boolean;
-  user: User | null;
-  login: (phone: string) => void;
-  logout: () => void;
-  isAuthModalOpen: boolean;
-  openAuthModal: () => void;
-  closeAuthModal: () => void;
   compareList: Car[];
   addToCompare: (car: Car) => void;
   removeFromCompare: (carId: number) => void;
@@ -386,9 +371,6 @@ const AppContext = createContext<AppContextType | undefined>(undefined);
 export function AppProvider({ children }: { children: React.ReactNode }) {
   const [lang, setLangState] = useState<Language>("en");
   const [currency, setCurrencyState] = useState<Currency>("USD");
-  const [favorites, setFavorites] = useState<number[]>([]);
-  const [user, setUser] = useState<User | null>(null);
-  const [isAuthModalOpen, setIsAuthModalOpen] = useState(false);
   const [compareList, setCompareList] = useState<Car[]>([]);
 
   useEffect(() => {
@@ -404,24 +386,6 @@ export function AppProvider({ children }: { children: React.ReactNode }) {
     if (savedCur && (savedCur === "USD" || savedCur === "IQD")) {
       setCurrencyState(savedCur);
     }
-
-    const savedFavs = localStorage.getItem("iqcars_favorites");
-    if (savedFavs) {
-      try {
-        setFavorites(JSON.parse(savedFavs));
-      } catch (e) {
-        console.error(e);
-      }
-    }
-
-    const savedUser = localStorage.getItem("iqcars_user");
-    if (savedUser) {
-      try {
-        setUser(JSON.parse(savedUser));
-      } catch (e) {
-        console.error(e);
-      }
-    }
   }, []);
 
   const setLang = (newLang: Language) => {
@@ -435,31 +399,6 @@ export function AppProvider({ children }: { children: React.ReactNode }) {
     setCurrencyState(c);
     localStorage.setItem("iqcars_currency", c);
   };
-
-  const toggleFavorite = (id: number) => {
-    setFavorites((prev) => {
-      const next = prev.includes(id) ? prev.filter((item) => item !== id) : [...prev, id];
-      localStorage.setItem("iqcars_favorites", JSON.stringify(next));
-      return next;
-    });
-  };
-
-  const isFavorite = (id: number) => favorites.includes(id);
-
-  const login = (phone: string) => {
-    const newUser = { phone, isLoggedIn: true };
-    setUser(newUser);
-    localStorage.setItem("iqcars_user", JSON.stringify(newUser));
-    setIsAuthModalOpen(false);
-  };
-
-  const logout = () => {
-    setUser(null);
-    localStorage.removeItem("iqcars_user");
-  };
-
-  const openAuthModal = () => setIsAuthModalOpen(true);
-  const closeAuthModal = () => setIsAuthModalOpen(false);
 
   const addToCompare = (car: Car) => {
     setCompareList((prev) => {
@@ -486,15 +425,6 @@ export function AppProvider({ children }: { children: React.ReactNode }) {
         setLang,
         currency,
         setCurrency,
-        favorites,
-        toggleFavorite,
-        isFavorite,
-        user,
-        login,
-        logout,
-        isAuthModalOpen,
-        openAuthModal,
-        closeAuthModal,
         compareList,
         addToCompare,
         removeFromCompare,

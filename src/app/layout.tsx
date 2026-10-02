@@ -3,7 +3,6 @@ import "./globals.css";
 import { AppProvider } from "@/context/AppContext";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
-import AuthModal from "@/components/AuthModal";
 
 export const metadata: Metadata = {
   title: "iQ Cars - The Largest Online Car Marketplace in Iraq",
@@ -33,7 +32,6 @@ export default function RootLayout({
           <Header />
           <main className="flex-1">{children}</main>
           <Footer />
-          <AuthModal />
         </AppProvider>
       </body>
     </html>

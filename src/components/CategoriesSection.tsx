@@ -3,13 +3,63 @@
 import React, { useRef } from "react";
 import Link from "next/link";
 import { useApp } from "@/context/AppContext";
-import guidesData from "@/data/guides.json";
 import { ChevronLeft, ChevronRight, Layers } from "lucide-react";
+
+const vehicleCategories = [
+  {
+    id: "family",
+    title: "Family Cars",
+    titleAr: "سيارات عائلية",
+    titleKu: "ئۆتۆمبێلی خێزانی",
+    img: "https://iqcars-assets.iqcars.io/images/family_cars.jpg",
+    count: "14,200",
+  },
+  {
+    id: "muscle",
+    title: "Muscle Cars",
+    titleAr: "سيارات رياضية",
+    titleKu: "ئۆتۆمبێلی وەرزشی",
+    img: "https://iqcars-assets.iqcars.io/images/muscle_cars.jpg",
+    count: "3,840",
+  },
+  {
+    id: "pickup",
+    title: "Pickup",
+    titleAr: "بيك آب ونصف نقل",
+    titleKu: "پیکاب",
+    img: "https://iqcars-assets.iqcars.io/images/pickup.jpg",
+    count: "8,950",
+  },
+  {
+    id: "personal",
+    title: "Personal Cars",
+    titleAr: "سيارات شخصية سيدان",
+    titleKu: "ئۆتۆمبێلی تایبەت",
+    img: "https://iqcars-assets.iqcars.io/images/sedan.jpg",
+    count: "22,400",
+  },
+  {
+    id: "van",
+    title: "VAN",
+    titleAr: "فان وحافلات",
+    titleKu: "ڤان",
+    img: "https://iqcars-assets.iqcars.io/images/van.jpg",
+    count: "1,620",
+  },
+  {
+    id: "suv",
+    title: "SUV",
+    titleAr: "دفع رباعي",
+    titleKu: "ئێس یو ڤی",
+    img: "https://iqcars-assets.iqcars.io/images/suv.jpg",
+    count: "28,700",
+  },
+];
 
 export default function CategoriesSection() {
   const { lang, t } = useApp();
   const scrollRef = useRef<HTMLDivElement>(null);
-  const categories = (guidesData as any).categories || [];
+  const categories = vehicleCategories;
 
   const scroll = (direction: "left" | "right") => {
     if (scrollRef.current) {

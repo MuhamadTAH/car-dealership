@@ -11,7 +11,7 @@ export default function Footer() {
   return (
     <footer className="bg-[#121924] text-gray-300 pt-16 pb-12 border-t border-gray-800">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-10 pb-12 border-b border-gray-800">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-10 pb-12 border-b border-gray-800">
           {/* Brand Info & Quick Links */}
           <div className="lg:col-span-2 space-y-4">
             <Link href="/" className="inline-flex items-center gap-1.5">
@@ -31,9 +31,6 @@ export default function Footer() {
               </Link>
               <Link href="/search?condition=Used" className="hover:text-emerald-400 transition">
                 {t("usedCars")}
-              </Link>
-              <Link href="/guide" className="hover:text-emerald-400 transition">
-                {t("guide")}
               </Link>
               <Link href="/compare-cars" className="hover:text-emerald-400 transition">
                 {t("compare")}
@@ -138,49 +135,6 @@ export default function Footer() {
                 className="flex items-center gap-2 p-2 rounded-lg bg-white/5 hover:bg-white/10 text-gray-300 hover:text-white transition"
               >
                 <span>X / Twitter</span>
-              </a>
-            </div>
-          </div>
-
-          {/* App Downloads */}
-          <div className="space-y-4">
-            <h3 className="text-white font-bold text-base tracking-wide">{t("getTheApp")}</h3>
-            <p className="text-xs text-gray-400">
-              Download the official iQ Cars app for iOS and Android.
-            </p>
-            <div className="space-y-2">
-              <a
-                href="https://apps.apple.com/us/app/id1534713494"
-                target="_blank"
-                rel="noreferrer"
-                className="flex items-center gap-3 px-3 py-2 bg-white/5 hover:bg-white/10 border border-gray-700 rounded-lg text-white transition"
-              >
-                <div className="text-left rtl:text-right">
-                  <div className="text-[10px] text-gray-400 uppercase tracking-wider">{t("downloadOn")}</div>
-                  <div className="text-xs font-bold">{t("appStore")}</div>
-                </div>
-              </a>
-              <a
-                href="https://play.google.com/store/apps/details?id=com.redfoxpro.iqcars"
-                target="_blank"
-                rel="noreferrer"
-                className="flex items-center gap-3 px-3 py-2 bg-white/5 hover:bg-white/10 border border-gray-700 rounded-lg text-white transition"
-              >
-                <div className="text-left rtl:text-right">
-                  <div className="text-[10px] text-gray-400 uppercase tracking-wider">{t("getItOn")}</div>
-                  <div className="text-xs font-bold">{t("googlePlay")}</div>
-                </div>
-              </a>
-              <a
-                href="https://appgallery.huawei.com"
-                target="_blank"
-                rel="noreferrer"
-                className="flex items-center gap-3 px-3 py-2 bg-white/5 hover:bg-white/10 border border-gray-700 rounded-lg text-white transition"
-              >
-                <div className="text-left rtl:text-right">
-                  <div className="text-[10px] text-gray-400 uppercase tracking-wider">{t("exploreItOn")}</div>
-                  <div className="text-xs font-bold">{t("appGallery")}</div>
-                </div>
               </a>
             </div>
           </div>

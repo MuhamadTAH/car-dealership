@@ -5,10 +5,10 @@ import Link from "next/link";
 import { Car } from "@/lib/types";
 import { useApp } from "@/context/AppContext";
 import { getCarImageUrl, formatPrice, formatMileage } from "@/lib/utils";
-import { MapPin, Heart, Gauge, Sparkles, Scale } from "lucide-react";
+import { MapPin, Gauge, Sparkles, Scale } from "lucide-react";
 
 export default function CarCard({ car }: { car: Car }) {
-  const { lang, currency, isFavorite, toggleFavorite, addToCompare, compareList } = useApp();
+  const { lang, currency, addToCompare, compareList } = useApp();
   const [imgError, setImgError] = useState(false);
 
   const rawImg = car.Attachments?.[0]?.DetailUrl || car.Attachments?.[0]?.CardUrl || car.Attachments?.[0]?.Url;
@@ -37,7 +37,6 @@ export default function CarCard({ car }: { car: Car }) {
 
   const year = car.Year?.YearName || "2024";
   const trim = car.ModelSFX?.SFXName || "";
-  const favorited = isFavorite(car.ID);
   const isCompared = compareList.some((c) => c.ID === car.ID);
 
   const locationSlug = (car.Location?.LocationNameen || "iraq").toLowerCase().replace(/\s+/g, "-");
@@ -76,23 +75,6 @@ export default function CarCard({ car }: { car: Car }) {
             </span>
           </div>
         )}
-
-        {/* Favorite Button */}
-        <button
-          onClick={(e) => {
-            e.preventDefault();
-            e.stopPropagation();
-            toggleFavorite(car.ID);
-          }}
-          className="absolute top-2.5 right-2.5 rtl:left-2.5 rtl:right-auto w-8 h-8 rounded-full bg-black/40 hover:bg-black/60 text-white flex items-center justify-center transition backdrop-blur-sm"
-          title="Save car"
-        >
-          <Heart
-            className={`w-4 h-4 transition ${
-              favorited ? "fill-rose-500 text-rose-500 scale-110" : "text-white"
-            }`}
-          />
-        </button>
 
         {/* Compare Button */}
         <button
@@ -144,10 +126,17 @@ export default function CarCard({ car }: { car: Car }) {
 
         {/* Bottom row: City and Price */}
         <div className="mt-4 pt-3 border-t border-gray-100 dark:border-gray-800 flex items-center justify-between">
-          <div className="flex items-center gap-1 text-xs text-gray-500 dark:text-gray-400">
-            <MapPin className="w-3.5 h-3.5 text-emerald-500" />
-            <span>{cityName || "Iraq"}</span>
-          </div>
+          <a
+            href={`https://www.google.com/maps/search/?api=1&query=${encodeURIComponent((cityName || "Iraq") + " Iraq")}`}
+            target="_blank"
+            rel="noopener noreferrer"
+            onClick={(e) => e.stopPropagation()}
+            className="flex items-center gap-1 text-xs text-gray-500 dark:text-gray-400 hover:text-emerald-500 hover:underline transition group/loc"
+            title={`View ${cityName || "Iraq"} on Google Maps`}
+          >
+            <MapPin className="w-3.5 h-3.5 text-emerald-500 flex-shrink-0 group-hover/loc:scale-110 transition-transform" />
+            <span className="truncate max-w-[120px]">{cityName || "Iraq"}</span>
+          </a>
 
           <div className="text-right rtl:text-left">
             <div className="text-base sm:text-lg font-black text-gray-900 dark:text-white">

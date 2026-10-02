@@ -107,10 +107,17 @@ export default function ShowroomsSection() {
                 <h3 className="font-bold text-gray-900 dark:text-white text-base group-hover:text-emerald-600 dark:group-hover:text-emerald-400 line-clamp-1 transition pr-14 rtl:pr-0 rtl:pl-14">
                   {getName(s)}
                 </h3>
-                <div className="flex items-center gap-1 text-xs text-gray-500 dark:text-gray-400 mt-1">
-                  <MapPin className="w-3.5 h-3.5 text-emerald-500" />
+                <a
+                  href={`https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(`${s.name} ${s.city} Iraq`)}`}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  onClick={(e) => e.stopPropagation()}
+                  className="inline-flex items-center gap-1 text-xs text-gray-500 dark:text-gray-400 hover:text-emerald-500 hover:underline transition mt-1 group/loc"
+                  title="View showroom on Google Maps"
+                >
+                  <MapPin className="w-3.5 h-3.5 text-emerald-500 flex-shrink-0 group-hover/loc:scale-110 transition-transform" />
                   <span>{getCity(s)}</span>
-                </div>
+                </a>
               </div>
 
               <div className="mt-4 pt-3 border-t border-gray-100 dark:border-gray-800 flex items-center justify-between text-xs">

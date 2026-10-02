@@ -106,10 +106,16 @@ export default function ShowroomDetailPage({
                   {getName()}
                 </h1>
                 <div className="flex flex-wrap items-center gap-3 text-xs sm:text-sm text-gray-500 dark:text-gray-400">
-                  <div className="flex items-center gap-1">
+                  <a
+                    href={`https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(`${showroom.name} ${showroom.address} ${showroom.city} Iraq`)}`}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="flex items-center gap-1 hover:text-emerald-500 hover:underline transition"
+                    title="View showroom on Google Maps"
+                  >
                     <MapPin className="w-4 h-4 text-emerald-500" />
                     <span>{getCity()}</span>
-                  </div>
+                  </a>
                   <span>•</span>
                   <div className="flex items-center gap-1 font-semibold text-emerald-600 dark:text-emerald-400">
                     <CarIcon className="w-4 h-4" />
@@ -189,15 +195,21 @@ export default function ShowroomDetailPage({
           </div>
 
           <div className="pt-4 border-t border-gray-100 dark:border-gray-800 space-y-3 text-sm">
-            <div className="flex items-start gap-3">
-              <MapPin className="w-4 h-4 text-emerald-500 mt-1 flex-shrink-0" />
+            <a
+              href={`https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(`${showroom.name} ${showroom.address} ${showroom.city} Iraq`)}`}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="flex items-start gap-3 group hover:text-emerald-500 transition"
+              title="View on Google Maps"
+            >
+              <MapPin className="w-4 h-4 text-emerald-500 mt-1 flex-shrink-0 group-hover:scale-110 transition-transform" />
               <div>
-                <div className="font-bold text-gray-900 dark:text-white">Address</div>
-                <div className="text-gray-500 dark:text-gray-400 text-xs mt-0.5">
+                <div className="font-bold text-gray-900 dark:text-white group-hover:text-emerald-500 transition">Address (View on Map)</div>
+                <div className="text-gray-500 dark:text-gray-400 text-xs mt-0.5 underline">
                   {showroom.address}
                 </div>
               </div>
-            </div>
+            </a>
 
             <div className="flex items-start gap-3">
               <Clock className="w-4 h-4 text-blue-500 mt-1 flex-shrink-0" />

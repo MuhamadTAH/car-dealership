@@ -12,7 +12,7 @@ import CategoriesSection from "@/components/CategoriesSection";
 import ShowroomsSection from "@/components/ShowroomsSection";
 import BrandModelGrid from "@/components/BrandModelGrid";
 import CarCard from "@/components/CarCard";
-import { Sparkles, ArrowRight, Smartphone, ShieldCheck, Car as CarIcon } from "lucide-react";
+import { Sparkles, ArrowRight, ShieldCheck, Car as CarIcon } from "lucide-react";
 
 export default function HomePage() {
   const { lang, t } = useApp();
@@ -123,53 +123,6 @@ export default function HomePage() {
 
         {/* Popular Brands & Models Directory */}
         <BrandModelGrid />
-
-        {/* Mobile App Download Card Banner */}
-        <section className="my-16 relative overflow-hidden rounded-3xl bg-gradient-to-r from-[#16202e] to-[#1e2f47] text-white p-8 sm:p-12 shadow-xl border border-gray-700/60">
-          <div className="max-w-2xl space-y-4 relative z-10">
-            <span className="px-3 py-1 rounded-full bg-emerald-500/20 text-emerald-400 text-xs font-bold uppercase tracking-wider inline-flex items-center gap-1.5">
-              <Smartphone className="w-3.5 h-3.5" />
-              <span>Available on iOS & Android</span>
-            </span>
-            <h2 className="text-2xl sm:text-4xl font-black text-white tracking-tight">
-              Get the iQ Cars App on Your Phone
-            </h2>
-            <p className="text-sm sm:text-base text-gray-300 leading-relaxed">
-              Receive instant alerts on price drops, message verified sellers in real-time,
-              and list your car with AI vehicle inspection right from your camera.
-            </p>
-            <div className="flex flex-wrap items-center gap-3 pt-2">
-              <a
-                href="https://apps.apple.com/us/app/id1534713494"
-                target="_blank"
-                rel="noreferrer"
-                className="px-5 py-2.5 bg-white text-gray-900 font-bold text-xs rounded-xl shadow hover:bg-gray-100 transition"
-              >
-                App Store
-              </a>
-              <a
-                href="https://play.google.com/store/apps/details?id=com.redfoxpro.iqcars"
-                target="_blank"
-                rel="noreferrer"
-                className="px-5 py-2.5 bg-white text-gray-900 font-bold text-xs rounded-xl shadow hover:bg-gray-100 transition"
-              >
-                Google Play
-              </a>
-              <a
-                href="https://appgallery.huawei.com"
-                target="_blank"
-                rel="noreferrer"
-                className="px-5 py-2.5 bg-white text-gray-900 font-bold text-xs rounded-xl shadow hover:bg-gray-100 transition"
-              >
-                AppGallery
-              </a>
-            </div>
-          </div>
-
-          <div className="absolute right-0 bottom-0 opacity-10 pointer-events-none transform translate-x-12 translate-y-12">
-            <Smartphone className="w-96 h-96 text-white" />
-          </div>
-        </section>
       </div>
     </div>
   );
