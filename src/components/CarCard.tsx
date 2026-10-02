@@ -6,14 +6,15 @@ import { Car } from "@/lib/types";
 import { useApp } from "@/context/AppContext";
 import { getCarImageUrl, formatPrice, formatMileage } from "@/lib/utils";
 import { getCarQist } from "@/lib/qist";
-import { MapPin, Gauge, Scale, Phone, MessageCircle, Eye, Coins } from "lucide-react";
+import { getCar360Config } from "@/lib/car360";
+import { MapPin, Gauge, Scale, Phone, MessageCircle, Eye, Coins, RotateCcw } from "lucide-react";
 
 export default function CarCard({
   car,
   onQuickView,
 }: {
   car: Car;
-  onQuickView?: (car: Car) => void;
+  onQuickView?: (car: Car, initialTab?: "photos" | "360") => void;
 }) {
   const { lang, currency, addToCompare, compareList, t } = useApp();
   const [imgError, setImgError] = useState(false);
@@ -46,6 +47,7 @@ export default function CarCard({
   const trim = car.ModelSFX?.SFXName || "";
   const isCompared = compareList.some((c) => c.ID === car.ID);
   const qistPlan = getCarQist(car.ID);
+  const car360 = getCar360Config(car.ID, car);
 
   const locationSlug = (car.Location?.LocationNameen || "iraq").toLowerCase().replace(/\s+/g, "-");
   const brandSlug = (car.Brand?.BrandNameen || "car").toLowerCase().replace(/\s+/g, "-");
@@ -110,23 +112,56 @@ export default function CarCard({
               <span>{t("qistBadge")}</span>
             </div>
           )}
+
+          {/* 360 Spin Available Badge */}
+          {car360?.available && (
+            <button
+              onClick={(e) => {
+                e.preventDefault();
+                e.stopPropagation();
+                onQuickView?.(car, "360");
+              }}
+              className="px-2.5 py-0.5 rounded-full text-[10px] font-bold text-white shadow-sm flex items-center gap-1 bg-gradient-to-r from-blue-600 to-indigo-600 hover:from-blue-500 hover:to-indigo-500 backdrop-blur-md cursor-pointer transition"
+              title="Click to view interactive 360 spin"
+            >
+              <RotateCcw className="w-3 h-3 animate-spin-slow" />
+              <span>360°</span>
+            </button>
+          )}
         </div>
 
-        {/* Quick View Button on Hover */}
-        {onQuickView && (
-          <button
-            onClick={(e) => {
-              e.preventDefault();
-              e.stopPropagation();
-              onQuickView(car);
-            }}
-            className="absolute top-2.5 right-2.5 rtl:left-2.5 rtl:right-auto px-2.5 py-1 rounded-lg text-[11px] font-bold bg-white/90 dark:bg-[#16202e]/90 text-gray-800 dark:text-gray-100 opacity-90 sm:opacity-0 group-hover:opacity-100 transition-all duration-200 shadow-md backdrop-blur-sm flex items-center gap-1 hover:bg-emerald-500 hover:text-white dark:hover:bg-emerald-500 z-10"
-            title={t("quickView")}
-          >
-            <Eye className="w-3.5 h-3.5" />
-            <span className="hidden sm:inline">{t("quickView")}</span>
-          </button>
-        )}
+        {/* Action Buttons on Hover */}
+        <div className="absolute top-2.5 right-2.5 rtl:left-2.5 rtl:right-auto flex items-center gap-1.5 opacity-90 sm:opacity-0 group-hover:opacity-100 transition-all duration-200 z-10">
+          {car360?.available && onQuickView && (
+            <button
+              onClick={(e) => {
+                e.preventDefault();
+                e.stopPropagation();
+                onQuickView(car, "360");
+              }}
+              className="px-2.5 py-1 rounded-lg text-[11px] font-bold bg-blue-600 text-white shadow-md backdrop-blur-sm flex items-center gap-1 hover:bg-blue-500 transition cursor-pointer"
+              title="Open 360° Spin"
+            >
+              <RotateCcw className="w-3.5 h-3.5" />
+              <span className="hidden sm:inline">360°</span>
+            </button>
+          )}
+
+          {onQuickView && (
+            <button
+              onClick={(e) => {
+                e.preventDefault();
+                e.stopPropagation();
+                onQuickView(car, "photos");
+              }}
+              className="px-2.5 py-1 rounded-lg text-[11px] font-bold bg-white/90 dark:bg-[#16202e]/90 text-gray-800 dark:text-gray-100 shadow-md backdrop-blur-sm flex items-center gap-1 hover:bg-emerald-500 hover:text-white dark:hover:bg-emerald-500 transition cursor-pointer"
+              title={t("quickView")}
+            >
+              <Eye className="w-3.5 h-3.5" />
+              <span className="hidden sm:inline">{t("quickView")}</span>
+            </button>
+          )}
+        </div>
 
         {/* Compare Button */}
         <button

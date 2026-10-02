@@ -27,9 +27,15 @@ import {
   ArrowLeft,
   Scale,
   Coins,
+  RotateCcw,
+  Camera,
+  Video,
 } from "lucide-react";
 import QistCalculator from "@/components/QistCalculator";
 import { getCarQist } from "@/lib/qist";
+import Car360Viewer from "@/components/Car360Viewer";
+import Seller360StudioModal from "@/components/Seller360StudioModal";
+import { getCar360Config } from "@/lib/car360";
 
 export default function CarDetailPage({
   params,
@@ -46,6 +52,9 @@ export default function CarDetailPage({
   const [activePhotoIdx, setActivePhotoIdx] = useState(0);
   const [phoneRevealed, setPhoneRevealed] = useState(false);
   const [copied, setCopied] = useState(false);
+  const [mediaView, setMediaView] = useState<"photos" | "360">("photos");
+  const [isStudioOpen, setIsStudioOpen] = useState(false);
+  const car360 = getCar360Config(car.ID, car);
 
   // Auto Loan Calculator State
   const [downPayment, setDownPayment] = useState(Math.round(car.Price * 0.2));
@@ -175,80 +184,131 @@ export default function CarDetailPage({
       <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
         {/* Left 2 Columns: Photo Gallery + Specs + Amenities */}
         <div className="lg:col-span-2 space-y-8">
-          {/* Main Photo Viewer */}
+          {/* Main Photo / 360 Viewer Card */}
           <div className="bg-white dark:bg-[#1a2536] rounded-2xl border border-gray-200 dark:border-gray-800 overflow-hidden shadow-sm">
-            <div className="relative aspect-[16/10] bg-black/90 overflow-hidden flex items-center justify-center">
-              <img
-                src={currentPhoto}
-                alt={`${brandName} ${modelName}`}
-                className="w-full h-full object-contain"
-              />
+            {/* Top Switcher Bar */}
+            <div className="flex items-center justify-between p-3 border-b border-gray-100 dark:border-gray-800/80 bg-gray-50/80 dark:bg-gray-900/60">
+              <div className="flex items-center gap-2">
+                <button
+                  onClick={() => setMediaView("photos")}
+                  className={`flex items-center gap-1.5 px-3.5 py-1.5 rounded-xl text-xs font-bold transition cursor-pointer ${
+                    mediaView === "photos"
+                      ? "bg-slate-900 text-white dark:bg-white dark:text-slate-900 shadow-sm"
+                      : "text-gray-600 dark:text-gray-300 hover:text-gray-900 dark:hover:text-white"
+                  }`}
+                >
+                  <Camera className="w-4 h-4" />
+                  <span>{t("photosTab")} ({attachments.length})</span>
+                </button>
 
-              {/* Prev / Next Arrows */}
-              {attachments.length > 1 && (
-                <>
-                  <button
-                    onClick={() =>
-                      setActivePhotoIdx((prev) =>
-                        prev === 0 ? attachments.length - 1 : prev - 1
-                      )
-                    }
-                    className="absolute left-3 top-1/2 -translate-y-1/2 w-10 h-10 rounded-full bg-black/50 hover:bg-black/80 text-white flex items-center justify-center backdrop-blur-sm transition"
-                    aria-label="Previous image"
-                  >
-                    <ChevronLeft className="w-6 h-6" />
-                  </button>
-                  <button
-                    onClick={() =>
-                      setActivePhotoIdx((prev) =>
-                        prev === attachments.length - 1 ? 0 : prev + 1
-                      )
-                    }
-                    className="absolute right-3 top-1/2 -translate-y-1/2 w-10 h-10 rounded-full bg-black/50 hover:bg-black/80 text-white flex items-center justify-center backdrop-blur-sm transition"
-                    aria-label="Next image"
-                  >
-                    <ChevronRight className="w-6 h-6" />
-                  </button>
-                </>
-              )}
-
-              {/* Badge & Photo Counter */}
-              <div className="absolute top-4 left-4 rtl:right-4 rtl:left-auto flex items-center gap-2">
-                <span className="px-3 py-1 rounded-full text-xs font-bold text-white bg-emerald-600 shadow-md">
-                  {lang === "ar"
-                    ? car.CarLabel?.LabelTitlear || t("officialDealership")
-                    : lang === "ku"
-                    ? car.CarLabel?.LabelTitleku || t("officialDealership")
-                    : car.CarLabel?.LabelTitleen || t("officialDealership")}
-                </span>
+                <button
+                  onClick={() => setMediaView("360")}
+                  className={`flex items-center gap-1.5 px-3.5 py-1.5 rounded-xl text-xs font-bold transition cursor-pointer ${
+                    mediaView === "360"
+                      ? "bg-blue-600 text-white shadow-md shadow-blue-500/20"
+                      : "text-blue-600 dark:text-blue-400 hover:bg-blue-50 dark:hover:bg-blue-950/40"
+                  }`}
+                >
+                  <RotateCcw className="w-4 h-4 animate-spin-slow" />
+                  <span>{t("spin360Tab")}</span>
+                  <span className="px-1.5 py-0.5 rounded-full bg-blue-500/20 text-[10px] font-bold">360°</span>
+                </button>
               </div>
 
-              <div className="absolute bottom-4 right-4 rtl:left-4 rtl:right-auto px-2.5 py-1 rounded-lg text-xs font-mono font-bold text-white bg-black/60 backdrop-blur-sm">
-                {activePhotoIdx + 1} / {attachments.length}
-              </div>
+              <button
+                onClick={() => setIsStudioOpen(true)}
+                className="flex items-center gap-1.5 px-3 py-1.5 rounded-xl text-xs font-semibold text-emerald-600 dark:text-emerald-400 hover:bg-emerald-50 dark:hover:bg-emerald-950/40 border border-emerald-500/30 transition cursor-pointer"
+                title="Sellers can upload or test walkaround videos"
+              >
+                <Video className="w-3.5 h-3.5" />
+                <span>{t("sellerStudioBtn")}</span>
+              </button>
             </div>
 
-            {/* Thumbnail Filmstrip */}
-            {attachments.length > 1 && (
-              <div className="p-3 bg-gray-50 dark:bg-gray-900/50 flex gap-2 overflow-x-auto scrollbar-none">
-                {attachments.map((att, idx) => (
-                  <button
-                    key={att.ID || idx}
-                    onClick={() => setActivePhotoIdx(idx)}
-                    className={`relative w-20 h-14 rounded-lg overflow-hidden flex-shrink-0 border-2 transition ${
-                      activePhotoIdx === idx
-                        ? "border-emerald-500 scale-95 shadow"
-                        : "border-transparent opacity-60 hover:opacity-100"
-                    }`}
-                  >
-                    <img
-                      src={getCarImageUrl(att.DetailUrl || att.Url)}
-                      alt="thumbnail"
-                      className="w-full h-full object-cover"
-                    />
-                  </button>
-                ))}
-              </div>
+            {mediaView === "360" ? (
+              /* Interactive 360 Viewer */
+              <Car360Viewer
+                car={car}
+                onOpenSellerStudio={() => setIsStudioOpen(true)}
+                className="min-h-[460px] md:min-h-[520px]"
+              />
+            ) : (
+              /* Photo Gallery Viewer */
+              <>
+                <div className="relative aspect-[16/10] bg-black/90 overflow-hidden flex items-center justify-center">
+                  <img
+                    src={currentPhoto}
+                    alt={`${brandName} ${modelName}`}
+                    className="w-full h-full object-contain"
+                  />
+
+                  {/* Prev / Next Arrows */}
+                  {attachments.length > 1 && (
+                    <>
+                      <button
+                        onClick={() =>
+                          setActivePhotoIdx((prev) =>
+                            prev === 0 ? attachments.length - 1 : prev - 1
+                          )
+                        }
+                        className="absolute left-3 top-1/2 -translate-y-1/2 w-10 h-10 rounded-full bg-black/50 hover:bg-black/80 text-white flex items-center justify-center backdrop-blur-sm transition"
+                        aria-label="Previous image"
+                      >
+                        <ChevronLeft className="w-6 h-6" />
+                      </button>
+                      <button
+                        onClick={() =>
+                          setActivePhotoIdx((prev) =>
+                            prev === attachments.length - 1 ? 0 : prev + 1
+                          )
+                        }
+                        className="absolute right-3 top-1/2 -translate-y-1/2 w-10 h-10 rounded-full bg-black/50 hover:bg-black/80 text-white flex items-center justify-center backdrop-blur-sm transition"
+                        aria-label="Next image"
+                      >
+                        <ChevronRight className="w-6 h-6" />
+                      </button>
+                    </>
+                  )}
+
+                  {/* Badge & Photo Counter */}
+                  <div className="absolute top-4 left-4 rtl:right-4 rtl:left-auto flex items-center gap-2">
+                    <span className="px-3 py-1 rounded-full text-xs font-bold text-white bg-emerald-600 shadow-md">
+                      {lang === "ar"
+                        ? car.CarLabel?.LabelTitlear || t("officialDealership")
+                        : lang === "ku"
+                        ? car.CarLabel?.LabelTitleku || t("officialDealership")
+                        : car.CarLabel?.LabelTitleen || t("officialDealership")}
+                    </span>
+                  </div>
+
+                  <div className="absolute bottom-4 right-4 rtl:left-4 rtl:right-auto px-2.5 py-1 rounded-lg text-xs font-mono font-bold text-white bg-black/60 backdrop-blur-sm">
+                    {activePhotoIdx + 1} / {attachments.length}
+                  </div>
+                </div>
+
+                {/* Thumbnail Filmstrip */}
+                {attachments.length > 1 && (
+                  <div className="p-3 bg-gray-50 dark:bg-gray-900/50 flex gap-2 overflow-x-auto scrollbar-none">
+                    {attachments.map((att, idx) => (
+                      <button
+                        key={att.ID || idx}
+                        onClick={() => setActivePhotoIdx(idx)}
+                        className={`relative w-20 h-14 rounded-lg overflow-hidden flex-shrink-0 border-2 transition ${
+                          activePhotoIdx === idx
+                            ? "border-emerald-500 scale-95 shadow"
+                            : "border-transparent opacity-60 hover:opacity-100"
+                        }`}
+                      >
+                        <img
+                          src={getCarImageUrl(att.DetailUrl || att.Url)}
+                          alt="thumbnail"
+                          className="w-full h-full object-cover"
+                        />
+                      </button>
+                    ))}
+                  </div>
+                )}
+              </>
             )}
           </div>
 
@@ -527,6 +587,14 @@ export default function CarDetailPage({
           </div>
         </section>
       )}
+
+      {/* Seller 360 Studio Modal */}
+      <Seller360StudioModal
+        isOpen={isStudioOpen}
+        onClose={() => setIsStudioOpen(false)}
+        cars={allCars}
+        initialCar={car}
+      />
     </div>
   );
 }

@@ -9,6 +9,7 @@ import filterDataRaw from "@/data/filterData.json";
 import { Car } from "@/lib/types";
 import CarCard from "@/components/CarCard";
 import QuickViewModal from "@/components/QuickViewModal";
+import Seller360StudioModal from "@/components/Seller360StudioModal";
 import {
   Filter,
   SlidersHorizontal,
@@ -44,6 +45,8 @@ function SearchContent() {
   const [mobileFilterOpen, setMobileFilterOpen] = useState(false);
   const [currentPage, setCurrentPage] = useState(1);
   const [quickViewCar, setQuickViewCar] = useState<Car | null>(null);
+  const [quickViewTab, setQuickViewTab] = useState<"photos" | "360">("photos");
+  const [isStudioOpen, setIsStudioOpen] = useState(false);
   const pageSize = 16;
 
   const allCars = carsDataRaw as Car[];
@@ -471,7 +474,14 @@ function SearchContent() {
                 }
               >
                 {paginatedCars.map((car) => (
-                  <CarCard key={car.ID} car={car} onQuickView={setQuickViewCar} />
+                  <CarCard
+                    key={car.ID}
+                    car={car}
+                    onQuickView={(c, tab) => {
+                      setQuickViewCar(c);
+                      setQuickViewTab(tab || "photos");
+                    }}
+                  />
                 ))}
               </div>
 
@@ -640,6 +650,16 @@ function SearchContent() {
       <QuickViewModal
         car={quickViewCar}
         onClose={() => setQuickViewCar(null)}
+        initialTab={quickViewTab}
+        onOpenSellerStudio={() => setIsStudioOpen(true)}
+      />
+
+      {/* Seller 360 Studio Modal */}
+      <Seller360StudioModal
+        isOpen={isStudioOpen}
+        onClose={() => setIsStudioOpen(false)}
+        cars={allCars}
+        initialCar={quickViewCar}
       />
     </div>
   );

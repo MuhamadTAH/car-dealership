@@ -18,19 +18,33 @@ import {
   ExternalLink,
   ShieldCheck,
   CheckCircle2,
+  RotateCcw,
+  Camera,
+  Video,
 } from "lucide-react";
+import Car360Viewer from "./Car360Viewer";
+import { getCar360Config } from "@/lib/car360";
 
 interface QuickViewModalProps {
   car: Car | null;
   onClose: () => void;
+  initialTab?: "photos" | "360";
+  onOpenSellerStudio?: () => void;
 }
 
-export default function QuickViewModal({ car, onClose }: QuickViewModalProps) {
+export default function QuickViewModal({
+  car,
+  onClose,
+  initialTab = "photos",
+  onOpenSellerStudio,
+}: QuickViewModalProps) {
   const { lang, currency, t } = useApp();
   const [activePhotoIdx, setActivePhotoIdx] = useState(0);
+  const [mediaTab, setMediaTab] = useState<"photos" | "360">(initialTab);
 
   useEffect(() => {
     setActivePhotoIdx(0);
+    setMediaTab(initialTab);
     const handleKeyDown = (e: KeyboardEvent) => {
       if (e.key === "Escape") onClose();
     };
@@ -42,7 +56,7 @@ export default function QuickViewModal({ car, onClose }: QuickViewModalProps) {
       document.body.style.overflow = "unset";
       window.removeEventListener("keydown", handleKeyDown);
     };
-  }, [car, onClose]);
+  }, [car, onClose, initialTab]);
 
   if (!car) return null;
 
@@ -127,58 +141,107 @@ export default function QuickViewModal({ car, onClose }: QuickViewModalProps) {
         {/* Modal Body */}
         <div className="p-6 overflow-y-auto space-y-6">
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-            {/* Gallery Column */}
+            {/* Gallery / 360 Column */}
             <div className="space-y-3">
-              <div className="relative aspect-[16/10] bg-gray-100 dark:bg-gray-800 rounded-2xl overflow-hidden shadow-inner">
-                <img
-                  src={mainImgSrc}
-                  alt={`${brandName} ${modelName}`}
-                  className="w-full h-full object-cover"
-                />
-                {attachments.length > 1 && (
-                  <div className="absolute inset-0 flex items-center justify-between p-2 pointer-events-none">
-                    <button
-                      onClick={() =>
-                        setActivePhotoIdx((prev) => (prev === 0 ? attachments.length - 1 : prev - 1))
-                      }
-                      className="pointer-events-auto w-8 h-8 rounded-full bg-black/60 text-white flex items-center justify-center hover:bg-black/80 transition"
-                    >
-                      <ChevronLeft className="w-4 h-4 rtl:rotate-180" />
-                    </button>
-                    <button
-                      onClick={() =>
-                        setActivePhotoIdx((prev) => (prev === attachments.length - 1 ? 0 : prev + 1))
-                      }
-                      className="pointer-events-auto w-8 h-8 rounded-full bg-black/60 text-white flex items-center justify-center hover:bg-black/80 transition"
-                    >
-                      <ChevronRight className="w-4 h-4 rtl:rotate-180" />
-                    </button>
-                  </div>
-                )}
-                <div className="absolute bottom-2 right-2 rtl:left-2 rtl:right-auto px-2 py-0.5 rounded bg-black/70 text-white text-[10px] font-mono">
-                  {activePhotoIdx + 1} / {attachments.length}
+              {/* Media Switcher Tab */}
+              <div className="flex items-center justify-between bg-gray-100 dark:bg-gray-800/80 p-1 rounded-xl">
+                <div className="flex items-center gap-1">
+                  <button
+                    onClick={() => setMediaTab("photos")}
+                    className={`flex items-center gap-1.5 px-3 py-1 rounded-lg text-xs font-bold transition cursor-pointer ${
+                      mediaTab === "photos"
+                        ? "bg-white dark:bg-[#1a2536] text-gray-900 dark:text-white shadow-sm"
+                        : "text-gray-500 hover:text-gray-900 dark:hover:text-white"
+                    }`}
+                  >
+                    <Camera className="w-3.5 h-3.5" />
+                    <span>{t("photosTab")} ({attachments.length})</span>
+                  </button>
+                  <button
+                    onClick={() => setMediaTab("360")}
+                    className={`flex items-center gap-1.5 px-3 py-1 rounded-lg text-xs font-bold transition cursor-pointer ${
+                      mediaTab === "360"
+                        ? "bg-blue-600 text-white shadow-sm"
+                        : "text-blue-600 dark:text-blue-400 hover:bg-blue-50 dark:hover:bg-blue-950/40"
+                    }`}
+                  >
+                    <RotateCcw className="w-3.5 h-3.5 animate-spin-slow" />
+                    <span>{t("spin360Tab")}</span>
+                  </button>
                 </div>
+                {onOpenSellerStudio && (
+                  <button
+                    onClick={onOpenSellerStudio}
+                    className="flex items-center gap-1 px-2 py-1 text-[11px] font-semibold text-emerald-600 dark:text-emerald-400 hover:underline cursor-pointer"
+                  >
+                    <Video className="w-3 h-3" />
+                    <span className="hidden sm:inline">{t("sellerStudioBtn")}</span>
+                  </button>
+                )}
               </div>
 
-              {/* Thumbnails */}
-              {attachments.length > 1 && (
-                <div className="flex gap-2 overflow-x-auto pb-1 scrollbar-none">
-                  {attachments.map((att, idx) => (
-                    <button
-                      key={att.ID || idx}
-                      onClick={() => setActivePhotoIdx(idx)}
-                      className={`relative w-16 h-12 rounded-lg overflow-hidden flex-shrink-0 border-2 transition ${
-                        activePhotoIdx === idx ? "border-emerald-500 scale-95" : "border-transparent opacity-70 hover:opacity-100"
-                      }`}
-                    >
-                      <img
-                        src={getCarImageUrl(att.CardUrl || att.DetailUrl || att.Url)}
-                        alt={`Thumb ${idx + 1}`}
-                        className="w-full h-full object-cover"
-                      />
-                    </button>
-                  ))}
-                </div>
+              {mediaTab === "360" ? (
+                /* Interactive 360 Exterior View */
+                <Car360Viewer
+                  car={car}
+                  onOpenSellerStudio={onOpenSellerStudio}
+                  className="min-h-[340px] md:min-h-[380px]"
+                />
+              ) : (
+                /* Standard Photo Gallery */
+                <>
+                  <div className="relative aspect-[16/10] bg-gray-100 dark:bg-gray-800 rounded-2xl overflow-hidden shadow-inner">
+                    <img
+                      src={mainImgSrc}
+                      alt={`${brandName} ${modelName}`}
+                      className="w-full h-full object-cover"
+                    />
+                    {attachments.length > 1 && (
+                      <div className="absolute inset-0 flex items-center justify-between p-2 pointer-events-none">
+                        <button
+                          onClick={() =>
+                            setActivePhotoIdx((prev) => (prev === 0 ? attachments.length - 1 : prev - 1))
+                          }
+                          className="pointer-events-auto w-8 h-8 rounded-full bg-black/60 text-white flex items-center justify-center hover:bg-black/80 transition"
+                        >
+                          <ChevronLeft className="w-4 h-4 rtl:rotate-180" />
+                        </button>
+                        <button
+                          onClick={() =>
+                            setActivePhotoIdx((prev) => (prev === attachments.length - 1 ? 0 : prev + 1))
+                          }
+                          className="pointer-events-auto w-8 h-8 rounded-full bg-black/60 text-white flex items-center justify-center hover:bg-black/80 transition"
+                        >
+                          <ChevronRight className="w-4 h-4 rtl:rotate-180" />
+                        </button>
+                      </div>
+                    )}
+                    <div className="absolute bottom-2 right-2 rtl:left-2 rtl:right-auto px-2 py-0.5 rounded bg-black/70 text-white text-[10px] font-mono">
+                      {activePhotoIdx + 1} / {attachments.length}
+                    </div>
+                  </div>
+
+                  {/* Thumbnails */}
+                  {attachments.length > 1 && (
+                    <div className="flex gap-2 overflow-x-auto pb-1 scrollbar-none">
+                      {attachments.map((att, idx) => (
+                        <button
+                          key={att.ID || idx}
+                          onClick={() => setActivePhotoIdx(idx)}
+                          className={`relative w-16 h-12 rounded-lg overflow-hidden flex-shrink-0 border-2 transition ${
+                            activePhotoIdx === idx ? "border-emerald-500 scale-95" : "border-transparent opacity-70 hover:opacity-100"
+                          }`}
+                        >
+                          <img
+                            src={getCarImageUrl(att.CardUrl || att.DetailUrl || att.Url)}
+                            alt={`Thumb ${idx + 1}`}
+                            className="w-full h-full object-cover"
+                          />
+                        </button>
+                      ))}
+                    </div>
+                  )}
+                </>
               )}
             </div>
 

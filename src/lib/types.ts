@@ -64,7 +64,34 @@ export interface Car {
   PhoneNumber?: string | null;
   IsFeatured?: boolean | null;
   qist?: QistPlan | null;
+  car360?: Car360Config | null;
   [key: string]: any;
+}
+
+export interface Car360Hotspot {
+  id: string;
+  angle: number; // 0 (front), 90 (right side), 180 (rear), 270 (left side)
+  titleEn: string;
+  titleAr: string;
+  titleKu: string;
+  descriptionEn: string;
+  descriptionAr: string;
+  descriptionKu: string;
+  xPercent: number;
+  yPercent: number;
+}
+
+export interface Car360Config {
+  available: boolean;
+  type: "video" | "frames" | "turntable";
+  videoUrl?: string;
+  framesPattern?: string; // e.g. "/cars360/suv/frame_%03d.webp"
+  totalFrames?: number;
+  direction?: "cw" | "ccw";
+  startAngle?: number;
+  durationSeconds?: number;
+  hotspots?: Car360Hotspot[];
+  sellerGuideUrl?: string;
 }
 
 export interface QistPlan {
