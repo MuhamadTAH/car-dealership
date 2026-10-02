@@ -110,27 +110,6 @@ export interface Showroom {
   [key: string]: any;
 }
 
-export interface EVStation {
-  id: string;
-  name: string;
-  nameAr: string;
-  nameKu: string;
-  city: string;
-  cityAr: string;
-  cityKu: string;
-  address: string;
-  lat: number;
-  lng: number;
-  powerKw: number;
-  plugs: string[];
-  portsCount: number;
-  status: string;
-  fee: string;
-  hours: string;
-  phone: string;
-  [key: string]: any;
-}
-
 export interface FilterParams {
   condition?: string;
   brand?: string;

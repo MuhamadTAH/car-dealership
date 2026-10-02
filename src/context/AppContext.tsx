@@ -22,7 +22,6 @@ const translations: Record<Language, Record<string, string>> = {
     usedCars: "Used Cars",
     guide: "Guide",
     compare: "Compare",
-    evMap: "EV Map",
     news: "News",
     sell: "Sell",
     signInUp: "Sign in / Sign up",
@@ -92,15 +91,6 @@ const translations: Record<Language, Record<string, string>> = {
     seeComparison: "See comparison",
     remove: "Remove",
 
-    // EV Map
-    evMapTitle: "EV Charging Stations Map in Iraq",
-    evMapSubtitle: "Find electric vehicle charging stations across Baghdad, Erbil, Sulaymaniyah, Basra & more.",
-    chargingStations: "Charging Stations",
-    directions: "Get Directions",
-    available: "Available",
-    power: "Power",
-    plugs: "Connectors",
-
     // Sell
     sellTitle: "Sell your car - iQ Cars",
     sellStepsSubtitle: "List your vehicle on Iraq's premier automotive platform in simple steps",
@@ -138,7 +128,6 @@ const translations: Record<Language, Record<string, string>> = {
     usedCars: "سيارات مستعملة",
     guide: "دليل الشراء",
     compare: "مقارنة",
-    evMap: "خريطة الشحن",
     news: "الأخبار",
     sell: "بيع سيارتك",
     signInUp: "تسجيل الدخول / إنشاء حساب",
@@ -208,15 +197,6 @@ const translations: Record<Language, Record<string, string>> = {
     seeComparison: "عرض المقارنة",
     remove: "إزالة",
 
-    // EV Map
-    evMapTitle: "خريطة محطات شحن السيارات الكهربائية في العراق",
-    evMapSubtitle: "ابحث عن محطات شحن السيارات الكهربائية في بغداد، أربيل، السليمانية، البصرة والمزيد.",
-    chargingStations: "محطات الشحن",
-    directions: "الاتجاهات",
-    available: "متاح",
-    power: "القدرة",
-    plugs: "أنواع القوابس",
-
     // Sell
     sellTitle: "بيع سيارتك - آي كيو كارز",
     sellStepsSubtitle: "اعرض سيارتك للبيع على المنصة الأولى للسيارات في العراق بخطوات بسيطة",
@@ -254,7 +234,6 @@ const translations: Record<Language, Record<string, string>> = {
     usedCars: "ئۆتۆمبێلی بەکارهاتوو",
     guide: "ڕێبەری کڕین",
     compare: "بەراوردکردن",
-    evMap: "نەخشەی کارەبایی",
     news: "هەواڵەکان",
     sell: "ئۆتۆمبێلەکەت بفرۆشە",
     signInUp: "چوونەژوورەوە / تۆمارکردن",
@@ -323,15 +302,6 @@ const translations: Record<Language, Record<string, string>> = {
     addCarToCompare: "ئۆتۆمبێلێک زیادبکە بۆ بەراورد",
     seeComparison: "بینینی بەراوردکاری",
     remove: "سڕینەوە",
-
-    // EV Map
-    evMapTitle: "نەخشەی وێستگەکانی شەحنکردنەوەی کارەبایی لە عێراق",
-    evMapSubtitle: "وێستگەکانی شەحنکردنەوەی ئۆتۆمبێلی کارەبایی بدۆزەرەوە لە بەغداد، هەولێر، سلێمانی و بەسرە.",
-    chargingStations: "وێستگەکانی شەحن",
-    directions: "ڕێڕەو",
-    available: "بەردەستە",
-    power: "توانا",
-    plugs: "جۆری وایەر",
 
     // Sell
     sellTitle: "ئۆتۆمبێلەکەت بفرۆشە - ئای کیو کارز",

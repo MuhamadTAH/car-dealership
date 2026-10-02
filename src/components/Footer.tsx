@@ -35,9 +35,6 @@ export default function Footer() {
               <Link href="/compare-cars" className="hover:text-emerald-400 transition">
                 {t("compare")}
               </Link>
-              <Link href="/ev-map" className="hover:text-emerald-400 transition">
-                {t("evMap")}
-              </Link>
               <Link href="/about" className="hover:text-emerald-400 transition">
                 {t("aboutUs")}
               </Link>

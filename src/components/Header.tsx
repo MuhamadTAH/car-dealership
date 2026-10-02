@@ -29,7 +29,14 @@ export default function Header() {
   const [langMenuOpen, setLangMenuOpen] = useState(false);
   const [currencyMenuOpen, setCurrencyMenuOpen] = useState(false);
 
-  const navLinks = [
+  interface NavItem {
+    href: string;
+    label: string;
+    badge?: number | null;
+    isNew?: boolean;
+  }
+
+  const navLinks: NavItem[] = [
     { href: "/search?condition=New", label: t("newCars") },
     { href: "/search?condition=Used", label: t("usedCars") },
     {
@@ -37,7 +44,6 @@ export default function Header() {
       label: t("compare"),
       badge: compareList.length > 0 ? compareList.length : null,
     },
-    { href: "/ev-map", label: t("evMap"), isNew: true },
   ];
 
   return (
