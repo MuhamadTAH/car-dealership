@@ -6,10 +6,7 @@ import { useApp } from "@/context/AppContext";
 import carsDataRaw from "@/data/cars.json";
 import { Car } from "@/lib/types";
 import { isQistAvailable } from "@/lib/qist";
-import HeroSearch from "@/components/HeroSearch";
 import PopularCarsCarousel from "@/components/PopularCarsCarousel";
-import QuickCategoryBanners from "@/components/QuickCategoryBanners";
-import WhyBuyFromUs from "@/components/WhyBuyFromUs";
 import QistCalculator from "@/components/QistCalculator";
 import FaqSection from "@/components/FaqSection";
 import QuickViewModal from "@/components/QuickViewModal";
@@ -29,9 +26,6 @@ import {
   X,
   Phone,
   MessageCircle,
-  RotateCcw,
-  Video,
-  CheckCircle2,
 } from "lucide-react";
 
 export default function HomePage() {
@@ -138,7 +132,7 @@ export default function HomePage() {
 
         <div className="max-w-7xl mx-auto relative z-10">
           {/* Hero Banner Promo Link */}
-          <div className="mb-6 rounded-3xl overflow-hidden shadow-lg border border-gray-700/50 relative bg-gradient-to-r from-emerald-950/60 to-slate-900/80 p-6 sm:p-8 flex flex-col md:flex-row items-center justify-between gap-6">
+          <div className="rounded-3xl overflow-hidden shadow-lg border border-gray-700/50 relative bg-gradient-to-r from-emerald-950/60 to-slate-900/80 p-6 sm:p-8 flex flex-col md:flex-row items-center justify-between gap-6">
             <div className="space-y-3 max-w-2xl text-center md:text-left rtl:md:text-right">
               <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-emerald-500/20 text-emerald-400 text-xs font-bold uppercase tracking-wider">
                 <Sparkles className="w-3.5 h-3.5" />
@@ -162,103 +156,11 @@ export default function HomePage() {
               </Link>
             </div>
           </div>
-
-          {/* Hero Search Box */}
-          <HeroSearch />
         </div>
       </div>
 
       {/* Main Container */}
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4">
-        {/* Quick Category Action Cards */}
-        <QuickCategoryBanners />
-
-        {/* Why Buy From Our Dealership (Trust Pillars) */}
-        <WhyBuyFromUs />
-
-        {/* 360° Virtual Showroom & Seller Walkaround Studio Banner */}
-        <section className="my-10 rounded-3xl overflow-hidden shadow-xl border border-blue-900/40 relative bg-gradient-to-r from-slate-950 via-slate-900 to-blue-950 p-6 sm:p-8 text-white">
-          {/* Ambient blue glow */}
-          <div className="absolute top-0 right-0 w-96 h-96 bg-blue-600/10 blur-[90px] pointer-events-none rounded-full" />
-
-          <div className="relative z-10 flex flex-col lg:flex-row items-center justify-between gap-8">
-            <div className="space-y-4 max-w-2xl text-center lg:text-left rtl:lg:text-right">
-              <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-blue-600/30 border border-blue-500/40 text-blue-400 text-xs font-bold tracking-wide">
-                <RotateCcw className="w-3.5 h-3.5 animate-spin-slow" />
-                <span>{t("virtualShowroom")}</span>
-              </div>
-
-              <h2 className="text-2xl sm:text-3xl font-black text-white leading-tight">
-                {t("virtualShowroom")}
-              </h2>
-
-              <p className="text-xs sm:text-sm text-slate-300 leading-relaxed">
-                {t("virtualShowroomSubtitle")}
-              </p>
-
-              <div className="flex flex-wrap items-center justify-center lg:justify-start gap-4 pt-1 text-xs text-slate-300">
-                <div className="flex items-center gap-1.5">
-                  <CheckCircle2 className="w-4 h-4 text-emerald-400" />
-                  <span>360° Touch & Drag Exterior Spin</span>
-                </div>
-                <div className="flex items-center gap-1.5">
-                  <CheckCircle2 className="w-4 h-4 text-emerald-400" />
-                  <span>Interactive Inspection Hotspots</span>
-                </div>
-                <div className="flex items-center gap-1.5">
-                  <CheckCircle2 className="w-4 h-4 text-emerald-400" />
-                  <span>15-Sec Seller Phone Video Upload</span>
-                </div>
-              </div>
-
-              <div className="flex flex-wrap items-center justify-center lg:justify-start gap-3 pt-2">
-                <button
-                  onClick={() => {
-                    setActiveFilterPill("360");
-                    document.getElementById("available-cars")?.scrollIntoView({ behavior: "smooth" });
-                  }}
-                  className="px-5 py-2.5 rounded-xl bg-blue-600 hover:bg-blue-500 text-white font-bold text-xs sm:text-sm shadow-lg shadow-blue-500/25 transition cursor-pointer"
-                >
-                  {t("filter360Pill")} →
-                </button>
-
-                <button
-                  onClick={() => setIsStudioOpen(true)}
-                  className="flex items-center gap-2 px-5 py-2.5 rounded-xl bg-slate-800 hover:bg-slate-700 text-white font-bold text-xs sm:text-sm border border-slate-700 transition cursor-pointer"
-                >
-                  <Video className="w-4 h-4 text-emerald-400" />
-                  <span>{t("sellerStudioBtn")}</span>
-                </button>
-              </div>
-            </div>
-
-            {/* Visual 360 Showcase Card */}
-            <div
-              className="relative w-full max-w-sm aspect-[16/10] rounded-2xl overflow-hidden bg-slate-950/80 border border-slate-800 shadow-2xl flex items-center justify-center group cursor-pointer"
-              onClick={() => {
-                const sample = allCars.find((c) => getCar360Config(c.ID, c)?.available) || allCars[0];
-                setQuickViewCar(sample);
-                setQuickViewTab("360");
-              }}
-            >
-              <img
-                src="/cars360/suv/frame_000.webp"
-                alt="360 Turntable Preview"
-                className="w-full h-full object-contain p-2 group-hover:scale-105 transition duration-500"
-              />
-              <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent flex items-end justify-between p-4">
-                <div className="flex items-center gap-1.5 text-xs text-white font-bold">
-                  <RotateCcw className="w-3.5 h-3.5 text-blue-400 animate-spin-slow" />
-                  <span>Click to interact in 360°</span>
-                </div>
-                <span className="px-2 py-0.5 rounded bg-blue-600 text-white text-[10px] font-bold">
-                  LIVE DEMO
-                </span>
-              </div>
-            </div>
-          </div>
-        </section>
-
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6">
         {/* Popular Featured Cars Carousel */}
         <PopularCarsCarousel
           cars={allCars}
