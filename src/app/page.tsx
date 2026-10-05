@@ -6,11 +6,9 @@ import { useApp } from "@/context/AppContext";
 import carsDataRaw from "@/data/cars.json";
 import { Car } from "@/lib/types";
 import { isQistAvailable } from "@/lib/qist";
-import PopularCarsCarousel from "@/components/PopularCarsCarousel";
 import QistCalculator from "@/components/QistCalculator";
 import FaqSection from "@/components/FaqSection";
 import QuickViewModal from "@/components/QuickViewModal";
-import CategoriesSection from "@/components/CategoriesSection";
 import ShowroomsSection from "@/components/ShowroomsSection";
 import BrandModelGrid from "@/components/BrandModelGrid";
 import CarCard from "@/components/CarCard";
@@ -161,20 +159,9 @@ export default function HomePage() {
 
       {/* Main Container */}
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6">
-        {/* Popular Featured Cars Carousel */}
-        <PopularCarsCarousel
-          cars={allCars}
-          onQuickView={(c) => {
-            setQuickViewCar(c);
-            setQuickViewTab("photos");
-          }}
-        />
-
-        {/* Categories Section */}
-        <CategoriesSection />
 
         {/* "Available Dealership Inventory" Section with Instant Search & Filter Bar */}
-        <section className="my-14" id="available-cars">
+        <section className="mb-14" id="available-cars">
           <div className="space-y-4 mb-6">
             <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3">
               <div>
