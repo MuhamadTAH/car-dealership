@@ -5,25 +5,14 @@ import Link from "next/link";
 import { Car } from "@/lib/types";
 import { useApp } from "@/context/AppContext";
 import { getCarImageUrl, formatPrice, formatMileage } from "@/lib/utils";
-import { getCarQist } from "@/lib/qist";
 import {
   X,
-  MapPin,
-  Gauge,
   Phone,
   MessageCircle,
-  Coins,
   ChevronLeft,
   ChevronRight,
   ExternalLink,
-  ShieldCheck,
-  CheckCircle2,
-  RotateCcw,
-  Camera,
-  Video,
 } from "lucide-react";
-import Car360Viewer from "./Car360Viewer";
-import { getCar360Config } from "@/lib/car360";
 
 interface QuickViewModalProps {
   car: Car | null;
@@ -34,15 +23,12 @@ interface QuickViewModalProps {
 export default function QuickViewModal({
   car,
   onClose,
-  initialTab = "photos",
 }: QuickViewModalProps) {
   const { lang, currency, t } = useApp();
   const [activePhotoIdx, setActivePhotoIdx] = useState(0);
-  const [mediaTab, setMediaTab] = useState<"photos" | "360">(initialTab);
 
   useEffect(() => {
     setActivePhotoIdx(0);
-    setMediaTab(initialTab);
     const handleKeyDown = (e: KeyboardEvent) => {
       if (e.key === "Escape") onClose();
     };
@@ -54,7 +40,7 @@ export default function QuickViewModal({
       document.body.style.overflow = "unset";
       window.removeEventListener("keydown", handleKeyDown);
     };
-  }, [car, onClose, initialTab]);
+  }, [car, onClose]);
 
   if (!car) return null;
 
@@ -72,16 +58,8 @@ export default function QuickViewModal({
       ? car.Model?.ModelNameku || car.Model?.ModelNameen
       : car.Model?.ModelNameen;
 
-  const cityName =
-    lang === "ar"
-      ? car.Location?.LocationNamear || car.Location?.LocationNameen
-      : lang === "ku"
-      ? car.Location?.LocationNameku || car.Location?.LocationNameen
-      : car.Location?.LocationNameen;
-
   const year = car.Year?.YearName || "2024";
   const trim = car.ModelSFX?.SFXName || "";
-  const qistPlan = getCarQist(car.ID);
 
   const attachments = car.Attachments && car.Attachments.length > 0 ? car.Attachments : [{ Url: "" }];
   const currentPhoto = attachments[activePhotoIdx] || attachments[0];
@@ -119,14 +97,11 @@ export default function QuickViewModal({
 
       {/* Modal Dialog */}
       <div className="relative w-full max-w-4xl bg-white dark:bg-[#1a2536] rounded-3xl shadow-2xl overflow-hidden border border-gray-200 dark:border-gray-800 z-10 my-8 flex flex-col max-h-[90vh]">
-        {/* Header Bar */}
+        {/* Header Bar - Clean without badges or ID */}
         <div className="flex items-center justify-between px-6 py-4 border-b border-gray-100 dark:border-gray-800 bg-gray-50/50 dark:bg-[#16202e]/50">
-          <div className="flex items-center gap-2">
-            <span className="px-2.5 py-0.5 rounded-full text-xs font-bold bg-emerald-100 dark:bg-emerald-950/60 text-emerald-700 dark:text-emerald-400">
-              {t("officialDealership")}
-            </span>
-            <span className="text-xs text-gray-500 font-mono">ID: #{car.ID}</span>
-          </div>
+          <h3 className="text-base font-bold text-gray-900 dark:text-white">
+            {brandName} {modelName} {year}
+          </h3>
           <button
             onClick={onClose}
             className="w-8 h-8 rounded-full flex items-center justify-center bg-gray-200 dark:bg-gray-800 hover:bg-gray-300 dark:hover:bg-gray-700 text-gray-700 dark:text-gray-300 transition"
@@ -139,97 +114,58 @@ export default function QuickViewModal({
         {/* Modal Body */}
         <div className="p-6 overflow-y-auto space-y-6">
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-            {/* Gallery / 360 Column */}
+            {/* Gallery Column (Stable 16:10 aspect ratio, no size jumping) */}
             <div className="space-y-3">
-              {/* Media Switcher Tab */}
-              <div className="flex items-center justify-between bg-gray-100 dark:bg-gray-800/80 p-1 rounded-xl">
-                <div className="flex items-center gap-1">
-                  <button
-                    onClick={() => setMediaTab("photos")}
-                    className={`flex items-center gap-1.5 px-3 py-1 rounded-lg text-xs font-bold transition cursor-pointer ${
-                      mediaTab === "photos"
-                        ? "bg-white dark:bg-[#1a2536] text-gray-900 dark:text-white shadow-sm"
-                        : "text-gray-500 hover:text-gray-900 dark:hover:text-white"
-                    }`}
-                  >
-                    <Camera className="w-3.5 h-3.5" />
-                    <span>{t("photosTab")} ({attachments.length})</span>
-                  </button>
-                  <button
-                    onClick={() => setMediaTab("360")}
-                    className={`flex items-center gap-1.5 px-3 py-1 rounded-lg text-xs font-bold transition cursor-pointer ${
-                      mediaTab === "360"
-                        ? "bg-blue-600 text-white shadow-sm"
-                        : "text-blue-600 dark:text-blue-400 hover:bg-blue-50 dark:hover:bg-blue-950/40"
-                    }`}
-                  >
-                    <RotateCcw className="w-3.5 h-3.5 animate-spin-slow" />
-                    <span>{t("spin360Tab")}</span>
-                  </button>
+              <div className="relative aspect-[16/10] bg-gray-100 dark:bg-gray-800 rounded-2xl overflow-hidden shadow-inner">
+                <img
+                  src={mainImgSrc}
+                  alt={`${brandName} ${modelName}`}
+                  className="w-full h-full object-cover"
+                />
+                {attachments.length > 1 && (
+                  <div className="absolute inset-0 flex items-center justify-between p-2 pointer-events-none">
+                    <button
+                      onClick={() =>
+                        setActivePhotoIdx((prev) => (prev === 0 ? attachments.length - 1 : prev - 1))
+                      }
+                      className="pointer-events-auto w-8 h-8 rounded-full bg-black/60 text-white flex items-center justify-center hover:bg-black/80 transition"
+                    >
+                      <ChevronLeft className="w-4 h-4 rtl:rotate-180" />
+                    </button>
+                    <button
+                      onClick={() =>
+                        setActivePhotoIdx((prev) => (prev === attachments.length - 1 ? 0 : prev + 1))
+                      }
+                      className="pointer-events-auto w-8 h-8 rounded-full bg-black/60 text-white flex items-center justify-center hover:bg-black/80 transition"
+                    >
+                      <ChevronRight className="w-4 h-4 rtl:rotate-180" />
+                    </button>
+                  </div>
+                )}
+                <div className="absolute bottom-2 right-2 rtl:left-2 rtl:right-auto px-2 py-0.5 rounded bg-black/70 text-white text-[10px] font-mono">
+                  {activePhotoIdx + 1} / {attachments.length}
                 </div>
               </div>
 
-              {mediaTab === "360" ? (
-                /* Interactive 360 Exterior View */
-                <Car360Viewer
-                  car={car}
-                  className="min-h-[340px] md:min-h-[380px]"
-                />
-              ) : (
-                /* Standard Photo Gallery */
-                <>
-                  <div className="relative aspect-[16/10] bg-gray-100 dark:bg-gray-800 rounded-2xl overflow-hidden shadow-inner">
-                    <img
-                      src={mainImgSrc}
-                      alt={`${brandName} ${modelName}`}
-                      className="w-full h-full object-cover"
-                    />
-                    {attachments.length > 1 && (
-                      <div className="absolute inset-0 flex items-center justify-between p-2 pointer-events-none">
-                        <button
-                          onClick={() =>
-                            setActivePhotoIdx((prev) => (prev === 0 ? attachments.length - 1 : prev - 1))
-                          }
-                          className="pointer-events-auto w-8 h-8 rounded-full bg-black/60 text-white flex items-center justify-center hover:bg-black/80 transition"
-                        >
-                          <ChevronLeft className="w-4 h-4 rtl:rotate-180" />
-                        </button>
-                        <button
-                          onClick={() =>
-                            setActivePhotoIdx((prev) => (prev === attachments.length - 1 ? 0 : prev + 1))
-                          }
-                          className="pointer-events-auto w-8 h-8 rounded-full bg-black/60 text-white flex items-center justify-center hover:bg-black/80 transition"
-                        >
-                          <ChevronRight className="w-4 h-4 rtl:rotate-180" />
-                        </button>
-                      </div>
-                    )}
-                    <div className="absolute bottom-2 right-2 rtl:left-2 rtl:right-auto px-2 py-0.5 rounded bg-black/70 text-white text-[10px] font-mono">
-                      {activePhotoIdx + 1} / {attachments.length}
-                    </div>
-                  </div>
-
-                  {/* Thumbnails */}
-                  {attachments.length > 1 && (
-                    <div className="flex gap-2 overflow-x-auto pb-1 scrollbar-none">
-                      {attachments.map((att, idx) => (
-                        <button
-                          key={att.ID || idx}
-                          onClick={() => setActivePhotoIdx(idx)}
-                          className={`relative w-16 h-12 rounded-lg overflow-hidden flex-shrink-0 border-2 transition ${
-                            activePhotoIdx === idx ? "border-emerald-500 scale-95" : "border-transparent opacity-70 hover:opacity-100"
-                          }`}
-                        >
-                          <img
-                            src={getCarImageUrl(att.CardUrl || att.DetailUrl || att.Url)}
-                            alt={`Thumb ${idx + 1}`}
-                            className="w-full h-full object-cover"
-                          />
-                        </button>
-                      ))}
-                    </div>
-                  )}
-                </>
+              {/* Thumbnails */}
+              {attachments.length > 1 && (
+                <div className="flex gap-2 overflow-x-auto pb-1 scrollbar-none">
+                  {attachments.map((att, idx) => (
+                    <button
+                      key={att.ID || idx}
+                      onClick={() => setActivePhotoIdx(idx)}
+                      className={`relative w-16 h-12 rounded-lg overflow-hidden flex-shrink-0 border-2 transition ${
+                        activePhotoIdx === idx ? "border-emerald-500 scale-95" : "border-transparent opacity-70 hover:opacity-100"
+                      }`}
+                    >
+                      <img
+                        src={getCarImageUrl(att.CardUrl || att.DetailUrl || att.Url)}
+                        alt={`Thumb ${idx + 1}`}
+                        className="w-full h-full object-cover"
+                      />
+                    </button>
+                  ))}
+                </div>
               )}
             </div>
 
@@ -240,22 +176,13 @@ export default function QuickViewModal({
                   <h2 className="text-2xl font-black text-gray-900 dark:text-white leading-tight">
                     {brandName} {modelName} {year}
                   </h2>
-                  <div className="flex items-center gap-2 mt-1">
-                    <a
-                      href={`https://www.google.com/maps/search/?api=1&query=${encodeURIComponent((cityName || "Iraq") + " Iraq")}`}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="flex items-center gap-1 text-xs text-emerald-600 dark:text-emerald-400 hover:underline"
-                    >
-                      <MapPin className="w-3.5 h-3.5" />
-                      <span>{cityName || "Iraq"}</span>
-                    </a>
-                    {trim && (
-                      <span className="text-xs px-2 py-0.5 rounded bg-gray-100 dark:bg-gray-800 text-gray-600 dark:text-gray-300 font-semibold">
+                  {trim && (
+                    <div className="mt-1">
+                      <span className="text-xs px-2.5 py-0.5 rounded-full bg-emerald-50 dark:bg-emerald-950/40 text-emerald-700 dark:text-emerald-400 font-semibold inline-block">
                         {trim}
                       </span>
-                    )}
-                  </div>
+                    </div>
+                  )}
                 </div>
 
                 {/* Price Display */}
@@ -274,24 +201,6 @@ export default function QuickViewModal({
                     </span>
                   )}
                 </div>
-
-                {/* Qist Status Banner */}
-                {qistPlan ? (
-                  <div className="p-3 rounded-xl bg-amber-50 dark:bg-amber-950/40 border border-amber-200 dark:border-amber-900 flex items-center gap-2.5 text-xs text-amber-900 dark:text-amber-200">
-                    <Coins className="w-5 h-5 text-amber-600 dark:text-amber-400 flex-shrink-0" />
-                    <div>
-                      <span className="font-bold block">{t("qistBadge")}</span>
-                      <span className="text-[11px] text-amber-700 dark:text-amber-300">
-                        {t("downPayment")}: {qistPlan.minDownPaymentPercent}% • {t("monthsDuration")}: {qistPlan.allowedMonths.join(", ")} {t("months")}
-                      </span>
-                    </div>
-                  </div>
-                ) : (
-                  <div className="p-2.5 rounded-xl bg-gray-100 dark:bg-gray-800 text-gray-500 dark:text-gray-400 text-xs flex items-center gap-2">
-                    <CheckCircle2 className="w-4 h-4 text-gray-400" />
-                    <span>{t("qistNotAvailable")}</span>
-                  </div>
-                )}
 
                 {/* Key Specs Matrix */}
                 <div className="grid grid-cols-2 gap-2 text-xs">

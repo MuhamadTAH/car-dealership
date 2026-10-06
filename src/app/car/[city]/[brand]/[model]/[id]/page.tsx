@@ -2,15 +2,12 @@
 
 import React, { useState, use } from "react";
 import Link from "next/link";
-import { notFound } from "next/navigation";
 import { useApp } from "@/context/AppContext";
 import carsDataRaw from "@/data/cars.json";
 import { Car } from "@/lib/types";
-import { getCarImageUrl, formatPrice, formatMileage, timeAgo } from "@/lib/utils";
+import { getCarImageUrl, formatPrice, formatMileage } from "@/lib/utils";
 import CarCard from "@/components/CarCard";
 import {
-  MapPin,
-  Calendar,
   Gauge,
   Cpu,
   Layers,
@@ -19,22 +16,11 @@ import {
   Share2,
   ChevronLeft,
   ChevronRight,
-  ShieldCheck,
   CheckCircle2,
-  Calculator,
-  User,
   Building2,
   ArrowLeft,
   Scale,
-  Coins,
-  RotateCcw,
-  Camera,
-  Video,
 } from "lucide-react";
-import QistCalculator from "@/components/QistCalculator";
-import { getCarQist } from "@/lib/qist";
-import Car360Viewer from "@/components/Car360Viewer";
-import { getCar360Config } from "@/lib/car360";
 
 export default function CarDetailPage({
   params,
@@ -51,18 +37,6 @@ export default function CarDetailPage({
   const [activePhotoIdx, setActivePhotoIdx] = useState(0);
   const [phoneRevealed, setPhoneRevealed] = useState(false);
   const [copied, setCopied] = useState(false);
-  const [mediaView, setMediaView] = useState<"photos" | "360">("photos");
-  const car360 = getCar360Config(car.ID, car);
-
-  // Auto Loan Calculator State
-  const [downPayment, setDownPayment] = useState(Math.round(car.Price * 0.2));
-  const [loanMonths, setLoanMonths] = useState(36);
-  const interestRate = 0.05; // 5% typical Iraqi auto loan
-
-  const loanAmount = Math.max(0, car.Price - downPayment);
-  const monthlyPayment = Math.round(
-    (loanAmount * (1 + interestRate * (loanMonths / 12))) / loanMonths
-  );
 
   const attachments = car.Attachments && car.Attachments.length > 0 ? car.Attachments : [
     {
@@ -91,17 +65,10 @@ export default function CarDetailPage({
       ? car.Model?.ModelNameku || car.Model?.ModelNameen
       : car.Model?.ModelNameen;
 
-  const cityName =
-    lang === "ar"
-      ? car.Location?.LocationNamear || car.Location?.LocationNameen
-      : lang === "ku"
-      ? car.Location?.LocationNameku || car.Location?.LocationNameen
-      : car.Location?.LocationNameen;
-
   const year = car.Year?.YearName || "2025";
   const trim = car.ModelSFX?.SFXName || "Standard";
 
-  // Similar cars (same brand or same governorate)
+  // Similar cars in showroom
   const similarCars = allCars
     .filter((c) => c.ID !== car.ID && (c.BrandId === car.BrandId || c.Price < car.Price + 10000))
     .slice(0, 4);
@@ -113,7 +80,7 @@ export default function CarDetailPage({
     { label: t("paintParts"), value: t("cleanTitle") },
     { label: t("fuel"), value: car.CarFuels?.[0]?.FuelNameen || "Gasoline" },
     { label: t("importCountry"), value: car.ImportCountry?.ImportCountryNameen || "GCC / Regional" },
-    { label: t("plate"), value: `${cityName || "Baghdad"}, Private` },
+    { label: t("plate"), value: "Private / خصوصي" },
     { label: t("engine"), value: car.Engine?.EngineNameen ? `${car.Engine.EngineNameen}L` : "5.3L" },
     { label: t("cylinders"), value: car.Cylinder?.CylinderNameen || "8 cylinder" },
     { label: t("transmission"), value: "Automatic" },
@@ -182,149 +149,87 @@ export default function CarDetailPage({
       <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
         {/* Left 2 Columns: Photo Gallery + Specs + Amenities */}
         <div className="lg:col-span-2 space-y-8">
-          {/* Main Photo / 360 Viewer Card */}
+          {/* Main Photo Gallery Card (Clean without 360 switcher or corner badges) */}
           <div className="bg-white dark:bg-[#1a2536] rounded-2xl border border-gray-200 dark:border-gray-800 overflow-hidden shadow-sm">
-            {/* Top Switcher Bar */}
-            <div className="flex items-center justify-between p-3 border-b border-gray-100 dark:border-gray-800/80 bg-gray-50/80 dark:bg-gray-900/60">
-              <div className="flex items-center gap-2">
-                <button
-                  onClick={() => setMediaView("photos")}
-                  className={`flex items-center gap-1.5 px-3.5 py-1.5 rounded-xl text-xs font-bold transition cursor-pointer ${
-                    mediaView === "photos"
-                      ? "bg-slate-900 text-white dark:bg-white dark:text-slate-900 shadow-sm"
-                      : "text-gray-600 dark:text-gray-300 hover:text-gray-900 dark:hover:text-white"
-                  }`}
-                >
-                  <Camera className="w-4 h-4" />
-                  <span>{t("photosTab")} ({attachments.length})</span>
-                </button>
+            <div className="relative aspect-[16/10] bg-black/90 overflow-hidden flex items-center justify-center">
+              <img
+                src={currentPhoto}
+                alt={`${brandName} ${modelName}`}
+                className="w-full h-full object-contain"
+              />
 
-                <button
-                  onClick={() => setMediaView("360")}
-                  className={`flex items-center gap-1.5 px-3.5 py-1.5 rounded-xl text-xs font-bold transition cursor-pointer ${
-                    mediaView === "360"
-                      ? "bg-blue-600 text-white shadow-md shadow-blue-500/20"
-                      : "text-blue-600 dark:text-blue-400 hover:bg-blue-50 dark:hover:bg-blue-950/40"
-                  }`}
-                >
-                  <RotateCcw className="w-4 h-4 animate-spin-slow" />
-                  <span>{t("spin360Tab")}</span>
-                  <span className="px-1.5 py-0.5 rounded-full bg-blue-500/20 text-[10px] font-bold">360°</span>
-                </button>
+              {/* Prev / Next Arrows */}
+              {attachments.length > 1 && (
+                <>
+                  <button
+                    onClick={() =>
+                      setActivePhotoIdx((prev) =>
+                        prev === 0 ? attachments.length - 1 : prev - 1
+                      )
+                    }
+                    className="absolute left-3 top-1/2 -translate-y-1/2 w-10 h-10 rounded-full bg-black/50 hover:bg-black/80 text-white flex items-center justify-center backdrop-blur-sm transition"
+                    aria-label="Previous image"
+                  >
+                    <ChevronLeft className="w-6 h-6" />
+                  </button>
+                  <button
+                    onClick={() =>
+                      setActivePhotoIdx((prev) =>
+                        prev === attachments.length - 1 ? 0 : prev + 1
+                      )
+                    }
+                    className="absolute right-3 top-1/2 -translate-y-1/2 w-10 h-10 rounded-full bg-black/50 hover:bg-black/80 text-white flex items-center justify-center backdrop-blur-sm transition"
+                    aria-label="Next image"
+                  >
+                    <ChevronRight className="w-6 h-6" />
+                  </button>
+                </>
+              )}
+
+              {/* Photo Counter */}
+              <div className="absolute bottom-4 right-4 rtl:left-4 rtl:right-auto px-2.5 py-1 rounded-lg text-xs font-mono font-bold text-white bg-black/60 backdrop-blur-sm">
+                {activePhotoIdx + 1} / {attachments.length}
               </div>
-
             </div>
 
-            {mediaView === "360" ? (
-              /* Interactive 360 Viewer */
-              <Car360Viewer
-                car={car}
-                className="min-h-[460px] md:min-h-[520px]"
-              />
-            ) : (
-              /* Photo Gallery Viewer */
-              <>
-                <div className="relative aspect-[16/10] bg-black/90 overflow-hidden flex items-center justify-center">
-                  <img
-                    src={currentPhoto}
-                    alt={`${brandName} ${modelName}`}
-                    className="w-full h-full object-contain"
-                  />
-
-                  {/* Prev / Next Arrows */}
-                  {attachments.length > 1 && (
-                    <>
-                      <button
-                        onClick={() =>
-                          setActivePhotoIdx((prev) =>
-                            prev === 0 ? attachments.length - 1 : prev - 1
-                          )
-                        }
-                        className="absolute left-3 top-1/2 -translate-y-1/2 w-10 h-10 rounded-full bg-black/50 hover:bg-black/80 text-white flex items-center justify-center backdrop-blur-sm transition"
-                        aria-label="Previous image"
-                      >
-                        <ChevronLeft className="w-6 h-6" />
-                      </button>
-                      <button
-                        onClick={() =>
-                          setActivePhotoIdx((prev) =>
-                            prev === attachments.length - 1 ? 0 : prev + 1
-                          )
-                        }
-                        className="absolute right-3 top-1/2 -translate-y-1/2 w-10 h-10 rounded-full bg-black/50 hover:bg-black/80 text-white flex items-center justify-center backdrop-blur-sm transition"
-                        aria-label="Next image"
-                      >
-                        <ChevronRight className="w-6 h-6" />
-                      </button>
-                    </>
-                  )}
-
-                  {/* Badge & Photo Counter */}
-                  <div className="absolute top-4 left-4 rtl:right-4 rtl:left-auto flex items-center gap-2">
-                    <span className="px-3 py-1 rounded-full text-xs font-bold text-white bg-emerald-600 shadow-md">
-                      {lang === "ar"
-                        ? car.CarLabel?.LabelTitlear || t("officialDealership")
-                        : lang === "ku"
-                        ? car.CarLabel?.LabelTitleku || t("officialDealership")
-                        : car.CarLabel?.LabelTitleen || t("officialDealership")}
-                    </span>
-                  </div>
-
-                  <div className="absolute bottom-4 right-4 rtl:left-4 rtl:right-auto px-2.5 py-1 rounded-lg text-xs font-mono font-bold text-white bg-black/60 backdrop-blur-sm">
-                    {activePhotoIdx + 1} / {attachments.length}
-                  </div>
-                </div>
-
-                {/* Thumbnail Filmstrip */}
-                {attachments.length > 1 && (
-                  <div className="p-3 bg-gray-50 dark:bg-gray-900/50 flex gap-2 overflow-x-auto scrollbar-none">
-                    {attachments.map((att, idx) => (
-                      <button
-                        key={att.ID || idx}
-                        onClick={() => setActivePhotoIdx(idx)}
-                        className={`relative w-20 h-14 rounded-lg overflow-hidden flex-shrink-0 border-2 transition ${
-                          activePhotoIdx === idx
-                            ? "border-emerald-500 scale-95 shadow"
-                            : "border-transparent opacity-60 hover:opacity-100"
-                        }`}
-                      >
-                        <img
-                          src={getCarImageUrl(att.DetailUrl || att.Url)}
-                          alt="thumbnail"
-                          className="w-full h-full object-cover"
-                        />
-                      </button>
-                    ))}
-                  </div>
-                )}
-              </>
+            {/* Thumbnail Filmstrip */}
+            {attachments.length > 1 && (
+              <div className="p-3 bg-gray-50 dark:bg-gray-900/50 flex gap-2 overflow-x-auto scrollbar-none">
+                {attachments.map((att, idx) => (
+                  <button
+                    key={att.ID || idx}
+                    onClick={() => setActivePhotoIdx(idx)}
+                    className={`relative w-20 h-14 rounded-lg overflow-hidden flex-shrink-0 border-2 transition ${
+                      activePhotoIdx === idx
+                        ? "border-emerald-500 scale-95 shadow"
+                        : "border-transparent opacity-60 hover:opacity-100"
+                    }`}
+                  >
+                    <img
+                      src={getCarImageUrl(att.DetailUrl || att.Url)}
+                      alt="thumbnail"
+                      className="w-full h-full object-cover"
+                    />
+                  </button>
+                ))}
+              </div>
             )}
           </div>
 
-          {/* Title & Quick Info (Mobile view prominence) */}
+          {/* Title & Price Header (No location, no upload date) */}
           <div className="bg-white dark:bg-[#1a2536] rounded-2xl border border-gray-200 dark:border-gray-800 p-6 shadow-sm space-y-4">
             <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
               <div>
                 <h1 className="text-2xl sm:text-3xl font-black text-gray-900 dark:text-white tracking-tight">
                   {brandName} {modelName} {year}
                 </h1>
-                <div className="flex flex-wrap items-center gap-3 text-xs sm:text-sm text-gray-500 dark:text-gray-400 mt-2">
-                  <a
-                    href={`https://www.google.com/maps/search/?api=1&query=${encodeURIComponent((cityName || "Iraq") + " Iraq")}`}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="flex items-center gap-1 hover:text-emerald-500 hover:underline transition"
-                    title={`View ${cityName || "Iraq"} on Google Maps`}
-                  >
-                    <MapPin className="w-4 h-4 text-emerald-500" />
-                    <span>{cityName || "Iraq"}</span>
-                  </a>
-                  <span>•</span>
-                  <div className="flex items-center gap-1">
-                    <Calendar className="w-4 h-4 text-gray-400" />
-                    <span>{timeAgo(car.UploadedDate, lang)}</span>
+                {trim && (
+                  <div className="mt-2">
+                    <span className="text-xs px-2.5 py-0.5 rounded-full bg-emerald-50 dark:bg-emerald-950/40 text-emerald-700 dark:text-emerald-400 font-semibold inline-block">
+                      {trim}
+                    </span>
                   </div>
-                </div>
+                )}
               </div>
 
               {/* Price Banner */}
@@ -411,21 +316,20 @@ export default function CarDetailPage({
             </div>
           </div>
 
-          {/* Seller Description */}
+          {/* Dealership Description */}
           <div className="bg-white dark:bg-[#1a2536] rounded-2xl border border-gray-200 dark:border-gray-800 p-6 shadow-sm space-y-3">
             <h2 className="text-lg font-bold text-gray-900 dark:text-white">
               {t("detailsBySeller")}
             </h2>
             <p className="text-sm text-gray-600 dark:text-gray-300 leading-relaxed">
               {car.Description ||
-                `${brandName} ${modelName} ${year} ${trim} in pristine condition. Zero paint accidents, genuine mileage, full manufacturer maintenance history, clean GCC title, registered in ${cityName}. All inspections welcomed. Contact for viewing and serious negotiations.`}
+                `${brandName} ${modelName} ${year} ${trim} in pristine condition. Zero paint accidents, genuine mileage, full manufacturer maintenance history, clean GCC title. All inspections welcomed. Contact for viewing and serious inquiries.`}
             </p>
           </div>
         </div>
 
-        {/* Right Sidebar: Seller Contact Card + Financial Calculator + Action Buttons */}
+        {/* Right Sidebar: Dealership Contact Card + Action Buttons (No location, no installments/cash-only) */}
         <div className="space-y-6">
-          {/* Seller Contact Box */}
           <div className="bg-white dark:bg-[#1a2536] rounded-2xl border border-gray-200 dark:border-gray-800 p-6 shadow-sm space-y-5 sticky top-24">
             <div className="flex items-center gap-3">
               <div className="w-12 h-12 rounded-full bg-emerald-100 dark:bg-emerald-950/60 text-emerald-600 dark:text-emerald-400 flex items-center justify-center font-bold text-lg">
@@ -433,22 +337,11 @@ export default function CarDetailPage({
               </div>
               <div>
                 <h3 className="font-bold text-base text-gray-900 dark:text-white">
-                  {lang === "ar"
-                    ? car.CarLabel?.LabelTitlear || t("officialDealership")
-                    : lang === "ku"
-                    ? car.CarLabel?.LabelTitleku || t("officialDealership")
-                    : car.CarLabel?.LabelTitleen || t("officialDealership")}
+                  iQ Cars Dealership
                 </h3>
-                <a
-                  href={`https://www.google.com/maps/search/?api=1&query=${encodeURIComponent((cityName || "Iraq") + " Iraq")}`}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="flex items-center gap-1 text-xs text-gray-500 dark:text-gray-400 hover:text-emerald-500 hover:underline transition group/loc"
-                  title={`View ${cityName || "Iraq"} on Google Maps`}
-                >
-                  <MapPin className="w-3.5 h-3.5 text-emerald-500 flex-shrink-0 group-hover/loc:scale-110 transition-transform" />
-                  <span>{cityName || "Iraq"}</span>
-                </a>
+                <p className="text-xs text-gray-500 dark:text-gray-400">
+                  {lang === "ar" ? "قسم المبيعات والاستفسارات" : lang === "ku" ? "بەشی فرۆشتن و پرسیارەکان" : "Sales & Inquiries"}
+                </p>
               </div>
             </div>
 
@@ -473,7 +366,7 @@ export default function CarDetailPage({
               )}
             </div>
 
-            {/* WhatsApp Chat Button (SECOND with pre-filled message) */}
+            {/* WhatsApp Chat Button */}
             <a
               href={`https://wa.me/${sellerPhone.replace(/\D/g, "")}?text=${encodeURIComponent(
                 lang === "ar"
@@ -508,59 +401,8 @@ export default function CarDetailPage({
                 <span>Compare</span>
               </button>
             </div>
-
-            {/* Qist (Installments) Summary in Sidebar */}
-            <div className="pt-4 border-t border-gray-100 dark:border-gray-800 space-y-3">
-              <div className="flex items-center justify-between">
-                <div className="flex items-center gap-1.5 font-bold text-xs text-gray-900 dark:text-white">
-                  <Coins className="w-4 h-4 text-amber-500" />
-                  <span>{t("qistTitle")} (قیست / قسط)</span>
-                </div>
-                {getCarQist(car.ID) ? (
-                  <span className="text-[10px] font-bold px-2 py-0.5 rounded-full bg-amber-500 text-white">
-                    {t("qistBadge")}
-                  </span>
-                ) : (
-                  <span className="text-[10px] font-bold text-gray-400">
-                    {t("cashOnly")}
-                  </span>
-                )}
-              </div>
-
-              {getCarQist(car.ID) ? (
-                <div className="p-3 bg-amber-50/50 dark:bg-amber-950/20 rounded-xl border border-amber-200/60 dark:border-amber-900/40 text-xs space-y-1.5">
-                  <div className="flex items-center justify-between text-gray-600 dark:text-gray-300">
-                    <span>{t("downPayment")}:</span>
-                    <span className="font-bold text-gray-900 dark:text-white">
-                      From {getCarQist(car.ID)?.minDownPaymentPercent}%
-                    </span>
-                  </div>
-                  <div className="flex items-center justify-between text-gray-600 dark:text-gray-300">
-                    <span>{t("monthsDuration")}:</span>
-                    <span className="font-bold text-gray-900 dark:text-white">
-                      Up to {getCarQist(car.ID)?.allowedMonths.slice(-1)[0]} {t("months")}
-                    </span>
-                  </div>
-                  <a
-                    href="#qist-calculator"
-                    className="block text-center pt-2 text-[11px] font-bold text-amber-600 dark:text-amber-400 hover:underline"
-                  >
-                    Calculate exact monthly installment ↓
-                  </a>
-                </div>
-              ) : (
-                <p className="text-[11px] text-gray-500 p-2.5 bg-gray-50 dark:bg-gray-800/60 rounded-xl">
-                  {t("qistNotAvailable")}
-                </p>
-              )}
-            </div>
           </div>
         </div>
-      </div>
-
-      {/* Dedicated Qist Calculator Section */}
-      <div id="qist-calculator" className="mt-8">
-        <QistCalculator car={car} />
       </div>
 
       {/* Similar Cars Section */}
@@ -576,7 +418,6 @@ export default function CarDetailPage({
           </div>
         </section>
       )}
-
     </div>
   );
 }
