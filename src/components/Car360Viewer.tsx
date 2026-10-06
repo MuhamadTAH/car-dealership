@@ -24,14 +24,12 @@ import {
 interface Car360ViewerProps {
   car: Car;
   customConfig?: Car360Config | null;
-  onOpenSellerStudio?: () => void;
   className?: string;
 }
 
 export default function Car360Viewer({
   car,
   customConfig,
-  onOpenSellerStudio,
   className = "",
 }: Car360ViewerProps) {
   const { lang, t } = useApp();
@@ -193,18 +191,8 @@ export default function Car360Viewer({
           </div>
         </div>
 
-        {/* Action Controls & Seller Studio Trigger */}
+        {/* Action Controls */}
         <div className="flex items-center gap-2">
-          {onOpenSellerStudio && (
-            <button
-              onClick={onOpenSellerStudio}
-              className="flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-emerald-600/90 hover:bg-emerald-500 text-white text-xs font-semibold shadow-lg transition-all active:scale-95 cursor-pointer backdrop-blur-md"
-              title="Upload or record 360 walkaround video"
-            >
-              <Video className="w-3.5 h-3.5" />
-              <span className="hidden sm:inline">{t("sellerStudioBtn")}</span>
-            </button>
-          )}
 
           <button
             onClick={() => setUseFrames(!useFrames)}

@@ -29,8 +29,8 @@ const translations: Record<Language, Record<string, string>> = {
     myFavorites: "Saved Cars",
     
     // Hero
-    heroTitle: "Buy and Sell your car on the most trusted car marketplace in Iraq",
-    heroSubtitle: "The best deal for buying and selling your car online anywhere in Iraq",
+    heroTitle: "Official Certified Automotive Dealership in Iraq",
+    heroSubtitle: "Supreme certified vehicles, 100% technical inspection, and flexible Qist financing",
     selectCity: "Iraq - Select city",
     allIraq: "All Iraq",
     advancedSearch: "Advanced Search",
@@ -68,7 +68,7 @@ const translations: Record<Language, Record<string, string>> = {
     share: "Share",
     save: "Save",
     specifications: "Specifications",
-    detailsBySeller: "More details by Seller",
+    detailsBySeller: "Vehicle Specifications & Official Inspection",
     similarCars: "Similar cars for sale in Iraq",
     trim: "Trim",
     condition: "Condition",
@@ -190,8 +190,8 @@ const translations: Record<Language, Record<string, string>> = {
     myFavorites: "المفضلة",
 
     // Hero
-    heroTitle: "بيع واشترِ سيارتك على منصة السيارات الأكثر ثقة في العراق",
-    heroSubtitle: "أفضل العروض لبيع وشراء السيارات عبر الإنترنت في أي مكان في العراق",
+    heroTitle: "المعرض والوكيل الرسمي المعتمد للسيارات في العراق",
+    heroSubtitle: "أفضل السيارات المعتمدة والمفحوصة بنسبة ١٠٠٪ مع حلول أقساط (قیست) مرنة في كافة المحافظات",
     selectCity: "العراق - اختر المدينة",
     allIraq: "كل العراق",
     advancedSearch: "البحث المتقدم",
@@ -229,7 +229,7 @@ const translations: Record<Language, Record<string, string>> = {
     share: "مشاركة",
     save: "حفظ",
     specifications: "المواصفات الفنية",
-    detailsBySeller: "تفاصيل إضافية من البائع",
+    detailsBySeller: "مواصفات المركبة والفحص المعتمد من المعرض",
     similarCars: "سيارات مشابهة للبيع في العراق",
     trim: "الفئة / الطراز",
     condition: "الحالة",
@@ -351,8 +351,8 @@ const translations: Record<Language, Record<string, string>> = {
     myFavorites: "دڵخوازەکان",
 
     // Hero
-    heroTitle: "ئۆتۆمبێلەکەت بفرۆشە و بکڕە لە باوەڕپێکراوترین بازاڕی ئۆتۆمبێل لە عێراق",
-    heroSubtitle: "باشترین دەرفەت بۆ کڕین و فرۆشتنی ئۆتۆمبێل لە هەر شوێنێکی عێراق",
+    heroTitle: "پێشانگا و بریکاری فەرمی ئۆتۆمبێل لە عێراق",
+    heroSubtitle: "ئۆتۆمبێلی پشکنراوی ١٠٠٪ بە گەرەنتی و قیستی ئاسان لە سەرانسەری عێراق",
     selectCity: "عێراق - شار هەڵبژێرە",
     allIraq: "هەموو عێراق",
     advancedSearch: "گەڕانی پێشکەوتوو",
@@ -390,7 +390,7 @@ const translations: Record<Language, Record<string, string>> = {
     share: "هاوبەشکردن",
     save: "پاشەکەوتکردن",
     specifications: "تایبەتمەندییەکان",
-    detailsBySeller: "زانیاری زیاتر لەلایەن فرۆشیارەوە",
+    detailsBySeller: "تایبەتمەندی و پشکنینی فەرمی پێشانگا",
     similarCars: "ئۆتۆمبێلی هاوشێوە بۆ فرۆشتن لە عێراق",
     trim: "جۆر / پۆل",
     condition: "بارودۆخ",

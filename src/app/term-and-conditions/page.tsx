@@ -33,16 +33,16 @@ export default function TermsPage() {
         </section>
 
         <section className="space-y-2">
-          <h2 className="text-base font-bold text-gray-900 dark:text-white">2. Listing Truthfulness & Accuracy</h2>
+          <h2 className="text-base font-bold text-gray-900 dark:text-white">2. Vehicle Standards & Inspection</h2>
           <p>
-            Sellers must declare genuine vehicle conditions, accurately report mileage, disclosed paint or chassis repairs, and provide authentic pictures taken in Iraq. Misrepresentation of clean title versus salvage damage is strictly prohibited.
+            All vehicles listed in our showroom undergo rigorous 100% technical, mechanical, chassis, and electronic diagnostic inspections. Genuine mileage, accident history, and title documentation are verified before being presented to clients.
           </p>
         </section>
 
         <section className="space-y-2">
-          <h2 className="text-base font-bold text-gray-900 dark:text-white">3. Transaction Disclaimer</h2>
+          <h2 className="text-base font-bold text-gray-900 dark:text-white">3. Dealership Purchases & Financing</h2>
           <p>
-            iQ Cars acts as a discovery marketplace platform. Direct purchase transactions, physical vehicle test drives, mechanical inspections, and payment transfers occur solely between the buyer and seller. We recommend meeting in secure, public spaces and executing formal ownership transfers at certified traffic directorates (Muror).
+            Vehicle purchases, official plate and title registration (Muror), manufacturer warranties, and Qist installment contracts are executed directly through authorized dealership representatives across our official showroom branches in Baghdad, Erbil, Sulaymaniyah, Basra, and Duhok.
           </p>
         </section>
 

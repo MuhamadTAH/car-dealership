@@ -22,8 +22,8 @@ export default function Footer() {
               </span>
             </Link>
             <p className="text-sm text-gray-400 max-w-sm leading-relaxed">
-              The Largest Online Car Marketplace in Iraq. Connecting millions of car buyers,
-              sellers, and certified showrooms across all Iraqi governorates.
+              Official Authorized Automotive Dealership in Iraq. Certified premium vehicle sales,
+              comprehensive technical inspections, manufacturer warranty, and flexible Qist financing.
             </p>
             <div className="pt-2 flex flex-wrap gap-x-6 gap-y-2 text-sm text-gray-400">
               <Link href="/search?condition=New" className="hover:text-emerald-400 transition">

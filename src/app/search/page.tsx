@@ -9,7 +9,6 @@ import filterDataRaw from "@/data/filterData.json";
 import { Car } from "@/lib/types";
 import CarCard from "@/components/CarCard";
 import QuickViewModal from "@/components/QuickViewModal";
-import Seller360StudioModal from "@/components/Seller360StudioModal";
 import {
   Filter,
   SlidersHorizontal,
@@ -39,14 +38,12 @@ function SearchContent() {
   const [maxPrice, setMaxPrice] = useState(searchParams.get("maxPrice") || "");
   const [fuel, setFuel] = useState(searchParams.get("fuel") || "");
   const [transmission, setTransmission] = useState(searchParams.get("transmission") || "");
-  const [sellerType, setSellerType] = useState(searchParams.get("sellerType") || "");
   const [sortBy, setSortBy] = useState("newest");
   const [viewMode, setViewMode] = useState<"grid" | "list">("grid");
   const [mobileFilterOpen, setMobileFilterOpen] = useState(false);
   const [currentPage, setCurrentPage] = useState(1);
   const [quickViewCar, setQuickViewCar] = useState<Car | null>(null);
   const [quickViewTab, setQuickViewTab] = useState<"photos" | "360">("photos");
-  const [isStudioOpen, setIsStudioOpen] = useState(false);
   const pageSize = 16;
 
   const allCars = carsDataRaw as Car[];
@@ -88,13 +85,9 @@ function SearchContent() {
         );
         if (!hasFuel) return false;
       }
-      if (sellerType) {
-        const label = car.CarLabel?.LabelTitleen || "";
-        if (sellerType === "Dealership" && !label.includes("Dealership")) return false;
-      }
       return true;
     });
-  }, [allCars, city, brand, model, condition, minYear, maxYear, minPrice, maxPrice, fuel, sellerType]);
+  }, [allCars, city, brand, model, condition, minYear, maxYear, minPrice, maxPrice, fuel]);
 
   // Sort cars
   const sortedCars = useMemo(() => {
@@ -126,7 +119,6 @@ function SearchContent() {
     setMaxPrice("");
     setFuel("");
     setTransmission("");
-    setSellerType("");
     setCurrentPage(1);
     router.push("/search");
   };
@@ -141,7 +133,6 @@ function SearchContent() {
     minPrice,
     maxPrice,
     fuel,
-    sellerType,
   ].filter(Boolean).length;
 
   return (
@@ -426,20 +417,6 @@ function SearchContent() {
               </select>
             </div>
 
-            {/* Seller Type */}
-            <div>
-              <label className="block text-xs font-bold text-gray-700 dark:text-gray-300 mb-1.5">
-                {t("officialDealership")}
-              </label>
-              <select
-                value={sellerType}
-                onChange={(e) => setSellerType(e.target.value)}
-                className="w-full px-3 py-2 text-xs rounded-xl border border-gray-300 dark:border-gray-700 bg-white dark:bg-gray-800 outline-none"
-              >
-                <option value="">All Dealerships</option>
-                <option value="Dealership">Official Dealership</option>
-              </select>
-            </div>
           </div>
         </aside>
 
@@ -651,15 +628,6 @@ function SearchContent() {
         car={quickViewCar}
         onClose={() => setQuickViewCar(null)}
         initialTab={quickViewTab}
-        onOpenSellerStudio={() => setIsStudioOpen(true)}
-      />
-
-      {/* Seller 360 Studio Modal */}
-      <Seller360StudioModal
-        isOpen={isStudioOpen}
-        onClose={() => setIsStudioOpen(false)}
-        cars={allCars}
-        initialCar={quickViewCar}
       />
     </div>
   );

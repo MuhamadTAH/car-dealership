@@ -34,7 +34,6 @@ import {
 import QistCalculator from "@/components/QistCalculator";
 import { getCarQist } from "@/lib/qist";
 import Car360Viewer from "@/components/Car360Viewer";
-import Seller360StudioModal from "@/components/Seller360StudioModal";
 import { getCar360Config } from "@/lib/car360";
 
 export default function CarDetailPage({
@@ -53,7 +52,6 @@ export default function CarDetailPage({
   const [phoneRevealed, setPhoneRevealed] = useState(false);
   const [copied, setCopied] = useState(false);
   const [mediaView, setMediaView] = useState<"photos" | "360">("photos");
-  const [isStudioOpen, setIsStudioOpen] = useState(false);
   const car360 = getCar360Config(car.ID, car);
 
   // Auto Loan Calculator State
@@ -215,21 +213,12 @@ export default function CarDetailPage({
                 </button>
               </div>
 
-              <button
-                onClick={() => setIsStudioOpen(true)}
-                className="flex items-center gap-1.5 px-3 py-1.5 rounded-xl text-xs font-semibold text-emerald-600 dark:text-emerald-400 hover:bg-emerald-50 dark:hover:bg-emerald-950/40 border border-emerald-500/30 transition cursor-pointer"
-                title="Sellers can upload or test walkaround videos"
-              >
-                <Video className="w-3.5 h-3.5" />
-                <span>{t("sellerStudioBtn")}</span>
-              </button>
             </div>
 
             {mediaView === "360" ? (
               /* Interactive 360 Viewer */
               <Car360Viewer
                 car={car}
-                onOpenSellerStudio={() => setIsStudioOpen(true)}
                 className="min-h-[460px] md:min-h-[520px]"
               />
             ) : (
@@ -588,13 +577,6 @@ export default function CarDetailPage({
         </section>
       )}
 
-      {/* Seller 360 Studio Modal */}
-      <Seller360StudioModal
-        isOpen={isStudioOpen}
-        onClose={() => setIsStudioOpen(false)}
-        cars={allCars}
-        initialCar={car}
-      />
     </div>
   );
 }

@@ -29,14 +29,12 @@ interface QuickViewModalProps {
   car: Car | null;
   onClose: () => void;
   initialTab?: "photos" | "360";
-  onOpenSellerStudio?: () => void;
 }
 
 export default function QuickViewModal({
   car,
   onClose,
   initialTab = "photos",
-  onOpenSellerStudio,
 }: QuickViewModalProps) {
   const { lang, currency, t } = useApp();
   const [activePhotoIdx, setActivePhotoIdx] = useState(0);
@@ -169,22 +167,12 @@ export default function QuickViewModal({
                     <span>{t("spin360Tab")}</span>
                   </button>
                 </div>
-                {onOpenSellerStudio && (
-                  <button
-                    onClick={onOpenSellerStudio}
-                    className="flex items-center gap-1 px-2 py-1 text-[11px] font-semibold text-emerald-600 dark:text-emerald-400 hover:underline cursor-pointer"
-                  >
-                    <Video className="w-3 h-3" />
-                    <span className="hidden sm:inline">{t("sellerStudioBtn")}</span>
-                  </button>
-                )}
               </div>
 
               {mediaTab === "360" ? (
                 /* Interactive 360 Exterior View */
                 <Car360Viewer
                   car={car}
-                  onOpenSellerStudio={onOpenSellerStudio}
                   className="min-h-[340px] md:min-h-[380px]"
                 />
               ) : (
