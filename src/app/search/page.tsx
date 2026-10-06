@@ -27,8 +27,8 @@ function SearchContent() {
   const router = useRouter();
   const { lang, currency, t } = useApp();
 
-  // URL parameters or local state
   const [city, setCity] = useState(searchParams.get("city") || "");
+  const [keyword, setKeyword] = useState(searchParams.get("q") || "");
   const [brand, setBrand] = useState(searchParams.get("brand") || "");
   const [model, setModel] = useState(searchParams.get("model") || "");
   const [condition, setCondition] = useState(searchParams.get("condition") || "");
@@ -46,11 +46,36 @@ function SearchContent() {
   const [quickViewTab, setQuickViewTab] = useState<"photos" | "360">("photos");
   const pageSize = 16;
 
+  React.useEffect(() => {
+    setKeyword(searchParams.get("q") || "");
+  }, [searchParams]);
+
   const allCars = carsDataRaw as Car[];
 
   // Filter cars
   const filteredCars = useMemo(() => {
     return allCars.filter((car) => {
+      if (keyword.trim()) {
+        const q = keyword.toLowerCase().trim();
+        const brandStr = (car.Brand?.BrandNameen || "").toLowerCase();
+        const brandAr = (car.Brand?.BrandNamear || "").toLowerCase();
+        const brandKu = (car.Brand?.BrandNameku || "").toLowerCase();
+        const modelStr = (car.Model?.ModelNameen || "").toLowerCase();
+        const yearStr = (car.Year?.YearName || "").toLowerCase();
+        const trimStr = (car.ModelSFX?.SFXName || "").toLowerCase();
+        const locStr = (car.Location?.LocationNameen || "").toLowerCase();
+        if (
+          !brandStr.includes(q) &&
+          !brandAr.includes(q) &&
+          !brandKu.includes(q) &&
+          !modelStr.includes(q) &&
+          !yearStr.includes(q) &&
+          !trimStr.includes(q) &&
+          !locStr.includes(q)
+        ) {
+          return false;
+        }
+      }
       if (city) {
         const carCity = car.Location?.LocationNameen || "";
         if (!carCity.toLowerCase().includes(city.toLowerCase())) return false;
@@ -87,7 +112,7 @@ function SearchContent() {
       }
       return true;
     });
-  }, [allCars, city, brand, model, condition, minYear, maxYear, minPrice, maxPrice, fuel]);
+  }, [allCars, city, brand, model, condition, minYear, maxYear, minPrice, maxPrice, fuel, keyword]);
 
   // Sort cars
   const sortedCars = useMemo(() => {
@@ -110,6 +135,7 @@ function SearchContent() {
 
   const resetFilters = () => {
     setCity("");
+    setKeyword("");
     setBrand("");
     setModel("");
     setCondition("");
@@ -124,6 +150,7 @@ function SearchContent() {
   };
 
   const activeFiltersCount = [
+    keyword,
     city,
     brand,
     model,
@@ -209,6 +236,12 @@ function SearchContent() {
           <span className="text-xs font-semibold text-gray-500 dark:text-gray-400">
             Active Filters:
           </span>
+          {keyword && (
+            <span className="inline-flex items-center gap-1 px-2.5 py-1 rounded-full text-xs font-semibold bg-emerald-600 text-white shadow-sm">
+              Search: "{keyword}"
+              <button onClick={() => setKeyword("")}><X className="w-3 h-3" /></button>
+            </span>
+          )}
           {city && (
             <span className="inline-flex items-center gap-1 px-2.5 py-1 rounded-full text-xs font-semibold bg-emerald-50 dark:bg-emerald-950/40 text-emerald-700 dark:text-emerald-300 border border-emerald-200 dark:border-emerald-800">
               City: {city}
