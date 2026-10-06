@@ -5,9 +5,7 @@ import Link from "next/link";
 import { Car } from "@/lib/types";
 import { useApp } from "@/context/AppContext";
 import { getCarImageUrl, formatPrice, formatMileage } from "@/lib/utils";
-import { getCarQist } from "@/lib/qist";
-import { getCar360Config } from "@/lib/car360";
-import { MapPin, Gauge, Scale, Phone, MessageCircle, Eye, Coins, RotateCcw } from "lucide-react";
+import { Gauge, Scale, Phone, MessageCircle, Eye } from "lucide-react";
 
 export default function CarCard({
   car,
@@ -36,18 +34,9 @@ export default function CarCard({
       ? car.Model?.ModelNameku || car.Model?.ModelNameen
       : car.Model?.ModelNameen;
 
-  const cityName =
-    lang === "ar"
-      ? car.Location?.LocationNamear || car.Location?.LocationNameen
-      : lang === "ku"
-      ? car.Location?.LocationNameku || car.Location?.LocationNameen
-      : car.Location?.LocationNameen;
-
   const year = car.Year?.YearName || "2024";
   const trim = car.ModelSFX?.SFXName || "";
   const isCompared = compareList.some((c) => c.ID === car.ID);
-  const qistPlan = getCarQist(car.ID);
-  const car360 = getCar360Config(car.ID, car);
 
   const locationSlug = (car.Location?.LocationNameen || "iraq").toLowerCase().replace(/\s+/g, "-");
   const brandSlug = (car.Brand?.BrandNameen || "car").toLowerCase().replace(/\s+/g, "-");
@@ -85,68 +74,8 @@ export default function CarCard({
           />
         </Link>
 
-        {/* Top Badges */}
-        <div className="absolute top-2.5 left-2.5 rtl:right-2.5 rtl:left-auto flex flex-col gap-1.5 z-10">
-          {/* Official Dealership Badge */}
-          {car.CarLabel?.LabelTitleen && (
-            <div
-              className="px-2.5 py-0.5 rounded-full text-[10px] font-bold text-white shadow-sm flex items-center gap-1 backdrop-blur-md"
-              style={{
-                backgroundColor: car.CarLabel.BackgroundColor || "#10b981",
-              }}
-            >
-              <span>
-                {lang === "ar"
-                  ? car.CarLabel.LabelTitlear || car.CarLabel.LabelTitleen
-                  : lang === "ku"
-                  ? car.CarLabel.LabelTitleku || car.CarLabel.LabelTitleen
-                  : car.CarLabel.LabelTitleen}
-              </span>
-            </div>
-          )}
-
-          {/* Qist (Installments) Badge if available */}
-          {qistPlan && (
-            <div className="px-2.5 py-0.5 rounded-full text-[10px] font-bold text-white shadow-sm flex items-center gap-1 bg-gradient-to-r from-amber-500 to-orange-600 backdrop-blur-md animate-pulse">
-              <Coins className="w-3 h-3" />
-              <span>{t("qistBadge")}</span>
-            </div>
-          )}
-
-          {/* 360 Spin Available Badge */}
-          {car360?.available && (
-            <button
-              onClick={(e) => {
-                e.preventDefault();
-                e.stopPropagation();
-                onQuickView?.(car, "360");
-              }}
-              className="px-2.5 py-0.5 rounded-full text-[10px] font-bold text-white shadow-sm flex items-center gap-1 bg-gradient-to-r from-blue-600 to-indigo-600 hover:from-blue-500 hover:to-indigo-500 backdrop-blur-md cursor-pointer transition"
-              title="Click to view interactive 360 spin"
-            >
-              <RotateCcw className="w-3 h-3 animate-spin-slow" />
-              <span>360°</span>
-            </button>
-          )}
-        </div>
-
         {/* Action Buttons on Hover */}
         <div className="absolute top-2.5 right-2.5 rtl:left-2.5 rtl:right-auto flex items-center gap-1.5 opacity-90 sm:opacity-0 group-hover:opacity-100 transition-all duration-200 z-10">
-          {car360?.available && onQuickView && (
-            <button
-              onClick={(e) => {
-                e.preventDefault();
-                e.stopPropagation();
-                onQuickView(car, "360");
-              }}
-              className="px-2.5 py-1 rounded-lg text-[11px] font-bold bg-blue-600 text-white shadow-md backdrop-blur-sm flex items-center gap-1 hover:bg-blue-500 transition cursor-pointer"
-              title="Open 360° Spin"
-            >
-              <RotateCcw className="w-3.5 h-3.5" />
-              <span className="hidden sm:inline">360°</span>
-            </button>
-          )}
-
           {onQuickView && (
             <button
               onClick={(e) => {
@@ -211,29 +140,13 @@ export default function CarCard({
           </div>
         </div>
 
-        {/* Location & Price */}
-        <div className="pt-2 border-t border-gray-100 dark:border-gray-800 flex items-center justify-between">
-          <a
-            href={`https://www.google.com/maps/search/?api=1&query=${encodeURIComponent((cityName || "Iraq") + " Iraq")}`}
-            target="_blank"
-            rel="noopener noreferrer"
-            onClick={(e) => e.stopPropagation()}
-            className="flex items-center gap-1 text-xs text-gray-500 dark:text-gray-400 hover:text-emerald-500 hover:underline transition group/loc"
-            title={`View ${cityName || "Iraq"} on Google Maps`}
-          >
-            <MapPin className="w-3.5 h-3.5 text-emerald-500 flex-shrink-0 group-hover/loc:scale-110 transition-transform" />
-            <span className="truncate max-w-[110px]">{cityName || "Iraq"}</span>
-          </a>
-
-          <div className="text-right rtl:text-left">
-            <div className="text-base sm:text-lg font-black text-gray-900 dark:text-white">
-              {formatPrice(car.Price, currency)}
-            </div>
-            {qistPlan && (
-              <div className="text-[10px] text-amber-600 dark:text-amber-400 font-bold">
-                {t("qistBadge")}
-              </div>
-            )}
+        {/* Official Dealership Price */}
+        <div className="pt-2.5 border-t border-gray-100 dark:border-gray-800/80 flex items-center justify-between">
+          <span className="text-xs font-semibold text-gray-500 dark:text-gray-400">
+            {lang === "ar" ? "السعر" : lang === "ku" ? "نرخ" : "Price"}
+          </span>
+          <div className="text-lg sm:text-xl font-black text-emerald-600 dark:text-emerald-400">
+            {formatPrice(car.Price, currency)}
           </div>
         </div>
 

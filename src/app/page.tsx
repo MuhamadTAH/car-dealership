@@ -4,10 +4,8 @@ import React, { useState } from "react";
 import { useApp } from "@/context/AppContext";
 import carsDataRaw from "@/data/cars.json";
 import { Car } from "@/lib/types";
-import QistCalculator from "@/components/QistCalculator";
 import FaqSection from "@/components/FaqSection";
 import QuickViewModal from "@/components/QuickViewModal";
-import ShowroomsSection from "@/components/ShowroomsSection";
 import BrandModelGrid from "@/components/BrandModelGrid";
 import CarCard from "@/components/CarCard";
 import { Phone, MessageCircle } from "lucide-react";
@@ -43,8 +41,8 @@ export default function HomePage() {
       {/* Main Container - seamlessly continues the dark dealership canvas with no line separating */}
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-4 pb-12">
         <section className="mb-14" id="available-cars">
-          {/* Vehicle Listings Grid */}
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5">
+          {/* Vehicle Listings Grid (3 cars per row on laptop & desktop) */}
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
             {visibleCars.map((car) => (
               <CarCard
                 key={car.ID}
@@ -61,7 +59,7 @@ export default function HomePage() {
           {displayCount < allCars.length && (
             <div className="mt-10 text-center">
               <button
-                onClick={() => setDisplayCount((prev) => prev + 16)}
+                onClick={() => setDisplayCount((prev) => prev + 15)}
                 className="px-8 py-3.5 bg-[#1a2536] hover:bg-[#223046] text-white font-bold text-sm rounded-xl border border-gray-700/80 shadow-md transition transform hover:-translate-y-0.5"
               >
                 {t("showMoreCars").replace("{n}", String(allCars.length - displayCount))}
@@ -70,16 +68,10 @@ export default function HomePage() {
           )}
         </section>
 
-        {/* Qist (Installments / قیست) Calculator Section */}
-        <QistCalculator allCars={allCars} />
-
-        {/* Popular Showrooms Section */}
-        <ShowroomsSection />
-
         {/* Daily Buyer Questions (FAQ Accordion) */}
         <FaqSection />
 
-        {/* Popular Brands & Models Directory */}
+        {/* Available Dealership Brands Directory */}
         <BrandModelGrid />
       </div>
 

@@ -11,62 +11,72 @@ export default function BrandModelGrid() {
     {
       name: "Toyota",
       logo: "https://cdn.iqcars.io/img/BrandAttachments/1692609856905.7356_Toyota.png",
-      models: ["Hilux", "Corolla", "Land Cruiser", "Camry", "Crown", "RAV4", "Land Cruiser Prado", "Corolla Cross", "Urban Cruiser", "Yaris"]
+      models: ["Land Cruiser", "Highlander", "Camry", "RAV4", "Sequoia", "Corolla Cross", "Corolla", "Hilux", "GR Corolla"]
     },
     {
       name: "Mercedes-Benz",
       logo: "https://cdn.iqcars.io/img/BrandAttachments/1598260856554.4385_Mercedes-Benz",
-      models: ["E-Class", "C-Class", "S-Class", "G-Class", "CLS", "CLA", "GLE", "GLS", "GLC", "AMG GT"]
+      models: ["S-Class", "G-Class", "E-Class", "GLB", "GLA"]
+    },
+    {
+      name: "BMW",
+      logo: "https://cdn.iqcars.io/img/BrandAttachments/1598260896743.1196_BMW",
+      models: ["7-Series", "X5", "5-Series", "2-Series"]
+    },
+    {
+      name: "Land Rover",
+      logo: "https://cdn.iqcars.io/img/BrandAttachments/1598260861653.8472_Land Rover",
+      models: ["Range Rover Vogue", "Defender", "Range Rover Sport"]
+    },
+    {
+      name: "Jeep",
+      logo: "https://cdn.iqcars.io/img/BrandAttachments/1598260913313.6658_Jeep",
+      models: ["Grand Cherokee", "Wrangler", "Renegade"]
+    },
+    {
+      name: "Dodge",
+      logo: "https://cdn.iqcars.io/img/BrandAttachments/1689687384588.3416_Dodge.png",
+      models: ["Challenger", "Charger", "Durango", "Journey"]
+    },
+    {
+      name: "Ford",
+      logo: "https://cdn.iqcars.io/img/BrandAttachments/1728388004823.3416_Ford.png",
+      models: ["Mustang", "F-150", "F-150 Raptor", "Fusion", "Maverick", "Escape"]
     },
     {
       name: "Kia",
       logo: "https://cdn.iqcars.io/img/BrandAttachments/1691318753979.1956_Kia.png",
-      models: ["Sorento", "Sportage", "K4", "Tasman", "K3", "Cerato", "Forte", "Sonet", "K5"]
+      models: ["Sportage", "Sorento", "K5", "Carnival", "Seltos", "Cerato"]
     },
     {
-      name: "Jetour",
-      logo: "https://cdn.iqcars.io/img/BrandAttachments/1766908020446.826_Jetour.png",
-      models: ["T2", "G700", "T1", "X90 PLUS", "Dashing", "X70 Plus", "X70", "L6"]
+      name: "Hyundai",
+      logo: "https://cdn.iqcars.io/img/BrandAttachments/1598260917025.2678_Hyundai",
+      models: ["Palisade", "Santa Fe", "Tucson", "Sonata", "Elantra", "Kona"]
     },
     {
-      name: "HAVAL",
-      logo: "https://cdn.iqcars.io/img/BrandAttachments/1747313417133.7363_Haval.png",
-      models: ["H6", "H6 GT", "H7", "V7", "H9", "JOLION", "JOLION Pro", "Dargo"]
+      name: "GMC",
+      logo: "https://cdn.iqcars.io/img/BrandAttachments/1598260920688.86_GMC",
+      models: ["Yukon", "Acadia"]
     },
     {
-      name: "Mazda",
-      logo: "https://cdn.iqcars.io/img/BrandAttachments/1786366979335.2837_Mazda.png",
-      models: ["3", "CX-50", "CX-5", "CX-30", "6", "CX-9", "CX-90", "MX-5"]
+      name: "Chevrolet",
+      logo: "https://cdn.iqcars.io/img/BrandAttachments/1598260885500.0466_Chevrolet",
+      models: ["Tahoe", "Malibu"]
     },
     {
-      name: "OMODA",
-      logo: "https://cdn.iqcars.io/img/BrandAttachments/1775725925776.4033_OMODA.png",
-      models: ["C5", "C7"]
+      name: "Lexus",
+      logo: "https://cdn.iqcars.io/img/BrandAttachments/1598260860741.1309_Lexus",
+      models: ["LX"]
     },
     {
-      name: "JAECOO",
-      logo: "https://cdn.iqcars.io/img/BrandAttachments/1775725935530.6582_JAECOO.png",
-      models: ["J5", "J7", "J8"]
-    },
-    {
-      name: "GAC",
-      logo: "https://cdn.iqcars.io/img/BrandAttachments/1784108103562.2473_GAC.png",
-      models: ["GS4 Max", "EMKOO", "GS8", "GS8 TRAVELLER", "Aion ES", "Empow", "GS5", "GS3"]
-    },
-    {
-      name: "TANK",
-      logo: "https://cdn.iqcars.io/img/BrandAttachments/1747315387629.3057_GWM%20TANK.png",
-      models: ["300", "500", "700"]
+      name: "BYD",
+      logo: "https://cdn.iqcars.io/img/BrandAttachments/1758524118749.2576_BYD.png",
+      models: ["QIN L DM-i", "Seal 6", "SONG PLUS", "Destroyer 05"]
     },
     {
       name: "Volkswagen",
       logo: "https://cdn.iqcars.io/img/BrandAttachments/1728388293639.9167_Volkswagen.png",
-      models: ["Jetta", "Atlas", "Golf", "Passat", "Tiguan", "Atlas Cross Sport", "Arteon", "Taos", "Golf R"]
-    },
-    {
-      name: "Soueast",
-      logo: "https://cdn.iqcars.io/img/BrandAttachments/1766328188727.498_Soueast.png",
-      models: ["S09", "S07", "S06", "S08", "DX5", "DX8S"]
+      models: ["Arteon", "Jetta"]
     }
   ];
 
