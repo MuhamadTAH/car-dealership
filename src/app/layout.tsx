@@ -5,17 +5,17 @@ import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 
 export const metadata: Metadata = {
-  title: "iQ Cars - The Largest Online Car Marketplace in Iraq",
+  title: "iQ Cars - Official Certified Automotive Dealership in Iraq",
   description:
-    "Buy and Sell your car on the most trusted car marketplace in Iraq. The best deal for buying and selling your car online anywhere in Iraq, Website of Cars For Sale in Iraq.",
-  keywords: "Iraq Car, Iraq Cars, Car for sale in Iraq, Baghdad cars, Erbil cars, Sulaymaniyah cars, Basra cars",
+    "Official Certified Automotive Dealership in Iraq. Browse 100% inspected luxury and certified vehicles with official warranty, 360° virtual showroom, and flexible Qist installment financing.",
+  keywords: "Iraq Dealership, Certified Cars Iraq, Baghdad luxury cars, Erbil cars, Sulaymaniyah cars, Basra cars, Qist financing Iraq",
   icons: {
     icon: "https://iqcars-assets.iqcars.io/images/iqcars_logo.svg",
   },
   openGraph: {
-    title: "iQ Cars - The Largest Online Car Marketplace in Iraq",
+    title: "iQ Cars - Official Certified Automotive Dealership in Iraq",
     description:
-      "Buy and Sell your car on the most trusted car marketplace in Iraq. The best deals across Baghdad, Erbil, Basra and all governorates.",
+      "Official Certified Automotive Dealership in Iraq. Browse 100% inspected vehicles with certified warranty, 360° virtual showroom, and flexible Qist installments across Baghdad, Erbil, and Basra.",
     images: ["https://iqcars-assets.iqcars.io/images/banner.jpg"],
   },
 };

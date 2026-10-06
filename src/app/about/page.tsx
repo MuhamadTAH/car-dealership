@@ -60,7 +60,7 @@ export default function AboutPage() {
           iQ Cars was founded with a singular objective: to bring total transparency, security, and digital efficiency to automotive trading in Iraq. Before iQ Cars, car buying relied heavily on physical open markets (Ma&apos;arid) with fragmented pricing and lack of verified inspection histories.
         </p>
         <p className="text-sm sm:text-base text-gray-600 dark:text-gray-300 leading-relaxed">
-          Today, whether you are shopping for a brand new luxury Mercedes-Benz in Erbil, a reliable Toyota Land Cruiser in Baghdad, or selling your personal car in Basra, iQ Cars provides instant access, direct verified contact, and advanced pricing tools.
+          Today, whether you are shopping for a brand new luxury Mercedes-Benz in Erbil, a reliable Toyota Land Cruiser in Baghdad, or certified performance vehicles in Basra, iQ Cars provides instant access, direct verified inspection reports, and flexible Qist financing tools.
         </p>
       </div>
 
