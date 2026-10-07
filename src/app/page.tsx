@@ -1,9 +1,11 @@
 "use client";
 
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { useApp } from "@/context/AppContext";
 import carsDataRaw from "@/data/cars.json";
 import { Car } from "@/lib/types";
+import { getInventoryCars } from "@/sanity/queries";
+import { isSanityConfigured } from "@/sanity/client";
 import FaqSection from "@/components/FaqSection";
 import VisitShowroomSection from "@/components/VisitShowroomSection";
 import QuickViewModal from "@/components/QuickViewModal";
@@ -13,7 +15,17 @@ import { Phone, MessageCircle } from "lucide-react";
 
 export default function HomePage() {
   const { lang, t } = useApp();
-  const allCars = carsDataRaw as Car[];
+  const [allCars, setAllCars] = useState<Car[]>(carsDataRaw as Car[]);
+
+  useEffect(() => {
+    if (isSanityConfigured) {
+      getInventoryCars().then((data) => {
+        if (data && data.length > 0) {
+          setAllCars(data);
+        }
+      });
+    }
+  }, []);
 
   // Quick View Modal state
   const [quickViewCar, setQuickViewCar] = useState<Car | null>(null);

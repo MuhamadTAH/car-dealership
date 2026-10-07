@@ -5,6 +5,8 @@ import Link from "next/link";
 import { useApp } from "@/context/AppContext";
 import carsDataRaw from "@/data/cars.json";
 import { Car } from "@/lib/types";
+import { getInventoryCars } from "@/sanity/queries";
+import { isSanityConfigured } from "@/sanity/client";
 import { getCarImageUrl, formatPrice, formatMileage } from "@/lib/utils";
 import CarCard from "@/components/CarCard";
 import {
@@ -37,8 +39,23 @@ export default function CarDetailPage({
   const carId = parseInt(resolvedParams.id);
   const { lang, currency, addToCompare, t } = useApp();
 
-  const allCars = carsDataRaw as Car[];
-  const car = allCars.find((c) => c.ID === carId) || allCars[0];
+  const [allCars, setAllCars] = useState<Car[]>(carsDataRaw as Car[]);
+  const [car, setCar] = useState<Car>(() => {
+    const staticCars = carsDataRaw as Car[];
+    return staticCars.find((c) => c.ID === carId) || staticCars[0];
+  });
+
+  React.useEffect(() => {
+    if (isSanityConfigured) {
+      getInventoryCars().then((data) => {
+        if (data && data.length > 0) {
+          setAllCars(data);
+          const found = data.find((c) => c.ID === carId);
+          if (found) setCar(found);
+        }
+      });
+    }
+  }, [carId]);
 
   const [activePhotoIdx, setActivePhotoIdx] = useState(0);
   const [phoneRevealed, setPhoneRevealed] = useState(false);

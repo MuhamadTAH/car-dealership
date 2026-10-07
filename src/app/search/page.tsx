@@ -7,6 +7,8 @@ import carsDataRaw from "@/data/cars.json";
 import locationsData from "@/data/locations.json";
 import filterDataRaw from "@/data/filterData.json";
 import { Car } from "@/lib/types";
+import { getInventoryCars } from "@/sanity/queries";
+import { isSanityConfigured } from "@/sanity/client";
 import CarCard from "@/components/CarCard";
 import QuickViewModal from "@/components/QuickViewModal";
 import {
@@ -50,7 +52,15 @@ function SearchContent() {
     setKeyword(searchParams.get("q") || "");
   }, [searchParams]);
 
-  const allCars = carsDataRaw as Car[];
+  const [allCars, setAllCars] = useState<Car[]>(carsDataRaw as Car[]);
+
+  React.useEffect(() => {
+    if (isSanityConfigured) {
+      getInventoryCars().then((data) => {
+        if (data && data.length > 0) setAllCars(data);
+      });
+    }
+  }, []);
 
   // Filter cars
   const filteredCars = useMemo(() => {
