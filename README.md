@@ -1,36 +1,47 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# iQ Cars — Official Automotive Dealership Platform
 
-## Getting Started
+Modern luxury dealership platform for buying certified vehicles in Iraq, with multilingual support (Arabic, Kurdish Sorani, English), multi-currency pricing (USD & IQD), physical vehicle inspection certificate verification, and headless CMS integration with Sanity.
 
-First, run the development server:
+---
+
+## Tech Stack
+- **Framework:** Next.js 16 (App Router)
+- **UI:** React 19, Tailwind CSS v4, Lucide Icons
+- **CMS:** Sanity.io (Headless Vehicle Inventory)
+- **Package Manager:** `pnpm`
+
+---
+
+## Local Development
 
 ```bash
-npm run dev
-# or
-yarn dev
-# or
+# Install dependencies
+pnpm install
+
+# Start development server
 pnpm dev
-# or
-bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Open [http://localhost:3000](http://localhost:3000) to view the application.
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+---
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+## Deploying to Railway
 
-## Learn More
+1. **Push to GitHub**: Make sure the latest code is pushed to your repository.
+2. **Open Railway**: Go to [railway.com](https://railway.com) and log in.
+3. **New Project**: Click **"+ New Project"** $\rightarrow$ **"Deploy from GitHub repo"** $\rightarrow$ Select `MuhamadTAH/car-dealership`.
+4. **Environment Variables**:
+   In your Railway service $\rightarrow$ **Variables** tab, add:
+   ```env
+   NODE_ENV=production
+   HOSTNAME=0.0.0.0
+   NEXT_PUBLIC_SANITY_PROJECT_ID=your_sanity_project_id
+   NEXT_PUBLIC_SANITY_DATASET=production
+   NEXT_PUBLIC_SANITY_API_VERSION=2024-01-01
+   SANITY_REVALIDATE_SECRET=your_secret_here
+   ```
+5. **Generate Public Domain**:
+   In your Railway service $\rightarrow$ **Settings** $\rightarrow$ **Networking** $\rightarrow$ Click **"Generate Domain"** (e.g. `car-dealership-production.up.railway.app`).
 
-To learn more about Next.js, take a look at the following resources:
-
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+Railway will automatically build using the included `Dockerfile` and go live.

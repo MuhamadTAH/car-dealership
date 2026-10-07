@@ -7,6 +7,7 @@ const nextConfig: NextConfig = {
       { protocol: "https", hostname: "iqcars-assets.iqcars.io" },
       { protocol: "https", hostname: "customer-gwfahdyt8tqfncta.cloudflarestream.com" },
       { protocol: "https", hostname: "images.unsplash.com" },
+      { protocol: "https", hostname: "cdn.sanity.io" },
     ],
     unoptimized: true,
   },
