@@ -5,6 +5,7 @@ import { useApp } from "@/context/AppContext";
 import carsDataRaw from "@/data/cars.json";
 import { Car } from "@/lib/types";
 import FaqSection from "@/components/FaqSection";
+import VisitShowroomSection from "@/components/VisitShowroomSection";
 import QuickViewModal from "@/components/QuickViewModal";
 import BrandModelGrid from "@/components/BrandModelGrid";
 import CarCard from "@/components/CarCard";
@@ -67,6 +68,9 @@ export default function HomePage() {
             </div>
           )}
         </section>
+
+        {/* Visit Our Flagship Showrooms (Baghdad & Erbil) */}
+        <VisitShowroomSection />
 
         {/* Daily Buyer Questions (FAQ Accordion) */}
         <FaqSection />

@@ -27,6 +27,12 @@ export const ALL_CARS_GROQ = `*[_type == "car" && status != "sold"] | order(_cre
   fuel,
   color,
   warranty,
+  tiktokUrl,
+  youtubeUrl,
+  inspectionReportImage,
+  paintCondition,
+  chassisCondition,
+  spin360Images,
   features,
   description,
   _createdAt
@@ -57,6 +63,12 @@ export const SINGLE_CAR_GROQ = `*[_type == "car" && (_id == $id || slug.current 
   fuel,
   color,
   warranty,
+  tiktokUrl,
+  youtubeUrl,
+  inspectionReportImage,
+  paintCondition,
+  chassisCondition,
+  spin360Images,
   features,
   description,
   _createdAt
@@ -66,6 +78,13 @@ export function mapSanityCarToCar(doc: any): Car {
   const mainImgUrl = doc.mainImage ? urlForImage(doc.mainImage)?.url() || "" : "";
   const galleryUrls = (doc.gallery || []).map((img: any) => urlForImage(img)?.url() || "").filter(Boolean);
   const allUrls = [mainImgUrl, ...galleryUrls].filter(Boolean);
+
+  const inspectionSheetUrl = doc.inspectionReportImage
+    ? urlForImage(doc.inspectionReportImage)?.url() || ""
+    : "";
+  const spin360Urls = (doc.spin360Images || [])
+    .map((img: any) => urlForImage(img)?.url() || "")
+    .filter(Boolean);
 
   const attachments: CarAttachment[] = allUrls.map((url, idx) => ({
     CarId: Number(doc._id?.replace(/\D/g, "").slice(0, 7)) || 999000 + idx,
@@ -182,6 +201,13 @@ export function mapSanityCarToCar(doc: any): Car {
           providerKu: "قیستی ڕاستەوخۆ لە بریکاری فەرمی",
         }
       : null,
+    tiktokUrl: doc.tiktokUrl || null,
+    youtubeUrl: doc.youtubeUrl || null,
+    inspectionReportImage: inspectionSheetUrl || null,
+    paintCondition: doc.paintCondition || null,
+    chassisCondition: doc.chassisCondition || null,
+    warranty: doc.warranty || null,
+    spin360Images: spin360Urls.length > 0 ? spin360Urls : null,
   };
 
   return car;

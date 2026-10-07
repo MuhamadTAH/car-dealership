@@ -65,6 +65,13 @@ export interface Car {
   IsFeatured?: boolean | null;
   qist?: QistPlan | null;
   car360?: Car360Config | null;
+  tiktokUrl?: string | null;
+  youtubeUrl?: string | null;
+  inspectionReportImage?: string | null;
+  paintCondition?: string | null;
+  chassisCondition?: string | null;
+  warranty?: string | null;
+  spin360Images?: string[] | null;
   [key: string]: any;
 }
 

@@ -203,6 +203,63 @@ export const carSchema = {
         },
       ],
     },
+    // TikTok & YouTube Video Walkarounds
+    {
+      name: "tiktokUrl",
+      title: "TikTok Walkaround Video URL",
+      type: "url",
+      description: "Direct link to vehicle TikTok reel / walkaround video (e.g. https://www.tiktok.com/@...)",
+    },
+    {
+      name: "youtubeUrl",
+      title: "YouTube Review / Walkaround URL",
+      type: "url",
+      description: "Direct link to vehicle YouTube video (e.g. https://www.youtube.com/watch?v=...)",
+    },
+    // Vehicle Technical Inspection Sheet Photo
+    {
+      name: "inspectionReportImage",
+      title: "Physical Inspection Test Sheet Photo (تقرير الفحص الفني / فحص الهزة)",
+      type: "image",
+      description: "Upload a high-resolution photo or scan of the official vehicle inspection certificate (chassis, engine, OBD-II scanner results).",
+      options: {
+        hotspot: true,
+      },
+    },
+    // Condition Specifics (Paint & Chassis)
+    {
+      name: "paintCondition",
+      title: "Paint & Body Condition (صبغ السيارة)",
+      type: "string",
+      options: {
+        list: [
+          { title: "100% Original Factory Paint (صبغ وكالة 100% / بێ بۆیاغ)", value: "Original Factory Paint" },
+          { title: "Clean Touch-ups / Partial (صبغ نظافة جزئي)", value: "Partial Touch-up" },
+          { title: "Repainted (مصبوغ)", value: "Repainted" },
+        ],
+      },
+      initialValue: "Original Factory Paint",
+    },
+    {
+      name: "chassisCondition",
+      title: "Chassis & Frame Condition (حالة الشاصي)",
+      type: "string",
+      options: {
+        list: [
+          { title: "100% Clean Intact Chassis (شاصي سليم بدون ضرر / شاسی بێ لێدران)", value: "Clean Intact Chassis" },
+          { title: "Minor Inspection Note", value: "Minor Note" },
+        ],
+      },
+      initialValue: "Clean Intact Chassis",
+    },
+    // 360 Sequential Photos
+    {
+      name: "spin360Images",
+      title: "360° Turntable Photos (16–24 sequential clockwise photos)",
+      description: "Upload 16 to 24 photos taken around the vehicle in a circle clockwise. The website automatically turns them into an interactive 360° spin viewer.",
+      type: "array",
+      of: [{ type: "image", options: { hotspot: true } }],
+    },
     // Specifications
     {
       name: "transmission",
